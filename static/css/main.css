@@ -413,3 +413,20 @@ input,select {
     background-color: #fff;
     border-radius: 8px;
 }
+@media screen and (max-width: 500px){
+    .user-card{
+        display: block;
+    }
+    .user-img{
+        /*display: none;*/
+        padding-left: 20px;
+
+    }
+    .user-img img{
+        width:80px;
+        height: 80px;
+    }
+    .user-info{
+        /*margin: auto;*/
+    }
+}

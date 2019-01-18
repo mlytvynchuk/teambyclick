@@ -7,7 +7,10 @@
                   <div class="user-card white-box p-30">
                   <div class="user-img">
                   <img src="{{ usr.profile.image.url }}" alt="user-picture" class="img-circle">
-              </div>
+                  </div>
+{#                  <div class="lol">#}
+{#                  <img src="{{ usr.profile.image.url }}" alt="user-picture" class="img-circle">#}
+{#              </div>#}
               <div class="user-info">
                   <div class="user-title">
                       <h3>{{ usr.first_name }} {{ usr.last_name }}</h3>
@@ -30,7 +33,7 @@
                                   </dd>
                   <div class="contact">
                    {% if usr.profile.facebook or usr.profile.linkedin %}
-            <h4 style="float: left;padding: 5px;">{% trans "Контакти: "%}</h4>
+{#            <h4 style="padding: 5px;">{% trans "Контакти: "%}</h4>#}
         {% endif %}
         <ul class="inline-bricks">
             {% if usr.profile.facebook %}
