@@ -1,0 +1,10 @@
+README.rst
+setup.cfg
+setup.py
+django_language_detect.egg-info/PKG-INFO
+django_language_detect.egg-info/SOURCES.txt
+django_language_detect.egg-info/dependency_links.txt
+django_language_detect.egg-info/requires.txt
+django_language_detect.egg-info/top_level.txt
+language_detect/__init__.py
+language_detect/middleware.py

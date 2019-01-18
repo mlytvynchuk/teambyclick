@@ -41,7 +41,6 @@ INSTALLED_APPS = [
     'users',
     'deals',
     'comentz',
-    'bootstrap3',
     'locations',
 ]
 
