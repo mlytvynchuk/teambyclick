@@ -65,10 +65,14 @@ class DealView(ListView):
             else:
                 if request.user.is_authenticated:
                     message = "special"
-                    deals = deals.filter(Q(speciality=request.user.profile.speciality),Q(city=request.user.profile.city))
+                    if request.user.profile.city:
+                        deals = deals.filter(city=request.user.profile.city)
+                    elif request.user.profile.country:
+                        deals = deals.filter(country=request.user.profile.country)
+                    else:
+                        deals = deals.all()
 
                 else:
-
                     deals = deals.all()
 
             deals = deals.distinct()
