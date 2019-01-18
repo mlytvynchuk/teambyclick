@@ -1,0 +1,146 @@
+{% extends 'extends/base.html' %}
+{% load i18n %}
+{% load my_tags %}
+{% block content %}
+
+      <div class="row" id="main-content">
+          <div class="col-md-8 col-sm-8 ">
+          <div class="card white-box">
+                                            <div class="card-body">
+                                                    <div class="row " style="overflow: hidden">
+                                                        <div class="col-lg-9 col-md-8" >
+                                                            <div class="d3" style="width: 100%;">
+                                                                <form method="GET">
+                                                                    <input type="text" name="search" placeholder="{% trans 'Пошук людей' %}">
+                                                                    <button type="submit"></button>
+                                                                </form>
+                                                          </div>
+                                                        </div>
+                                                        <div class="col-lg-3 col-md-4" style="">
+                                                            <a class="btn btn-primary" id="custom-clk" style="padding: 11px"><span class="fa fa-sliders"> </span>{% trans 'Налаштування' %}</a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                    </div>
+                            <div class="card white-box" id="idea-settings">
+                                            <div class="card-body">
+                                                    <div>
+                                                            <form class="searchForm form-horizontal form-material"  action="{% url 'people' %}" data-cities-url="{% url 'ajax_load_cities_users' %}" novalidate>
+                                                                {% for field in s_form %}
+                                                                    <p>
+                                                                        {% if field.name == 'speciality' %}
+                                                                            <label for="id_speciality">{% trans 'Спеціальності:' %}</label>
+                                                                            {% elif field.name == 'country'  %}
+                                                                                <label for="id_country">{% trans 'Країна:' %}</label>
+                                                                            {% elif field.name == 'skills'  %}
+                                                                                <label for="id_country">{% trans 'Навички:' %}</label>
+                                                                            {% elif field.name == 'city'  %}
+                                                                                <label for="id_city">{% trans 'Місто:' %}</label>
+                                                                        {% endif %}
+                                                                        <br>
+                                                                    {{ field }}
+                                                                    </p>
+                                                                {% endfor %}
+                                                            <button type="submit" class=" btn btn-primary">Шукати</button>
+                                                            </form>
+                                                          </div>
+                                                </div>
+                                    </div>
+                            <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+                            <script>
+                                $("#idea-settings").hide();
+                            $(document).ready(function(){
+                              $("#custom-clk").click(function(){
+                                $("#idea-settings").toggle(200);
+                              });
+                            });
+                            </script>
+
+                <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+  <script>
+    $("#id_country").change(function () {
+      var url = $(".searchForm").attr("data-cities-url");  // get the url of the `load_cities` view
+      var countryId = $(this).val();  // get the selected country ID from the HTML input
+
+      $.ajax({                       // initialize an AJAX request
+        url: url,                    // set the url of the request (= localhost:8000/hr/ajax/load-cities/)
+        data: {
+          'country': countryId       // add the country id to the GET parameters
+        },
+        success: function (data) {   // `data` is the return of the `load_cities` view function
+          $("#id_city").html(data);  // replace the contents of the city input with the data that came from the server
+        }
+      });
+
+    });
+  </script>
+                                {% if message == "wrong" %}
+                                <div class="card white-box">
+                                    <h3>{% trans 'Ууупс! Ми не змогли нічого відшукати😖<br>Спробуй ще раз' %}🤔</h3>
+                                </div>
+                                {% endif %}
+          <div class="white-box">
+               {% for user in people %}
+              <div class="user-card deal">
+                  <div class="user-img">
+                      <a href="{% url 'user-details' slug=user.username %}"><img src="{{ user.profile.image.url }}" alt="user-picture" class="img-circle"></a>
+              </div>
+              <div class="user-info">
+                  <div class="user-title">
+                      <h3><a href="{% url 'user-details' slug=user.username %}">{{ user.first_name }} {{ user.last_name }}</a></h3>
+                  </div>
+                  <div class="user-bio">
+                      <p class="text-muted">{{ user.profile.speciality }}</p>
+
+                                  <dd>
+                                      <ul class="inline-bricks">
+                                      {% if user.profile.skills.all != null %}
+                                          {% for skill in  user.profile.skills.all  %}
+                                            <li class="brick">
+                                                {{ skill }}
+                                            </li>
+                                          {% endfor %}
+                                      {% endif %}
+                                      </ul>
+                                  </dd>
+
+                  </div>
+
+              </div>
+
+              </div>
+            <hr>
+          {% endfor %}
+          </div>
+
+           {% if people.has_other_pages %}
+  <ul class="pagination">
+    {% if people.has_previous %}
+      <li class=""><a href="?page={{ people.previous_page_number }}">&laquo; Попередня</a></li>
+    {% else %}
+      <li class="disabled"><span>&laquo; Попередня</span></li>
+    {% endif %}
+    {% for i in people.paginator.page_range %}
+      {% if people.number == i %}
+        <li class="active"><span>{{ i }} <span class="sr-only">(current)</span></span></li>
+      {% else %}
+        <li><a href="?{% param_replace page=i %}">{{ i }}</a></li>
+      {% endif %}
+    {% endfor %}
+    {% if people.has_next %}
+      <li><a href="?page={{ people.next_page_number }}">Наступна &raquo;</a></li>
+    {% else %}
+      <li class="disabled"><span>Наступна &raquo;</span></li>
+    {% endif %}
+  </ul>
+{% endif %}
+
+          </div>
+
+          <div class="col-md-3">
+              Тут буде ваша реклама
+
+          </div>
+      </div>
+
+{% endblock content %}

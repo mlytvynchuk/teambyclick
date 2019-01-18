@@ -1,0 +1,412 @@
+{% load static %}
+{% load i18n %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" type="image/png" sizes="16x16" href="{% static 'images/favicon.png' %}">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static 'css/choices.min.css' %}">
+{#    <link rel="stylesheet" href="{% static 'js/choices.min.js' %}">#}
+    <script type="text/javascript" src="{% static 'js/choices.min.js' %}"></script>
+    <title>TeamByClick</title>
+    <!-- Bootstrap Core CSS -->
+    <link href="{% static 'bower_components/bootstrap/dist/css/bootstrap.min.css' %}" rel="stylesheet">
+    <!-- Menu CSS -->
+    <link href="{% static 'bower_components/metisMenu/dist/metisMenu.min.css' %}" rel="stylesheet">
+    <!-- Menu CSS -->
+    <link href="{% static 'bower_components/morrisjs/morris.css' %}" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link href="{% static 'css/style.css' %}" rel="stylesheet">
+    <link href="{% static 'css/main.css' %}" rel="stylesheet">
+
+</head>
+
+<body>
+    <!-- Preloader -->
+{#    <div class="preloader">#}
+{#        <div class="cssload-speeding-wheel"></div>#}
+{#    </div>#}
+    <div id="wrapper">
+        <!-- Navigation -->
+        <nav class="navbar navbar-default navbar-static-top" style="margin-bottom: 0">
+            <div class="navbar-header"> <a class="navbar-toggle hidden-sm hidden-md hidden-lg " href="javascript:void(0)" data-toggle="collapse" data-target=".navbar-collapse"><i class="ti-menu"></i></a>
+                <div class="top-left-part"><a class="logo" href="{% url 'deals-home' %}"> <img src="{% static 'images/tembc-logo.png' %}" width="30px">&nbsp;<span class="">TeamBy<strong>Click</strong></span></a></div>
+                <ul class="nav navbar-top-links navbar-left hidden-xs">
+                    <li><a href="javascript:void(0)" class="open-close hidden-xs hidden-lg
+ waves-effect waves-light"><i class="ti-arrow-circle-left ti-menu"></i>
+</a></li>
+                </ul>
+                <ul class="nav navbar-top-links navbar-right pull-right">
+                    <li>
+                        <form role="search" class="app-search hidden-xs">
+                            <input type="text" placeholder="{% trans 'Шукай..' %}" class="form-control">
+                            <a href=""><i class="ti-search"></i></a>
+                        </form>
+                    </li>
+{#                <li>#}
+{#                    <form action="{% url 'set_language' %}" method="get" class="m-t-5 m-l-5 m-r-5">#}
+{#                    {% csrf_token %}#}
+{#                        <input name="next" type="hidden" value="{{ redirect_to }}" />#}
+{#                        <select name="language" onchange="this.form.submit();" class="form-control">#}
+{#                            {% get_current_language as LANGUAGE_CODE %}#}
+{#                            {% get_available_languages as LANGUAGES %}#}
+{#                            {% get_language_info_list for LANGUAGES as languages %}#}
+{#                            {% for language in languages %}#}
+{#                                <option value="{{ language.code }}"{% if language.code == LANGUAGE_CODE %} selected="selected"{% endif %}>#}
+{#                                    {{ language.name_local }} ({{ language.code }})#}
+{#                                </option>#}
+{#                            {% endfor %}#}
+{#                        </select>#}
+{#                        <input type="submit" value="{% trans 'Change' %}" />#}
+{#                    </form>#}
+{#                </li>#}
+                   {% if user.is_authenticated %}
+                         <li>
+                        <a class="profile-pic" href="{% url 'profile' %}"> <img src="{{ user.profile.image.url }}" alt="user-img" width="36" class="img-circle"><b class="hidden-xs">{{ user.username }}</b> </a>
+                    </li>
+                       <li>
+                            <a href="{% url 'logout'%}">{% trans 'Вийти' %}</a>
+                       </li>
+                       {% else%}
+                       <li>
+                           <a href="{% url 'login'%}">{% trans 'Увійти' %}</a>
+                       </li>
+                       <li>
+                           <a href="{% url 'register'%}" style="color: white;background: var(--primary)">{% trans 'Реєстрація' %}</a>
+                       </li>
+                    {% endif %}
+                </ul>
+            </div>
+            <!-- /.navbar-header -->
+            <!-- /.navbar-top-links -->
+            <!-- /.navbar-static-side -->
+        </nav>
+        <div class="navbar-default sidebar nicescroll" role="navigation">
+            <div class="sidebar-nav navbar-collapse ">
+                <ul class="nav" id="side-menu">
+                    <li class="sidebar-search hidden-sm hidden-md hidden-lg">
+                        <div class="input-group custom-search-form">
+                            <input type="text" class="form-control" placeholder="Search...">
+                            <span class="input-group-btn">
+                                <button class="btn btn-default" type="button"><i class="ti-search"></i> </button>
+                            </span>
+                        </div>
+                    </li>
+                    <li>
+                        <a href="{% url 'deals-home' %}" class="waves-effect"><i class="ti-layers-alt fa-fw"></i> {% trans 'Проекти' %}</a>
+                    </li>
+                    <li>
+                        <a href="{% url 'people' %}" class="waves-effect"><i class="ti-world fa-fw"></i> {% trans 'Люди' %}</a>
+                    </li>
+                    <li>
+                        <a href="{% url 'dialogs' %}" class="waves-effect"><i class="ti-email fa-fw"></i> {% trans 'Повідомлення' %}</a>
+                    </li>
+                    <li>
+                        <a href="{% url 'profile' %}" class="waves-effect"><i class="ti-user fa-fw"></i> {% trans 'Профіль' %}</a>
+                    </li>
+                    <li>
+                        <a href="{% url 'myideas' %}" class="waves-effect"><i class="ti-face-smile fa-fw"></i> {% trans 'Мої проекти' %}</a>
+                    </li>
+
+                </ul>
+                <div class="center p-20">
+                    <span class="hide-menu"><a href="{% url 'deal-create'%}" class="btn btn-primary btn-block btn-rounded waves-effect waves-light">{% trans 'Створити новий проект' %}</a></span>
+                </div>
+            </div>
+            <!-- /.sidebar-collapse -->
+        </div>
+        <!-- Page Content -->
+        <div id="page-wrapper">
+            <div class="container-fluid">
+                {% block content %}
+
+                {% endblock content %}
+
+            </div>
+            <!-- /.container-fluid -->
+        </div>
+        <!-- /#page-wrapper -->
+        <footer class="footer text-center"> 2018 &copy; TeamByClick </footer>
+    </div>
+    <!-- /#wrapper -->
+    <!-- jQuery -->
+    <script src="{% static 'bower_components/jquery/dist/jquery.min.js' %}"></script>
+{#    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>#}
+    <!-- Bootstrap Core JavaScript -->
+    <script src="{% static 'bower_components/bootstrap/dist/js/bootstrap.min.js' %}"></script>
+    <!-- Menu Plugin JavaScript -->
+    <script src="{% static 'bower_components/metisMenu/dist/metisMenu.min.js' %}"></script>
+    <!--Nice scroll JavaScript -->
+    <script src="{% static 'js/jquery.nicescroll.js' %}"></script>
+    <!--Morris JavaScript -->
+    <script src="{% static 'bower_components/raphael/raphael-min.js' %}"></script>
+    <script src="{% static 'bower_components/morrisjs/morris.js' %}"></script>
+    <!--Wave Effects -->
+    <script src="{% static 'js/waves.js' %}"></script>
+    <!-- Custom Theme JavaScript -->
+    <script src="{% static 'js/myadmin.js' %}"></script>
+    <script src="{% static 'js/dashboard1.js' %}"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+      var textRemove = new Choices(document.getElementById('choices-text-remove-button'), {
+        delimiter: ',',
+        editItems: true,
+        maxItemCount: 5,
+        removeItemButton: true,
+      });
+
+      var textUniqueVals = new Choices('#choices-text-unique-values', {
+        paste: false,
+        duplicateItemsAllowed: false,
+        editItems: true,
+      });
+
+      var texti18n = new Choices('#choices-text-i18n', {
+        paste: false,
+        duplicateItemsAllowed: false,
+        editItems: true,
+        maxItemCount: 5,
+        addItemText: function(value) {
+          return 'Appuyez sur Entrée pour ajouter <b>"' + String(value) + '"</b>';
+        },
+        maxItemText: function(maxItemCount) {
+          return String(maxItemCount) + 'valeurs peuvent être ajoutées';
+        },
+        uniqueItemText: 'Cette valeur est déjà présente',
+      });
+
+      var textEmailFilter = new Choices('#choices-text-email-filter', {
+        editItems: true,
+        regexFilter: /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
+      }).setValue(['joe@bloggs.com']);
+
+
+
+
+
+      var textPresetVal = new Choices('#choices-text-preset-values', {
+        items: ['Josh Johnson', {
+          value: 'joe@bloggs.co.uk',
+          label: 'Joe Bloggs',
+          customProperties: {
+            description: 'Joe Blogg is such a generic name'
+          }
+        }],
+      });
+
+      var multipleDefault = new Choices(document.getElementById('choices-multiple-groups'));
+
+      var multipleFetch = new Choices('#choices-multiple-remote-fetch', {
+        placeholder: true,
+        placeholderValue: 'Pick an Strokes record',
+        maxItemCount: 5,
+      }).ajax(function(callback) {
+        fetch('https://api.discogs.com/artists/55980/releases?token=QBRmstCkwXEvCjTclCpumbtNwvVkEzGAdELXyRyW')
+          .then(function(response) {
+            response.json().then(function(data) {
+              callback(data.releases, 'title', 'title');
+            });
+          })
+          .catch(function(error) {
+            console.error(error);
+          });
+      });
+
+      var multipleCancelButton = new Choices('#choices-multiple-remove-button', {
+        removeItemButton: true,
+      });
+
+      /* Use label on event */
+      var choicesSelect = new Choices('#choices-multiple-labels', {
+        removeItemButton: true,
+        choices: [
+          { value: 'One', label: 'Label One' },
+          { value: 'Two', label: 'Label Two', disabled: true },
+          { value: 'Three', label: 'Label Three' },
+        ],
+      }).setChoices([
+        { value: 'Four', label: 'Label Four', disabled: true },
+        { value: 'Five', label: 'Label Five' },
+        { value: 'Six', label: 'Label Six', selected: true },
+      ], 'value', 'label', false);
+
+      choicesSelect.passedElement.element.addEventListener('addItem', function(event) {
+        document.getElementById('message').innerHTML = 'You just added "' + event.detail.label + '"';
+      });
+
+      choicesSelect.passedElement.element.addEventListener('removeItem', function(event) {
+        document.getElementById('message').innerHTML = 'You just removed "' + event.detail.label + '"';
+      });
+
+      var singleFetch = new Choices('#choices-single-remote-fetch', {
+        searchPlaceholderValue: 'Search for an Arctic Monkeys record',
+      }).ajax(function(callback) {
+        fetch('https://api.discogs.com/artists/391170/releases?token=QBRmstCkwXEvCjTclCpumbtNwvVkEzGAdELXyRyW')
+          .then(function(response) {
+            response.json().then(function(data) {
+              callback(data.releases, 'title', 'title');
+              singleFetch.setChoiceByValue('Fake Tales Of San Francisco');
+            });
+          })
+          .catch(function(error) {
+            console.error(error);
+          });
+      });
+
+      var singleXhrRemove = new Choices('#choices-single-remove-xhr', {
+        removeItemButton: true,
+        searchPlaceholderValue: 'Search for a Smiths\' record'
+      }).ajax(function(callback) {
+        var request = new XMLHttpRequest();
+        request.open('get', 'https://api.discogs.com/artists/83080/releases?token=QBRmstCkwXEvCjTclCpumbtNwvVkEzGAdELXyRyW', true);
+        request.onreadystatechange = function() {
+          var status;
+          var data;
+          if (request.readyState === 4) {
+            status = request.status;
+            if (status === 200) {
+              data = JSON.parse(request.responseText);
+              callback(data.releases, 'title', 'title');
+              singleXhrRemove.setChoiceByValue('How Soon Is Now?');
+            } else {
+              console.error(status);
+            }
+          }
+        }
+        request.send();
+      });
+
+      var genericExamples = new Choices('[data-trigger]', {
+        placeholderValue: 'This is a placeholder set in the config',
+        searchPlaceholderValue: 'This is a search placeholder'
+      });
+
+      var singleNoSearch = new Choices('#choices-single-no-search', {
+        searchEnabled: false,
+        removeItemButton: true,
+        choices: [
+          { value: 'One', label: 'Label One' },
+          { value: 'Two', label: 'Label Two', disabled: true },
+          { value: 'Three', label: 'Label Three' },
+        ],
+      }).setChoices([
+        { value: 'Four', label: 'Label Four', disabled: true },
+        { value: 'Five', label: 'Label Five' },
+        { value: 'Six', label: 'Label Six', selected: true },
+      ], 'value', 'label', false);
+
+      var singlePresetOpts = new Choices('#choices-single-preset-options', {
+        placeholder: true,
+      }).setChoices([{
+        label: 'Group one',
+        id: 1,
+        disabled: false,
+        choices: [
+          { value: 'Child One', label: 'Child One', selected: true },
+          { value: 'Child Two', label: 'Child Two', disabled: true },
+          { value: 'Child Three', label: 'Child Three' },
+        ]
+      },
+      {
+        label: 'Group two',
+        id: 2,
+        disabled: false,
+        choices: [
+          { value: 'Child Four', label: 'Child Four', disabled: true },
+          { value: 'Child Five', label: 'Child Five' },
+          { value: 'Child Six', label: 'Child Six' },
+        ]
+      }], 'value', 'label');
+
+      var singleSelectedOpt = new Choices('#choices-single-selected-option', {
+        searchFields: ['label', 'value', 'customProperties.description'],
+        choices: [
+          { value: 'One', label: 'Label One', selected: true },
+          { value: 'Two', label: 'Label Two', disabled: true },
+          {
+            value: 'Three', label: 'Label Three', customProperties: {
+              description: 'This option is fantastic'
+            }
+          },
+        ],
+      }).setChoiceByValue('Two');
+
+      var singleNoSorting = new Choices('#choices-single-no-sorting', {
+        shouldSort: false,
+      });
+
+      var cities = new Choices(document.getElementById('cities'));
+      var tubeStations = new Choices(document.getElementById('tube-stations')).disable();
+
+      cities.passedElement.element.addEventListener('change', function(e) {
+        if (e.detail.value === 'London') {
+          tubeStations.enable();
+        } else {
+          tubeStations.disable();
+        }
+      });
+
+      var customTemplates = new Choices(document.getElementById('choices-single-custom-templates'), {
+        callbackOnCreateTemplates: function(strToEl) {
+          var classNames = this.config.classNames;
+          var itemSelectText = this.config.itemSelectText;
+          return {
+            item: function(classNames, data) {
+              return strToEl('\
+                <div\
+                  class="'+ String(classNames.item) + ' ' + String(data.highlighted ? classNames.highlightedState : classNames.itemSelectable) + '"\
+                  data-item\
+                  data-id="'+ String(data.id) + '"\
+                  data-value="'+ String(data.value) + '"\
+                  '+ String(data.active ? 'aria-selected="true"' : '') + '\
+                  '+ String(data.disabled ? 'aria-disabled="true"' : '') + '\
+                  >\
+                  <span style="margin-right:10px;">🎉</span> ' + String(data.label) + '\
+                </div>\
+              ');
+            },
+            choice: function(classNames, data) {
+              return strToEl('\
+                <div\
+                  class="'+ String(classNames.item) + ' ' + String(classNames.itemChoice) + ' ' + String(data.disabled ? classNames.itemDisabled : classNames.itemSelectable) + '"\
+                  data-select-text="'+ String(itemSelectText) + '"\
+                  data-choice \
+                  '+ String(data.disabled ? 'data-choice-disabled aria-disabled="true"' : 'data-choice-selectable') + '\
+                  data-id="'+ String(data.id) + '"\
+                  data-value="'+ String(data.value) + '"\
+                  '+ String(data.groupId > 0 ? 'role="treeitem"' : 'role="option"') + '\
+                  >\
+                  <span style="margin-right:10px;">👉🏽</span> ' + String(data.label) + '\
+                </div>\
+              ');
+            },
+          };
+        }
+      });
+
+      var resetSimple = new Choices(document.getElementById('reset-simple'));
+
+      var resetMultiple = new Choices('#reset-multiple', {
+        removeItemButton: true,
+      });
+    });
+  </script>
+
+  <!-- Google Analytics - Ignore me -->
+  <script>
+    window.ga = window.ga || function() { (ga.q = ga.q || []).push(arguments) }; ga.l = +new Date;
+    ga('create', 'UA-31575166-1', 'auto');
+    ga('send', 'pageview');
+  </script>
+  <script async src='https://www.google-analytics.com/analytics.js'></script>
+</body>
+
+</html>

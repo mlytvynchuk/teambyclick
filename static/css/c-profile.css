@@ -1,0 +1,20 @@
+body{
+    background: #f5f5f5!important;
+}
+html{
+    background: transparent !important;
+}
+
+.c-panel{
+    margin: 20px 7em !important;
+}
+@media (max-width: 500px) {
+    .c-panel {
+        margin: 20px 1em !important;
+    }
+}
+@media (min-width:501px) and ( max-width: 800px) {
+    .c-panel {
+        margin: 20px 2em !important;
+    }
+}

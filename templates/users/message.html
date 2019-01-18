@@ -1,0 +1,15 @@
+{% url 'user-details' message_item.author.username as the_user_url%}
+{% load tz %}
+<div class="list-group-item {% if not message_item.is_readed %}unreaded{% endif %}">
+{#    <a class= href="{{ the_user_url }}"><img class="avatar-comment" src="{{ message_item.author.pr }}"></a>#}
+    <div class="img-circle m-r-10" style="background-image: url({{ message_item.author.profile.image.url }});width: 35px;height: 35px; background-position: center;background-size: cover;float: left "></div>
+    <div class="reply-body">
+        <ul class="list-inline">
+            <li class="drop-left-padding">
+                <strong class="list-group-item-heading"><a href="{{ the_user_url }}" class="text-primary">{{ message_item.author.first_name }}</a></strong>
+            </li>
+            <li class="pull-right text-muted"><small>{{ message_item.pub_date|utc }}</small></li>
+        </ul>
+        <div style="padding-left: 50px">{{ message_item.message|safe }}</div>
+    </div>
+</div>

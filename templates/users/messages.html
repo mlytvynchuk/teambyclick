@@ -1,0 +1,95 @@
+{% extends 'extends/base.html' %}
+{#{% load my_tags %}#}
+{% load tz %}
+{% load i18n %}
+{% load companion %}
+
+{% block content %}
+    <div class="row m-t-10">
+        <div class="col-lg-4 ">
+                    <div class="panel all-messages">
+                <div class="bg-primary p-t-20 p-l-10">
+                    <h2 class="text-white">{% trans 'Повідомлення' %}</h2>
+                    <hr>
+                </div>
+        {% if chats.count <= 1 %}
+            <div class="panel panel-body">{% trans "Нема ні одного початого діалога" %}</div>
+        {% endif %}
+                    <div class="scrl">
+                                {% for chat in chats %}
+            <div class="m-b-10 p-r-10">
+            {% if chat.message_set.count != 0 %}
+                {% with last_message=chat.message_set.last %}
+
+                    {% get_companion user chat as companion %}
+{#                    {% get_companion user chat as companion %}#}
+                    <a class="list-group-item {% if companion == last_message.author and not last_message.is_readed %}unreaded{% endif %}" href="{% url 'messages' chat.id %}">
+                        <img class="avatar-messages" src="{{ companion.userprofile.get_avatar }}">
+                        <div class="reply-body">
+                            <ul class="list-inline" style="margin-bottom: -20px">
+                                <li class="drop-left-padding">
+                                    <div class="img-circle m-r-10" style="background-image: url({{companion.profile.image.url }});width: 35px;height: 35px; background-position: center;background-size: cover;float: left "></div>
+                                    <strong class="list-group-item-heading">{{ companion.first_name }} {{ companion.last_name }}</strong>
+                                </li>
+                                <li class="pull-right text-muted"><small>{{ last_message.pub_date|utc }}</small></li>
+                            </ul >
+                            <div style="padding-left: 45px">
+                                {% if companion != last_message.author %}
+                                <div>
+                                    <img class="avatar-rounded-sm" src="{{ last_message.author.userprofile.get_avatar }}">
+                                    <div class="attached-reply-body {% if not last_message.is_readed %} unreaded {% endif %}">{{ last_message.message|truncatechars_html:"200"|safe|striptags }}</div>
+                                </div>
+                            {% else %}
+                                <div class="">{{ last_message.message|truncatechars_html:"200"|safe|striptags }}</div>
+                            {% endif %}
+                            </div>
+
+                        </div>
+                    </a>
+                {% endwith %}
+            {% endif %}
+            </div>
+
+        {% endfor %}
+                    </div>
+    </div>
+
+    </div>
+
+    <div class="col-lg-8">
+            {% if not chat %}
+    <div class="panel panel-body">
+        {% trans "Невозможно начать беседу. Не найден пользователь или вы не имеете доступа к данной беседе." %}
+    </div>
+{% else %}
+    {% load tz %}
+    {% if chat %}
+        <div id="messages" class="panel bg-white">
+
+            <div class="p-t-20 p-l-10 bg-primary">
+                <h2 class="text-white">Переписка з {% if chat.members.first != user_profile %} {{ chat.members.first.first_name }} {{ chat.members.first.last_name }} {% else %} {{ chat.members.last.first_name }} {{ chat.members.last.last_name }} {% endif %}</h2>
+                <hr>
+            </div>
+
+            <div id="innerMessages" class="scrl">
+                {% for message in chat.message_set.all %}
+                        {% include 'users/message.html' with message_item=message %}
+                {% endfor %}
+            </div>
+{#        </div>#}
+    {% endif %}
+            <div id="message_form ">
+                <form id="message-form" class="panel panel-body form-horizontal form-material" method="post" >
+        {#            {% load bootstrap3 %}#}
+                    {% csrf_token %}
+        {#            {% bootstrap_form form %}#}
+                    <textarea name="message" rows="3" class="form-control" title="" required="" id="id_message"></textarea>
+                    <button type="submit" class="btn btn-primary btn-sm m-t-10" onclick="return ETextEditor.validateForm('message-form')"><span class="ico ico-comment"></span>{% trans "Отправить" %}</button>
+                </form>
+            </div>
+        </div>
+{% endif %}
+
+    </div>
+</div>
+{% endblock content %}

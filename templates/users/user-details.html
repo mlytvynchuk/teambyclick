@@ -1,0 +1,81 @@
+{% extends 'extends/base.html' %}
+{% load i18n %}
+{% block content %}
+            <!-- Default Light Table -->
+            <div class="row">
+               <div class="col-md-9  m-t-10 m-l-10">
+                  <div class="user-card white-box p-30">
+                  <div class="user-img">
+                  <img src="{{ usr.profile.image.url }}" alt="user-picture" class="img-circle">
+              </div>
+              <div class="user-info">
+                  <div class="user-title">
+                      <h3>{{ usr.first_name }} {{ usr.last_name }}</h3>
+                  </div>
+                  <div class="user-bio">
+                      <p class="text-muted">{{ usr.profile.speciality }}</p>
+                                        <p class="text-primary"><i class="fas fa-map-marker-alt"></i> {{ usr.profile.city }}, {{ usr.profile.country }}</p>
+                        <b>{% trans 'Про мене' %}: </b>
+                    {{ usr.profile.bio }}
+                                      <dd class="p-t-10">
+                                      <ul class="inline-bricks">
+                                      {% if usr.profile.skills.all != null %}
+                                          {% for skill in  usr.profile.skills.all  %}
+                                            <li class="brick">
+                                                {{ skill }}
+                                            </li>
+                                          {% endfor %}
+                                      {% endif %}
+                                      </ul>
+                                  </dd>
+                  <div class="contact">
+                   {% if usr.profile.facebook or usr.profile.linkedin %}
+            <h4 style="float: left;padding: 5px;">{% trans "Контакти: "%}</h4>
+        {% endif %}
+        <ul class="inline-bricks">
+            {% if usr.profile.facebook %}
+                <li class="brick"><a class="btn btn-facebook" href="{{ usr.profile.facebook }}"><i class="fab fa-facebook-square"></i> Facebook</a></li>
+            {% endif %}
+            {% if usr.profile.linkedin %}
+                <li class="brick"><a class="btn btn-linkedin" href="{{ usr.profile.linkedin }}"><i class="fab fa-linkedin"></i> LinkedIn</a></li>
+            {% endif %}
+
+                  </ul>
+               </div>
+                  </div>
+              <a class="btn btn-primary" href="{% url 'create_dialog' usr.id %}"><i class="far fa-envelope"></i> {% trans 'Написати повідомлення' %}</a>
+              </div>
+
+              </div>
+               {% if deals %}
+                   <h3 class="card-title">{% trans 'Проекти користувача' %}</h3>
+                    <div class="h-divider"></div>
+                   <br>
+                   {% for deal in deals %}
+                       <div class="card white-box">
+                                            <div class="card-body">
+                                              <h2 class="">{{ deal.title }}</h2>
+                                              <p class="card-text">{{ deal.description|truncatewords:25 }}</p>
+                                              <dt class="profile-section__title">{% trans 'Потрібні спеціалісти:' %}</dt>
+                                              <dd>
+                                                  <ul class="inline-bricks">
+                                                      {% for spec in deal.speciality.all %}
+                                                      <li class="brick">
+                                                            {{ spec }}
+                                                        </li>
+                                                      {% endfor %}
+                                                  </ul>
+                                              </dd>
+                                              <a href="{% url 'deal-detail' deal.id %}" class="btn btn-primary">{% trans 'Дізнатись більше' %}</a>
+                                            </div>
+                                          </div>
+                   {% endfor %}
+
+               {% endif %}
+               </div>
+                <div class="col-md-3">
+
+                </div>
+            </div>
+            <!-- End Default Light Table -->
+{% endblock content %}

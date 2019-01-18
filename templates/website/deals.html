@@ -1,0 +1,222 @@
+{% extends 'extends/base.html' %}
+{% load i18n static %}
+{% load my_tags %}
+{% block content %}
+
+ <div class="row" id="main-content">
+                        <div class="col-md-8 col-sm-8" id="ideas">
+                            <main>
+{#                                    <div class="white-box b-shadow">#}
+{#                                            <div class="card-body">#}
+{#                                                    <div class="row " style="overflow: hidden">#}
+{#                                                        <div class="col-lg-9 col-md-8" >#}
+{#                                                            <div class="d3" style="width: 100%;">#}
+{#                                                                <form method="GET">#}
+{#                                                                    <input type="text" name="search" placeholder="{% trans 'Пошук проектів' %}">#}
+{#                                                                    <button type="submit"></button>#}
+{#                                                                </form>#}
+{#                                                          </div>#}
+{#                                                        </div>#}
+{#                                                        <div class="col-lg-3 col-md-4" style="">#}
+{#                                                            <a class="btn btn-primary" id="custom-clk" style="padding: 11px"><span class="fa fa-sliders"></span> {% trans 'Налаштування' %}</a>#}
+{#                                                        </div>#}
+{#                                                    </div>#}
+{#                                                </div>#}
+{#                                    </div>#}
+                                <div class="card white-box">
+                                            <div class="card-body">
+                                                    <div class="row " style="overflow: hidden">
+                                                        <div class="col-lg-9 col-md-8" >
+                                                            <div class="d3" style="width: 100%;">
+                                                                <form method="GET">
+                                                                    <input type="text" name="search" placeholder="{% trans 'Пошук проектів' %}">
+                                                                    <button type="submit"></button>
+                                                                </form>
+                                                          </div>
+                                                        </div>
+                                                        <div class="col-lg-3 col-md-4" style="">
+                                                            <a class="btn btn-primary" id="custom-clk" style="padding: 11px"><span class="fa fa-sliders"> </span>{% trans 'Налаштування' %}</a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                    </div>
+                            <div class=" white-box b-shadow" id="idea-settings">
+                                            <div class="card-body">
+                                                    <div>
+                                                            <form class="searchForm form-horizontal form-material"  action="{% url 'deals-home' %}" data-cities-url="{% url 'ajax_load_cities' %}" novalidate>
+                                                                {% for field in s_form %}
+                                                                    <p>
+                                                                        {% if field.name == 'speciality' %}
+                                                                            <label for="id_speciality">{% trans 'Спеціальності:' %}</label>
+                                                                            {% elif field.name == 'country'  %}
+                                                                                <label for="id_country">{% trans 'Країна:' %}</label>
+                                                                            {% elif field.name == 'city'  %}
+                                                                                <label for="id_city">{% trans 'Місто:' %}</label>
+                                                                        {% endif %}
+                                                                        <br>
+                                                                    {{ field }}
+                                                                    </p>
+                                                                {% endfor %}
+                                                            <button type="submit" class=" btn btn-primary">Шукати</button>
+                                                            </form>
+                                                          </div>
+                                                </div>
+                                    </div>
+                            <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+                            <script>
+                                $("#idea-settings").hide();
+                            $(document).ready(function(){
+                              $("#custom-clk").click(function(){
+                                $("#idea-settings").toggle(200);
+                              });
+                            });
+                            </script>
+
+                <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+  <script>
+    $("#id_country").change(function () {
+      var url = $(".searchForm").attr("data-cities-url");  // get the url of the `load_cities` view
+      var countryId = $(this).val();  // get the selected country ID from the HTML input
+
+      $.ajax({                       // initialize an AJAX request
+        url: url,                    // set the url of the request (= localhost:8000/hr/ajax/load-cities/)
+        data: {
+          'country': countryId       // add the country id to the GET parameters
+        },
+        success: function (data) {   // `data` is the return of the `load_cities` view function
+          $("#id_city").html(data);  // replace the contents of the city input with the data that came from the server
+        }
+      });
+
+    });
+  </script>
+                                {% if message == "wrong" %}
+                                <div class="card white-box">
+                                    <h3>{% trans 'Ууупс! Ми не змогли нічого відшукати😖<br>Спробуй ще раз' %}🤔</h3>
+                                </div>
+                                {% endif %}
+                             {% if message == "special" %}
+                                <div class="card white-box">
+                                    <h3>{% trans 'Спеціально підібрані для Вас ідеї' %}🤔</h3>
+                                    <p>{% trans 'Натисніть "Налаштування", щоб гнучкіше налаштувати ідеї' %}</p>
+                                </div>
+                                {% endif %}
+                            {% if deals %}
+                            <div class="white-box b-shadow ">
+
+                                 {% for deal in deals %}
+                                    <a href="{% url 'deal-detail' deal.id %}" class="" style="text-decoration: none; color:black">
+                                            <div class="card-body deal">
+                                              <h2 class="">{{ deal.title }}</h2>
+                                            <p class="font-light text-primary" style=""><i class="fas fa-map-marker-alt"></i> {{ deal.city }}, {{ deal.country }}</p>
+{#                                              <div class="categories">#}
+{##}
+{#                                                      <li class="category-item">#}
+{#                                                            <small>#}
+{#                                                                Дизайн автомобілів,#}
+{#                                                            </small>#}
+{#                                                      </li>#}
+{#                                                      <li class="category-item">#}
+{#                                                            <small>#}
+{#                                                                    Продаж техніки#}
+{#                                                            </small>#}
+{##}
+{#                                                        </li>#}
+{##}
+{##}
+{##}
+{#                                              </div>#}
+                                              <p class="card-text">{{ deal.description|truncatewords:25 }}</p>
+                                              <dt class="profile-section__title">{% trans 'Потрібні спеціалісти:' %}</dt>
+                                              <dd>
+                                                  <ul class="inline-bricks">
+                                                      {% for spec in deal.speciality.all %}
+                                                      <li class="brick">
+                                                            {{ spec }}
+                                                        </li>
+                                                      {% endfor %}
+                                                  </ul>
+                                              </dd>
+{#                                              <a href="{% url 'deal-detail' deal.id %}" class="btn btn-primary">Дізнатись більше</a>#}
+                                            </div>
+                                          </a>
+                                       <hr>
+                                {% endfor %}
+
+
+                                {% if deals.has_other_pages %}
+                                  <ul class="pagination">
+                                    {% if deals.has_previous %}
+                                      <li class=""><a href="?page={{ deals.previous_page_number }}">&laquo; {% trans 'Попередня' %}</a></li>
+                                    {% else %}
+                                      <li class="disabled"><span>&laquo; {% trans 'Попередня' %}</span></li>
+                                    {% endif %}
+                                    {% for i in deals.paginator.page_range %}
+                                      {% if deals.number == i %}
+                                        <li class="active"><span>{{ i }} <span class="sr-only">(current)</span></span></li>
+                                      {% else %}
+                                        <li><a href="?{% param_replace page=i %}">{{ i }}</a></li>
+                                      {% endif %}
+                                    {% endfor %}
+                                    {% if deals.has_next %}
+                                      <li><a href="?page={{ deals.next_page_number }}">{% trans 'Наступна' %} &raquo;</a></li>
+                                    {% else %}
+                                      <li class="disabled"><span>{% trans 'Наступна' %} &raquo;</span></li>
+                                    {% endif %}
+                                  </ul>
+                                {% endif %}
+                            </div>
+                        {% endif %}
+{#                        {% if request.GET.speciality %}#}
+{#                            {{ request.GET.speciality }}#}
+{##}
+{##}
+{#                            {% endif %}#}
+{#                            {% if request.GET.speciality %}#}
+{#                            {{ request.GET.speciality }}#}
+{##}
+{#                            {% endif %}#}
+{#                            <div class="pagination">#}
+{#                                <span class="step-links">#}
+{#                                    {% if deals.has_previous %}#}
+{#                                        <a href="?page=1">&laquo; first</a>#}
+{#                                        <a href="?page={{ deals.previous_page_number }}">previous</a>#}
+{#                                    {% endif %}#}
+{##}
+{#                                    <span class="current">#}
+{#                                        Page {{ deals.number }} of {{ deals.paginator.num_pages }}.#}
+{#                                    </span>#}
+{##}
+{#                                    {% if deals.has_next %}#}
+{#                                        <a href="?{% param_replace page=deals.next_page_number %}">next</a>#}
+{#                                        <a href="?page={{ deals.paginator.num_pages }}">last &raquo;</a>#}
+{#                                    {% endif %}#}
+{#                                </span>#}
+{#                            </div>#}
+
+
+                            </main>
+                        </div>
+                        <div class="col-md-3 col-sm-4">
+                            <aside>
+                                <div class="block-sidebar m-30 white-box">
+                                    <div class="">
+                                        <h4>{% trans 'Найкращі ідеї за місяць' %}</h4>
+                                    </div>
+                                    <li>
+                                        <a href="">
+                                            TeamByClick
+                                        </a>
+                                    </li>
+                                    <li>
+                                            <a href="">
+                                                Arrangyzer
+                                            </a>
+                                        </li>
+                                </div>
+                            </aside>
+                        </div>
+                    </div>
+
+
+{% endblock content %}
