@@ -87,7 +87,6 @@ class DealView(ListView):
 
 
 
-
 # class DealDetailView(DetailView):
 #     model = Deal
 #     template_name = 'website/deal-detail.html'
