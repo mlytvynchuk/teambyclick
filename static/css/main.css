@@ -375,6 +375,10 @@ input,select {
 .unreaded{
     background: #f7f7f9;
 }
+.panel-dialogs{
+    /*height: -webkit-fill-available;*/
+    min-height: 600px;
+}
 .f-row{
     border: 2px solid #f0f0f0!important;
     margin: 5px!important;

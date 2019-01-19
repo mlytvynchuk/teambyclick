@@ -57,7 +57,8 @@
         </div>
         <div class="white-box">
             <h2>Коментарі:</h2>
-            <form method="post" class="form-horizontal form-material">
+            {% if request.user.is_authenticated %}
+                <form method="post" class="form-horizontal form-material">
                 {% csrf_token %}
                 {% for field in comment_form %}
                     {% if field.name == 'content' %}
@@ -70,6 +71,9 @@
                 {% endfor %}
                 <button class="btn btn-primary" type="submit">{% trans 'Коментувати' %}</button>
             </form>
+                {% else %}
+                <p class="alert alert-warning"><a href="{% url 'login' %}" class=" text-primary">{% trans 'Авторизуйтесь' %}</a>{% trans ', щоб залишати коментарі' %}</p>
+            {% endif %}
             <br>
             <br>
         {% for comment in comments %}
@@ -83,7 +87,9 @@
 
                 <p style="margin-bottom: -5px">{{ comment.content }}</p>
 
-                <a href="#" class="reply-btn text-primary text-uppercase"><small style="font-size:11px;padding-left: 40px;">{% trans "Відповісти" %}</small></a>
+                {% if request.user.is_authenticated %}
+                    <a href="#" class="reply-btn text-primary text-uppercase"><small style="font-size:11px;padding-left: 40px;">{% trans "Відповісти" %}</small></a>
+                {% endif %}
 
 
             <div class="reply-block" style="display: none">
