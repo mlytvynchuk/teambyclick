@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'deals',
     'comentz',
     'locations',
+    'social_django'
 ]
 
 MIDDLEWARE = [
@@ -54,7 +55,17 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'language_detect.middleware.BrowserLanguageDetectionMiddleware',
+    #social media
+    'social_django.middleware.SocialAuthExceptionMiddleware',
 ]
+
+AUTHENTICATION_BACKENDS = (
+    'social_core.backends.github.GithubOAuth2',
+    'social_core.backends.twitter.TwitterOAuth',
+    'social_core.backends.facebook.FacebookOAuth2',
+    'social_core.backends.google.GoogleOAuth2',
+    'django.contrib.auth.backends.ModelBackend',
+)
 
 ROOT_URLCONF = 'teambyc.urls'
 
@@ -70,6 +81,9 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                #social media
+                'social_django.context_processors.backends',  # <--
+                'social_django.context_processors.login_redirect', # <--
             ],
         },
     },
@@ -150,3 +164,13 @@ EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 EMAIL_HOST_USER = os.environ.get('EMAIL_USER')
 EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_PASS')
+
+
+#social media auth info
+
+SOCIAL_AUTH_GITHUB_KEY = '5228f2bba5a3979f5a1d'
+SOCIAL_AUTH_GITHUB_SECRET = 'bb79d0ded880e72b3ceec8f6ae32cb57d455c3b6'
+SOCIAL_AUTH_FACEBOOK_KEY = '821470208189835'
+SOCIAL_AUTH_FACEBOOK_SECRET = '29b5258400845389d7e6e52ad36bd1d1'
+SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = '409743933580-kvke9bs01v17p133s667ghefc2b2kf7r.apps.googleusercontent.com'
+SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = '7j1USDzXiozNAmhbEQQjMxIE'

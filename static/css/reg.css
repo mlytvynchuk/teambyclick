@@ -366,3 +366,6 @@ input[type=checkbox]:not(old):checked + label > span:before {
     padding: 50px 25px; !important; } }
 
 /*# sourceMappingURL=style.css.map */
+.inline-bricks{
+    justify-content: center !important;
+}

@@ -31,6 +31,11 @@ urlpatterns = [
 # urlpatterns += i18n_patterns(
     path('', include('deals.urls')),
     path('',include('users.urls')),
+
+    #social media
+    path('oauth/', include('social_django.urls', namespace='social')),  # <--
+
+    # authetication
     path('register/', user_views.register, name='register'),
     path('login/', auth_views.LoginView.as_view(template_name='users/login.html'), name='login'),
     path('logout/', auth_views.LogoutView.as_view(template_name='users/logout.html'), name='logout'),
@@ -50,9 +55,13 @@ path('password-reset-complete/', auth_views.PasswordResetCompleteView.as_view(
          template_name='users/password-reset-complete.html'),
          name='password_reset_complete'
          ),
+
+    # user pages
     path('profile/', user_views.profile, name='profile'),
     path('people/', user_views.people, name='people'),
     path('people/<str:slug>', user_views.userDetails, name='user-details'),
+
+    #load city -> countries behaviour
     path('ajax/load-cities/', d_views.load_cities, name='ajax_load_cities'),
     path('ajax/load-cities-users/', user_views.load_cities, name='ajax_load_cities_users'),
     path('i18n/', include('django.conf.urls.i18n')),
