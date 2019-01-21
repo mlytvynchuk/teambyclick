@@ -64,7 +64,7 @@ class DealView(ListView):
 
             else:
                 if request.user.is_authenticated:
-                    message = "special"
+                    # message = "special"
                     if request.user.profile.city:
                         deals = deals.filter(city=request.user.profile.city)
                     elif request.user.profile.country:
@@ -144,8 +144,8 @@ def deal_details(request,id):
 class DealCreateView(LoginRequiredMixin, CreateView):
     form_class = DealForm
     model = Deal
-    titleView = 'Створити проект'
-    buttonView = 'Створити'
+    titleView = _('Створити проект')
+    buttonView = _('Створити')
     # fields = ['title', 'description','speciality','country','city']
 
     template_name = 'website/deal_form.html'
@@ -153,8 +153,8 @@ class DealCreateView(LoginRequiredMixin, CreateView):
     def get_form(self, form_class=None):
         form = super(DealCreateView, self).get_form(form_class)
         form.fields['speciality'].widget.attrs.update({'id': 'choices-multiple-remove-button','placeholder':_('Введіть спеціальності')})
-        form.fields['country'].widget.attrs.update({'class': 'form-control'})
-        form.fields['city'].widget.attrs.update({'class': 'form-control'})
+        form.fields['country'].widget.attrs.update({'class': 'form-control','required':'true'})
+        form.fields['city'].widget.attrs.update({'class': 'form-control','required':'true'})
 
         return form
 

@@ -45,12 +45,12 @@
 </a></li>
                 </ul>
                 <ul class="nav navbar-top-links navbar-right pull-right">
-                    <li>
-                        <form role="search" class="app-search hidden-xs">
-                            <input type="text" placeholder="{% trans 'Шукай..' %}" class="form-control">
-                            <a href=""><i class="ti-search"></i></a>
-                        </form>
-                    </li>
+{#                    <li>#}
+{#                        <form role="search" class="app-search hidden-xs">#}
+{#                            <input type="text" placeholder="{% trans 'Шукай..' %}" class="form-control">#}
+{#                            <a href=""><i class="ti-search"></i></a>#}
+{#                        </form>#}
+{#                    </li>#}
 {#                <li>#}
 {#                    <form action="{% url 'set_language' %}" method="get" class="m-t-5 m-l-5 m-r-5">#}
 {#                    {% csrf_token %}#}
@@ -93,12 +93,12 @@
             <div class="sidebar-nav navbar-collapse ">
                 <ul class="nav" id="side-menu">
                     <li class="sidebar-search hidden-sm hidden-md hidden-lg">
-                        <div class="input-group custom-search-form">
-                            <input type="text" class="form-control" placeholder="Search...">
-                            <span class="input-group-btn">
-                                <button class="btn btn-default" type="button"><i class="ti-search"></i> </button>
-                            </span>
-                        </div>
+{#                        <div class="input-group custom-search-form">#}
+{#                            <input type="text" class="form-control" placeholder="Search...">#}
+{#                            <span class="input-group-btn">#}
+{#                                <button class="btn btn-default" type="button"><i class="ti-search"></i> </button>#}
+{#                            </span>#}
+{#                        </div>#}
                     </li>
                     <li>
                         <a href="{% url 'deals-home' %}" class="waves-effect"><i class="ti-layers-alt fa-fw"></i> {% trans 'Проекти' %}</a>

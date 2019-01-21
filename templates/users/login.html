@@ -58,12 +58,12 @@
                         </div>
                     </form>
                     <br>
-                <p class="text-muted text-center">Або</p>
+                <p class="text-muted text-center">{% trans 'АБО' %}</p>
                     <strong class="">{% trans 'Увійдіть за допомогою соціальних мереж' %}</strong>
                     <hr>
                     <ul class="inline-bricks">
                         <li class="brick-inv"><a class="btn btn-facebook" href="{% url 'social:begin' 'facebook' %}"><i class="fab fa-facebook-square"></i></a></li>
-                        <li class="brick-inv"><a class="btn btn-linkedin" href="{% url 'social:begin' 'linkedin' %}"><i class="fab fa-linkedin"></i></a></li>
+{#                        <li class="brick-inv"><a class="btn btn-linkedin" href="{% url 'social:begin' 'linkedin' %}"><i class="fab fa-linkedin"></i></a></li>#}
                         <li class="brick-inv"><a class="btn btn-github" href="{% url 'social:begin' 'github' %}"><i class="fab fa-github"></i></a></li>
                         <li class="brick-inv"><a class="btn btn-googleplus" href="{% url 'social:begin' 'google-oauth2' %}"><i class="fab fa-google"></i></a></li>
 

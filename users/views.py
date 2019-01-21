@@ -92,10 +92,10 @@ def people(request):
     skills = request.GET.getlist('skills','')
     s_form = SearchPeopleForm
     message = ""
-    users = User.objects
+    users = User.objects.filter(profile__speciality=not None,profile__country=not None,profile__city=not None)
     if search:
         for term in search.split():
-            users = User.objects.filter(Q(first_name__icontains=term) | Q(last_name__icontains=term))
+            users = users.filter(Q(first_name__icontains=term) | Q(last_name__icontains=term))
     else:
         if country and city and spec and skills:
             users = users.filter(Q(profile__speciality__in=spec), Q(profile__country=country), Q(profile__city=city),Q(profile__skills__in=skills))

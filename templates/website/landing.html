@@ -10,9 +10,10 @@
 </head>
 <body>
 	<div class="container-fluid" id="main-wrapper">
-		<header style="background-image: url({% static 'images/head-bg.jpg' %});" >
-			<div id="head-overlay">
-					<nav class="navbar navbar-expand-lg navbar-dark ">
+		<header>
+			<div class="row">
+                <div class="col-md-12">
+                    			<nav class="navbar navbar-expand-lg navbar-dark ">
 					  <div><a class="navbar-brand" href="#">TeamBy<strong>Click</strong></a></div>
 					  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
 					    <span class="navbar-toggler-icon"></span>
@@ -37,6 +38,8 @@
 		<a href="{% url 'deals-home' %}" class="btn btn-primary" id="big-btn">Почати пошук</a>
 
 	</div>
+                </div>
+
 			</div>
 
 	</header>

@@ -9,15 +9,15 @@
 
 
                 <div class="card">
-                    <h5 class="card-title p-b-10">Створити проект</h5>
+                    <h5 class="card-title p-b-10">{% trans 'Створити проект' %}</h5>
                     <form action="" method="POST" data-cities-url="{% url 'ajax_load_cities' %}" class="createForm">
                     {% csrf_token %}
                         <p>
-                    <label for="id_title">Назва проекту</label>
+                    <label for="id_title">{% trans 'Назва проекта' %}</label>
                     <input id="id_title" type="text" name="title" class="form-control" placeholder="{% trans ' Введіть короткий заголовок' %}" required>
                 </p>
                 <p>
-                    <label for="id_description">Опис проекту</label>
+                    <label for="id_description">{% trans 'Опис проекта' %}</label>
                     <textarea rows="10" id="id_description" type="text" name="description" class="form-control" placeholder="{% trans ' Детально опишіть свій проект' %}"></textarea>
                 </p>
 

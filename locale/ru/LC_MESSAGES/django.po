@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-01-13 18:31+0200\n"
+"POT-Creation-Date: 2019-01-21 13:14+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -20,10 +20,20 @@ msgstr ""
 "%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || (n"
 "%100>=11 && n%100<=14)? 2 : 3);\n"
 
-#: deals/forms.py:11 deals/forms.py:12 deals/views.py:152 deals/views.py:182
-#: deals/views.py:190 users/forms.py:122 users/forms.py:123
+#: deals/forms.py:11 deals/forms.py:12 deals/views.py:155 deals/views.py:185
+#: deals/views.py:193 users/forms.py:122 users/forms.py:123
 msgid "Введіть спеціальності"
 msgstr "Введите специальности"
+
+#: deals/views.py:147
+msgid "Створити проект"
+msgstr "Создать проект"
+
+#: deals/views.py:148
+#, fuzzy
+#| msgid "Створити аккаунт"
+msgid "Створити"
+msgstr "Создать аккаунт"
 
 #: templates/extends/base.html:50
 msgid "Шукай.."
@@ -33,7 +43,7 @@ msgstr "Ищи.."
 msgid "Вийти"
 msgstr "Выйти"
 
-#: templates/extends/base.html:80 templates/users/login.html:54
+#: templates/extends/base.html:80 templates/users/login.html:57
 msgid "Увійти"
 msgstr "Войти"
 
@@ -58,15 +68,15 @@ msgstr "Сообщения"
 msgid "Профіль"
 msgstr "Профиль"
 
-#: templates/extends/base.html:116 templates/website/myideas.html:11
+#: templates/extends/base.html:116 templates/website/myideas.html:10
 msgid "Мої проекти"
 msgstr "Мои проекты"
 
-#: templates/extends/base.html:121 templates/website/myideas.html:15
+#: templates/extends/base.html:121 templates/website/myideas.html:14
 msgid "Створити новий проект"
 msgstr "Создать новый проект"
 
-#: templates/users/cabinet.html:24 templates/users/user-details.html:18
+#: templates/users/cabinet.html:24 templates/users/user-details.html:21
 msgid "Про мене"
 msgstr "Обо мне"
 
@@ -164,19 +174,27 @@ msgstr "Аватар профиля"
 msgid "Увійти в аккаунт"
 msgstr "Войти в аккаунт"
 
-#: templates/users/login.html:43 templates/users/reg.html:66
+#: templates/users/login.html:46 templates/users/reg.html:68
 msgid "Введіть Ваш логін"
 msgstr "Введите Ваш логин"
 
-#: templates/users/login.html:46
+#: templates/users/login.html:49
 msgid "Введіть Ваш пароль"
 msgstr "Введите Ваш пароль"
 
-#: templates/users/login.html:58
+#: templates/users/login.html:61
+msgid "АБО"
+msgstr "ИЛИ"
+
+#: templates/users/login.html:62 templates/users/reg.html:97
+msgid "Увійдіть за допомогою соціальних мереж"
+msgstr "Войдите с помощью социальных сетей"
+
+#: templates/users/login.html:73
 msgid "Не маєш аккаунта?"
 msgstr "У тебя нет аккаунта?"
 
-#: templates/users/login.html:58
+#: templates/users/login.html:73
 msgid "Реєструйся тут"
 msgstr "Регистрация"
 
@@ -212,64 +230,60 @@ msgstr "На ваш email были отправлены инструкции п�
 msgid "Скинути пароль"
 msgstr "Введите пароль"
 
-#: templates/users/reg.html:40
+#: templates/users/reg.html:42
 msgid "Аккаунт з таким Email вже існує"
 msgstr ""
 
-#: templates/users/reg.html:45
+#: templates/users/reg.html:47
 msgid "Паролі не співпадають"
 msgstr ""
 
-#: templates/users/reg.html:58
+#: templates/users/reg.html:60
 msgid "Створити аккаунт"
 msgstr "Создать аккаунт"
 
-#: templates/users/reg.html:70 users/forms.py:21
+#: templates/users/reg.html:72 users/forms.py:21
 msgid "Ваше ім'я"
 msgstr "Ваше имя"
 
-#: templates/users/reg.html:72 users/forms.py:22
+#: templates/users/reg.html:74 users/forms.py:22
 msgid "Ваше прізвище"
 msgstr "Ваша фамилия"
 
-#: templates/users/reg.html:74
+#: templates/users/reg.html:76
 msgid "Введіть пароль"
 msgstr "Введите пароль"
 
-#: templates/users/reg.html:76
+#: templates/users/reg.html:78
 msgid "Введіть пароль ще раз"
 msgstr "Введите пароль еще раз"
 
-#: templates/users/reg.html:90
+#: templates/users/reg.html:92
 msgid "Зареєструватись"
 msgstr "Зарегистрироваться"
 
-#: templates/users/reg.html:94
+#: templates/users/reg.html:107
 msgid "Вже зареєстрований?"
 msgstr "Уже зарегистрированы?"
 
-#: templates/users/reg.html:94
+#: templates/users/reg.html:107
 msgid "Логінься тут"
 msgstr "Логинься здесь"
 
-#: templates/users/user-details.html:33
-msgid "Контакти: "
-msgstr "Контакты"
-
-#: templates/users/user-details.html:46
+#: templates/users/user-details.html:49
 msgid "Написати повідомлення"
 msgstr "Написать сообщение"
 
-#: templates/users/user-details.html:51
+#: templates/users/user-details.html:54
 msgid "Проекти користувача"
 msgstr "Проекты пользователя"
 
-#: templates/users/user-details.html:59 templates/website/deal-detail.html:18
-#: templates/website/deals.html:130 templates/website/myideas.html:44
+#: templates/users/user-details.html:62 templates/website/deal-detail.html:18
+#: templates/website/deals.html:130 templates/website/myideas.html:43
 msgid "Потрібні спеціалісти:"
 msgstr "Нужные специалисты:"
 
-#: templates/users/user-details.html:69 templates/website/myideas.html:54
+#: templates/users/user-details.html:72 templates/website/myideas.html:53
 msgid "Дізнатись більше"
 msgstr "Узнать больше"
 
@@ -309,21 +323,37 @@ msgstr "Обновить"
 msgid "Видалити"
 msgstr "Удалить"
 
-#: templates/website/deal-detail.html:65 templates/website/deal-detail.html:95
+#: templates/website/deal-detail.html:66 templates/website/deal-detail.html:101
 msgid "Напиши, що ти думаєш"
 msgstr "Напиши, что ты думаешь"
 
-#: templates/website/deal-detail.html:71
+#: templates/website/deal-detail.html:72
 msgid "Коментувати"
 msgstr "Комментировать"
 
-#: templates/website/deal-detail.html:86 templates/website/deal-detail.html:103
+#: templates/website/deal-detail.html:75
+msgid "Авторизуйтесь"
+msgstr ""
+
+#: templates/website/deal-detail.html:75
+msgid ", щоб залишати коментарі"
+msgstr ""
+
+#: templates/website/deal-detail.html:91 templates/website/deal-detail.html:109
 msgid "Відповісти"
 msgstr "Ответить"
+
+#: templates/website/deal_form.html:16
+msgid "Назва проекта"
+msgstr "Название проекта"
 
 #: templates/website/deal_form.html:17 templates/website/deal_update.html:19
 msgid " Введіть короткий заголовок"
 msgstr " Введите короткий заголовок"
+
+#: templates/website/deal_form.html:20
+msgid "Опис проекта"
+msgstr "Описание проекта"
 
 #: templates/website/deal_form.html:21
 msgid " Детально опишіть свій проект"
@@ -389,7 +419,7 @@ msgstr "Следующая"
 msgid "Найкращі ідеї за місяць"
 msgstr "Лучшие идеи за месяц"
 
-#: templates/website/myideas.html:20
+#: templates/website/myideas.html:19
 msgid "Нема ні одного розпочатого проекту"
 msgstr ""
 
@@ -1619,6 +1649,9 @@ msgstr ""
 #: venv/lib/python3.7/site-packages/django/views/templates/default_urlconf.html:408
 msgid "Connect, get help, or contribute"
 msgstr ""
+
+#~ msgid "Контакти: "
+#~ msgstr "Контакты"
 
 #, fuzzy
 #~| msgid "Опиши себе:"

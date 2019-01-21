@@ -239,7 +239,7 @@ background-image: -webkit-gradient(linear, left top, left bottom, from(#74ebd5),
 	padding: 20px;
   }
   header .navbar-toggler{
-  	display: none;
+  	padding: 5px;
   }
 }
 .btn-primary:hover{
@@ -294,3 +294,6 @@ footer{
 	align-items: center;
 }
 
+header{
+    background-image: url('../images/head-bg.jpg');
+}
