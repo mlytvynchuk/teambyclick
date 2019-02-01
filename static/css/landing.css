@@ -297,3 +297,7 @@ footer{
 header{
     background-image: url('../images/head-bg.jpg');
 }
+#alert-success{
+    margin-top:20px;
+    display: none;
+}

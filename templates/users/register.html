@@ -1,5 +1,5 @@
 {% extends 'extends/base.html' %}
-
+{% load static %}
 {% block content %}
     <div class="content-section">
             <form method="post">{% csrf_token %}
@@ -11,6 +11,8 @@
                     {{ field.label_tag }}<br>
                     {% if field.name == 'password1' or field.name == 'password2' %}
                         <input name="{{ field.name }}" class="form-control" type="password">
+                        {% elif field.name == 'username' %}
+                            <input name="{{ field.name }}" class="form-control" type="text" id="username-input">
                     {% else %}
                         <input name="{{ field.name }}" class="form-control" type="text">
                     {% endif %}
@@ -36,4 +38,5 @@
             </small>
         </div>
     </div>
+    <script src="{% static 'js/ajax-reg.js' %}"></script>
 {% endblock content %}

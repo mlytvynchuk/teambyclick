@@ -1,14 +1,16 @@
+from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.contrib.contenttypes.models import ContentType
 from django.core.paginator import Paginator
 from django.db.models import Q
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect, HttpResponse
 from django.utils.translation import ugettext as _
 from django.contrib.auth.models import User
 from django.shortcuts import render, redirect, get_object_or_404, render_to_response
 
 from comentz.forms import CommentForm
 from comentz.models import Comment
+from contact.models import Contact
 from locations.models import City
 from .models import Deal
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
@@ -249,13 +251,31 @@ def myideas(request):
 
 def landing(request):
     getLanguage(request)
+    if request.method == "POST":
+        name = request.POST.get('name')
+        email = request.POST.get('email')
+        message = request.POST.get('message')
+        new_contact = Contact.objects.create(name=name,email=email,message=message)
+        if new_contact:
+            messages.info(request,_("Ваше повідомлення відправлено!"))
     if request.user.is_authenticated:
         return redirect('deals-home')
     return render(request,'website/landing.html')
 
 
-
-
+def create_contact(request):
+    if request.method == 'GET':
+        name = request.GET.get('name')
+        email = request.GET.get('email')
+        message = request.GET.get('message')
+        new_contact = Contact.objects.create(name=name, email=email, message=message)
+        contacts = Contact.objects.all()
+        if new_contact:
+            messages.info(request,_("Ваше повідомлення відправлено!"))
+        if new_contact in contacts:
+            return HttpResponse("yes")
+        else:
+            return HttpResponse("no")
 
 # old version
 # def home(request):

@@ -16,7 +16,7 @@ class UserRegisterForm(UserCreationForm):
         fields = ['username','email','first_name','last_name','password1','password2']
 
         widgets = {
-            'username': forms.TextInput(attrs={'placeholder': 'Ваш логін', 'class': 'form-input'}),
+            'username': forms.TextInput(attrs={'placeholder': 'Ваш логін', 'class': 'form-input','id':'username-input'}),
 
             'first_name': forms.TextInput(attrs={'placeholder': _('Ваше ім\'я'), 'class': 'form-input'}),
             'last_name': forms.TextInput(attrs={'placeholder': _('Ваше прізвище'), 'class': 'form-input'}),

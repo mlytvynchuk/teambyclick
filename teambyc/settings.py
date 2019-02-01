@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'deals',
     'comentz',
     'locations',
+    'contact',
     'social_django'
 ]
 
@@ -155,6 +156,7 @@ STATICFILES_DIRS = (
 )
 MEDIA_ROOT = os.path.join(BASE_DIR, "static", "media")
 MEDIA_URL = '/media/'
+
 LOGIN_REDIRECT_URL = 'deals-home'
 LOGIN_URL = 'login'
 

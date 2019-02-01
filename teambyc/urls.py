@@ -13,8 +13,9 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
-from django.contrib import admin
 from django.conf.urls.static import static
+from django.contrib import admin
+# from django.conf.urls.static import static
 
 from django.urls import path,include
 from django.conf import settings
@@ -64,8 +65,14 @@ path('password-reset-complete/', auth_views.PasswordResetCompleteView.as_view(
     #load city -> countries behaviour
     path('ajax/load-cities/', d_views.load_cities, name='ajax_load_cities'),
     path('ajax/load-cities-users/', user_views.load_cities, name='ajax_load_cities_users'),
+    path('ajax/check-name/',user_views.check_name,name="check_name"),
+    path('ajax/create-contact/', d_views.create_contact, name="create_contact"),
+
     path('i18n/', include('django.conf.urls.i18n')),
     # prefix_default_language=False,
-]\
-              + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT) \
-              + static(settings.STATIC_URL, document_root=settings.STATIC_URL)
+] \
+    +static(settings.STATIC_URL, document_root = settings.STATIC_URL)\
+    +static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)
+# ]\
+#               + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT) \
+#               + static(settings.STATIC_URL, document_root=settings.STATIC_URL)

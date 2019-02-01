@@ -14,16 +14,20 @@
                         </div>
                     <h4 class="mb-0">{{ user.first_name  }} {{ user.last_name }}</h4>
 {#                      <p class="text-secondary">{{ user.email }}</p>#}
-                    <span class="text-muted d-block mb-2">{{ user.profile.speciality}}</span>
+                    {% if user.profile.speciality %}
+                        <span class="text-muted d-block mb-2">{{ user.profile.speciality}}</span>
+                    {% endif %}
 {#                    <button type="button" class="mb-2 btn btn-sm btn-pill btn-outline-primary mr-2">#}
 {#                      <i class="material-icons mr-1">person_add</i>Follow</button>#}
                   </div>
                   <ul class="list-group list-group-flush">
 
-                    <li class="list-group-item p-4 text-center">
+                    {% if user.profile.bio %}
+                        <li class="list-group-item p-4 text-center">
                       <strong class="text-muted d-block mb-2">{% trans 'Про мене' %}:</strong><br>
                         <span>{{ user.profile.bio }}</span>
-                    </li>
+                        </li>
+                    {% endif %}
 
                         {% if user.profile.facebook %}
                          <li class="list-group-item p-4 text-center">

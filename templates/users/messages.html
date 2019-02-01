@@ -12,7 +12,7 @@
                     <h2 class="text-white">{% trans 'Повідомлення' %}</h2>
                     <hr>
                 </div>
-        {% if chats.count <= 1 %}
+        {% if chats.count == 0 %}
             <div class="panel panel-body">{% trans "Нема ні одного початого діалога" %}</div>
         {% endif %}
                     <div class="scrl">

@@ -2,6 +2,7 @@ from django.contrib.auth import authenticate, login
 from django.contrib.auth.models import User
 from django.core.paginator import Paginator
 from django.db.models import Q, Count
+from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from django.contrib import messages
 from django.urls import reverse
@@ -32,6 +33,7 @@ def register(request):
     return render(request,'users/reg.html',{'form':form})
 @login_required
 def fill_profile(request):
+    getLanguage(request)
     usr = request.user
     form = ProfileUpdateForm(request.POST,request.FILES,instance=request.user.profile)
     if form.is_valid():
@@ -62,6 +64,7 @@ def fill_profile(request):
     return render(request,'users/fill_profile.html',context={'form':form})
 @login_required
 def profile(request):
+    getLanguage(request)
     if request.method == 'POST':
         u_form = UserUpdateForm(request.POST,instance=request.user)
         p_form = ProfileUpdateForm(request.POST,request.FILES,instance=request.user.profile)
@@ -71,6 +74,7 @@ def profile(request):
             messages.success(request, '%s' % 'Your profile has been updated')
             return redirect('profile')
     else:
+        getLanguage(request)
         u_form = UserUpdateForm(instance=request.user)
         p_form = ProfileUpdateForm(instance=request.user.profile)
     context = {
@@ -207,3 +211,13 @@ class CreateDialogView(View):
         else:
             chat = chats.first()
         return redirect(reverse('messages', kwargs={'chat_id': chat.id}))
+
+def check_name(request):
+    print("Hello")
+    username = request.GET["username"]
+    people = {"max2211","admin"}
+    # people = User.objects.all()
+    if username in people:
+        return HttpResponse("yes")
+    else:
+        return HttpResponse("no")
