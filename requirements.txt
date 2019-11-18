@@ -7,7 +7,7 @@ channels==2.1.6
 constantly==15.1.0
 daphne==2.2.4
 decorator==4.3.0
-Django==2.1.4
+Django==2.1.11
 django-bootstrap3==11.0.0
 django-language-detect==1.0.1
 django-six==1.0.4
