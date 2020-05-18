@@ -1,7 +1,6 @@
 venv/
 idea/
 .gitignore
-media/
 __pycache__/
 *.__pycache__
 .idea/
@@ -11,3 +10,5 @@ db.sqlite3
 static_root/
 *.env
 .DS_Store
+media/profile_pics/
+media/ckeditor/
