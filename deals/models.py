@@ -10,34 +10,22 @@ from locations.models import Country, City
 from users import models as usr_models
 
 
-# class Country(models.Model):
-#     name = models.CharField(max_length=30)
-#
-#     def __str__(self):
-#         return self.name
-#
-# class City(models.Model):
-#     country = models.ForeignKey(Country, on_delete=models.CASCADE)
-#     name = models.CharField(max_length=30)
-#
-#     def __str__(self):
-#         return self.name
-
-
 class Deal(models.Model):
-    title = models.CharField(max_length=100,verbose_name='Назва проекту')
-    description = models.TextField(verbose_name='Опис')
+    title = models.CharField(max_length=100, verbose_name="Назва проекту")
+    description = models.TextField(verbose_name="Опис")
     date_posted = models.DateTimeField(default=timezone.now)
     author = models.ForeignKey(User, on_delete=models.CASCADE)
     country = models.ForeignKey(Country, on_delete=models.SET_NULL, null=True)
     city = models.ForeignKey(City, on_delete=models.SET_NULL, null=True)
-    speciality = models.ManyToManyField(usr_models.Speciality,related_name='deals',blank=True)
+    speciality = models.ManyToManyField(
+        usr_models.Speciality, related_name="deals", blank=True
+    )
 
     def __str__(self):
         return self.title
 
     def get_absolute_url(self):
-        return reverse('deal-detail',kwargs={'id': self.id})
+        return reverse("deal-detail", kwargs={"id": self.id})
 
     @property
     def comments(self):
@@ -51,5 +39,16 @@ class Deal(models.Model):
         content_type = ContentType.objects.get_for_model(instance.__class__)
         return content_type
 
+    @property
+    def likes_count(self):
+        instance = self
+        count = DealLike.objects.filter(deal=instance).count()
+        return count
 
 
+class DealLike(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    deal = models.ForeignKey(Deal, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return f"{self.user} liked {self.deal}"

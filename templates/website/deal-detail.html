@@ -4,8 +4,8 @@
 {#{% load bootstrap3 %}#}
 
 {% block content %}
-    <div class="row" id="main-content">
-        <div class="col-md-8">
+<div class="row" id="main-content">
+    <div class="col-md-8">
         <div class="white-box">
 
             <h2>{{ deal.title }}</h2>
@@ -16,99 +16,118 @@
             <dt class="font-bold">{% trans 'Опис:' %}</dt>
             <p class="detail-description">{{ deal.description }}</p>
             <dt class="profile-section__title">{% trans 'Потрібні спеціалісти:' %}</dt>
-              <dd>
-                  <ul class="inline-bricks">
-                      {% for spec in deal.speciality.all %}
-                      <li class="brick">
-                            {{ spec }}
-                        </li>
-                      {% endfor %}
-                  </ul>
-              </dd>
+            <dd>
+                <ul class="inline-bricks">
+                    {% for spec in deal.speciality.all %}
+                    <li class="brick">
+                        {{ spec }}
+                    </li>
+                    {% endfor %}
+                </ul>
+            </dd>
             <div class="author-block p-b-20 p-t-10">
                 <a href="{% url 'user-details' deal.author.username %}" style="float: left" class="p-r-10">
-                    <div class=" img-circle" style="background-image: url({{ deal.author.profile.image.url}});width: 50px;height: 50px; background-position: center;background-size: cover "></div>
+                    <div class=" img-circle"
+                        style="background-image: url({{ deal.author.profile.image.url}});width: 50px;height: 50px; background-position: center;background-size: cover ">
+                    </div>
                 </a>
-                <h5><a class="author-name" href="{% url 'user-details' deal.author.username %}"><strong>{{ deal.author.first_name }} {{ deal.author.last_name }}</strong></a></h5>
+                <h5><a class="author-name"
+                        href="{% url 'user-details' deal.author.username %}"><strong>{{ deal.author.first_name }}
+                            {{ deal.author.last_name }}</strong></a></h5>
                 <li class="inline-bricks brick">{{ deal.author.profile.speciality }}</li>
             </div>
 
-        {% if deal.author.profile.facebook or deal.author.profile.linkedin %}
+            {% if deal.author.profile.facebook or deal.author.profile.linkedin %}
             <h4 style="float: left;padding: 5px;">{% trans "Зв'язок з автором: "%}</h4>
-        {% endif %}
-
-        <ul class="inline-bricks">
-            {% if deal.author.profile.facebook %}
-                <li class="brick"><a class="btn btn-facebook" href="{{ deal.author.profile.facebook }}"><i class="fab fa-facebook-square"></i> Facebook</a></li>
-            {% endif %}
-            {% if deal.author.profile.linkedin %}
-                <li class="brick"><a class="btn btn-linkedin" href="{{ deal.author.profile.linkedin }}"><i class="fab fa-linkedin"></i> LinkedIn</a></li>
             {% endif %}
 
-                  </ul>
-         {% if deal.author == user %}
+            <ul class="inline-bricks">
+                {% if deal.author.profile.facebook %}
+                <li class="brick"><a class="btn btn-facebook" href="{{ deal.author.profile.facebook }}"><i
+                            class="fab fa-facebook-square"></i> Facebook</a></li>
+                {% endif %}
+                {% if deal.author.profile.linkedin %}
+                <li class="brick"><a class="btn btn-linkedin" href="{{ deal.author.profile.linkedin }}"><i
+                            class="fab fa-linkedin"></i> LinkedIn</a></li>
+                {% endif %}
+
+            </ul>
+            <div class="d-flex align-items-center p-b-20">
+                <button
+                    class="btn {% if liked %}liked btn-primary{% else %}btn-light{% endif %} btn-rounded far fa-thumbs-up mr-5"
+                    id="btn-like">
+                </button>
+                <div id="deal-likes">{{likes}}</div>
+            </div>
+            {% if deal.author == user %}
             <a class="btn btn-primary" href="{% url 'deal-update' deal.id%}">{% trans 'Оновити' %}</a>
-                   <a class="btn btn-outline-primary" href="{% url 'deal-delete' deal.id  %}">{% trans 'Видалити' %}</a>
-      {% endif %}
+            <a class="btn btn-outline-primary" href="{% url 'deal-delete' deal.id  %}">{% trans 'Видалити' %}</a>
+            {% endif %}
             <br>
-
-
-
         </div>
         <div class="white-box">
             <h2>Коментарі:</h2>
             {% if request.user.is_authenticated %}
-                <form method="post" class="form-horizontal form-material">
+            <form method="post" class="form-horizontal form-material">
                 {% csrf_token %}
                 {% for field in comment_form %}
-                    {% if field.name == 'content' %}
-                        <p>
-                            <textarea name="content" cols="30" rows="3" required="" id="id_content" class="form-control p-10" placeholder="{% trans 'Напиши, що ти думаєш' %}"></textarea>
-                        </p>
-                    {% else %}
-                    <p>{{ field }}</p>
-                    {% endif %}
+                {% if field.name == 'content' %}
+                <p>
+                    <textarea name="content" cols="30" rows="3" required="" id="id_content" class="form-control p-10"
+                        placeholder="{% trans 'Напиши, що ти думаєш' %}"></textarea>
+                </p>
+                {% else %}
+                <p>{{ field }}</p>
+                {% endif %}
                 {% endfor %}
                 <button class="btn btn-primary" type="submit">{% trans 'Коментувати' %}</button>
             </form>
-                {% else %}
-                <p class="alert alert-warning"><a href="{% url 'login' %}" class=" text-primary">{% trans 'Авторизуйтесь' %}</a>{% trans ', щоб залишати коментарі' %}</p>
+            {% else %}
+            <p class="alert alert-warning"><a href="{% url 'login' %}"
+                    class=" text-primary">{% trans 'Авторизуйтесь' %}</a>{% trans ', щоб залишати коментарі' %}</p>
             {% endif %}
             <br>
             <br>
-        {% for comment in comments %}
+            {% for comment in comments %}
 
 
             <div>
 
-                <div class="img-circle m-r-5" style="background-image: url({{comment.user.profile.image.url }});width: 35px;height: 35px; background-position: center;background-size: cover;float: left "></div>
-                <a class="user-link" href="{% url 'user-details' comment.user.username %}"><strong>{{ comment.user.first_name }} {{ comment.user.last_name }}</strong></a>
+                <div class="img-circle m-r-5"
+                    style="background-image: url({{comment.user.profile.image.url }});width: 35px;height: 35px; background-position: center;background-size: cover;float: left ">
+                </div>
+                <a class="user-link"
+                    href="{% url 'user-details' comment.user.username %}"><strong>{{ comment.user.first_name }}
+                        {{ comment.user.last_name }}</strong></a>
                 <small class="text-muted"> {{ comment.timestamp|naturalday }}</small>
 
                 <p style="margin-bottom: -5px">{{ comment.content }}</p>
 
                 {% if request.user.is_authenticated %}
-                    <a href="#" class="reply-btn text-primary text-uppercase"><small style="font-size:11px;padding-left: 40px;">{% trans "Відповісти" %}</small></a>
+                <a href="#" class="reply-btn text-primary text-uppercase"><small
+                        style="font-size:11px;padding-left: 40px;">{% trans "Відповісти" %}</small></a>
                 {% endif %}
 
 
-            <div class="reply-block" style="display: none">
-                <form method="post" class="form-horizontal form-material ">
-                {% csrf_token %}
-                {% for field in comment_form %}
-                    {% if field.name == 'content' %}
+                <div class="reply-block" style="display: none">
+                    <form method="post" class="form-horizontal form-material ">
+                        {% csrf_token %}
+                        {% for field in comment_form %}
+                        {% if field.name == 'content' %}
                         <p>
-                            <textarea name="content" cols="30" rows="1" required="" id="id_content" class="form-control p-10" placeholder="{% trans 'Напиши, що ти думаєш' %}">{{ comment.user.username }}, </textarea>
+                            <textarea name="content" cols="30" rows="1" required="" id="id_content"
+                                class="form-control p-10"
+                                placeholder="{% trans 'Напиши, що ти думаєш' %}">{{ comment.user.username }}, </textarea>
                         </p>
-                    {% else %}
-                    <p>{{ field }}</p>
+                        {% else %}
+                        <p>{{ field }}</p>
 
-                    {% endif %}
-                    <input type="hidden" name="parent_id" value="{{ comment.id }}">
-                {% endfor %}
-                <input class="btn btn-outline-primary" type="submit" value="{% trans 'Відповісти' %}">
-            </form>
-            </div>
+                        {% endif %}
+                        <input type="hidden" name="parent_id" value="{{ comment.id }}">
+                        {% endfor %}
+                        <input class="btn btn-outline-primary" type="submit" value="{% trans 'Відповісти' %}">
+                    </form>
+                </div>
 
 
             </div>
@@ -116,27 +135,59 @@
 
             <br>
             {% for comment_child in comment.children %}
-                 <div class="m-l-40">
-                <div class="img-circle m-r-5" style="background-image: url({{comment_child.user.profile.image.url }});width: 35px;height: 35px; background-position: center;background-size: cover;float: left "></div>
-                     <a class="user-link" href="{% url 'user-details' comment_child.user.username %}"><strong>{{ comment_child.user.first_name }} {{ comment_child.user.last_name }}</strong></a><small class="text-muted"> {{ comment_child.timestamp|naturaltime }}</small>
+            <div class="m-l-40">
+                <div class="img-circle m-r-5"
+                    style="background-image: url({{comment_child.user.profile.image.url }});width: 35px;height: 35px; background-position: center;background-size: cover;float: left ">
+                </div>
+                <a class="user-link"
+                    href="{% url 'user-details' comment_child.user.username %}"><strong>{{ comment_child.user.first_name }}
+                        {{ comment_child.user.last_name }}</strong></a><small class="text-muted">
+                    {{ comment_child.timestamp|naturaltime }}</small>
                 <p class="p-l-20">{{ comment_child.content }}</p>
                 <p></p>
                 <hr>
             </div>
-                {% endfor %}
-        {% endfor %}
+            {% endfor %}
+            {% endfor %}
         </div>
     </div>
     <div class="col-md-4">Тут буде ваша реклама</div>
-    </div>
+</div>
 
-    <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.3.1.min.js"></script>
-                            <script>
-                                   $(".reply-btn").click(function (event) {
-                                       event.preventDefault();
-                                       $(this).next(".reply-block").fadeToggle();
-                                       {# $(this).parent().next(".hid").fadeToggle();#}
-                                   })
+<script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.3.1.min.js"></script>
+<script>
+    $(".reply-btn").click(function (event) {
+        event.preventDefault();
+        $(this).next(".reply-block").fadeToggle(); {
+            #
+            $(this).parent().next(".hid").fadeToggle();#
+        }
+    })
+</script>
+<script>
+    document.getElementById('btn-like').addEventListener('click', function (e) {
+        fetch("{% url 'deal-like' id=deal.id%}", {
+            method: "POST",
+            headers: {
+                "X-CSRFToken": "{{csrf_token}}"
+            }
+        }).then(res => res.json()).then(data => {
+            const {
+                status,
+                likes
+            } = data;
+            if (status == 'created') {
+                e.target.classList.add('liked');
+                e.target.classList.add('btn-primary');
+                e.target.classList.remove('btn-light');
+            } else if (status == 'deleted') {
+                e.target.classList.remove('liked');
+                e.target.classList.remove('btn-primary');
+                e.target.classList.add('btn-light');
 
-                            </script>
+            }
+            document.getElementById('deal-likes').innerHTML = likes;
+        })
+    })
+</script>
 {% endblock content %}

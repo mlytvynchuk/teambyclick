@@ -1,0 +1,52 @@
+{% extends 'extends/base.html' %}
+{% load i18n static %}
+{% load my_tags %}
+{% block content %}
+
+<div class="row" id="main-content">
+    <div class="col-md-8 col-sm-8" id="ideas">
+        <main>
+            {% if posts %}
+            <div class="white-box b-shadow ">
+                <h2>Блог</h2>
+
+                {% for post in posts %}
+                <hr>
+                <a href="{% url 'blog_detail' post.id %}" class="" style="text-decoration: none; color:black">
+                    <div class="card-body post">
+                        <h2 class="">{{ post.title }}</h2>
+                        <p class="card-text" style="width: 100%;">{{ post.short_description }}</p>
+                    </div>
+                </a>
+
+                {% endfor %}
+                {% if posts.has_other_pages %}
+                <ul class="pagination">
+                    {% if posts.has_previous %}
+                    <li class=""><a href="?page={{ posts.previous_page_number }}">&laquo; {% trans 'Попередня' %}</a>
+                    </li>
+                    {% else %}
+                    <li class="disabled"><span>&laquo; {% trans 'Попередня' %}</span></li>
+                    {% endif %}
+                    {% for i in posts.paginator.page_range %}
+                    {% if posts.number == i %}
+                    <li class="active"><span>{{ i }} <span class="sr-only">(current)</span></span></li>
+                    {% else %}
+                    <li><a href="?{% param_replace page=i %}">{{ i }}</a></li>
+                    {% endif %}
+                    {% endfor %}
+                    {% if posts.has_next %}
+                    <li><a href="?page={{ posts.next_page_number }}">{% trans 'Наступна' %} &raquo;</a></li>
+                    {% else %}
+                    <li class="disabled"><span>{% trans 'Наступна' %} &raquo;</span></li>
+                    {% endif %}
+                </ul>
+                {% endif %}
+            </div>
+            {% endif %}
+        </main>
+    </div>
+</div>
+
+
+{% endblock content %}

@@ -2,108 +2,113 @@
 {% load i18n %}
 {% load static %}
 {% block content %}
-    <div class="row form-horizontal form-material">
-        <div class="col-md-9">
+<div class="row form-horizontal form-material">
+    <div class="col-md-9">
 
-            <div class="white-box m-t-10">
+        <div class="white-box m-t-10">
 
 
-                <div class="card">
-                    <h5 class="card-title p-b-10">{% trans 'Створити проект' %}</h5>
-                    <form action="" method="POST" data-cities-url="{% url 'ajax_load_cities' %}" class="createForm">
+            <div class="card">
+                <h5 class="card-title p-b-10">{% trans 'Створити проект' %}</h5>
+                <form action="" method="POST" data-cities-url="{% url 'ajax_load_cities' %}" class="createForm">
                     {% csrf_token %}
-                        <p>
-                    <label for="id_title">{% trans 'Назва проекта' %}</label>
-                    <input id="id_title" type="text" name="title" class="form-control" placeholder="{% trans ' Введіть короткий заголовок' %}" required>
-                </p>
-                <p>
-                    <label for="id_description">{% trans 'Опис проекта' %}</label>
-                    <textarea rows="10" id="id_description" type="text" name="description" class="form-control" placeholder="{% trans ' Детально опишіть свій проект' %}"></textarea>
-                </p>
+                    <p>
+                        <label for="id_title">{% trans 'Назва проекта' %}</label>
+                        <input id="id_title" type="text" name="title" class="form-control"
+                            placeholder="{% trans ' Введіть короткий заголовок' %}" required>
+                    </p>
+                    <p>
+                        <label for="id_description">{% trans 'Опис проекта' %}</label>
+                        <textarea rows="10" id="id_description" type="text" name="description" class="form-control"
+                            placeholder="{% trans ' Детально опишіть свій проект' %}"></textarea>
+                    </p>
 
 
-                        {% for field in form %}
-                            <p>
-                                {% if field.name == 'speciality'%}
-                                     <label for="id_speciality">{% trans 'Потрібні Вам спеціалісти:' %}</label>
-                                    {{ field }}
-                                {% endif %}
-                            {% if field.name == 'country'%}
-                                     <label for="id_country">{% trans 'Країна' %}</label>
-                                    {{ field }}
-                                {% endif %}
-                            {% if field.name == 'city'%}
-                                     <label for="id_city">{% trans 'Місто' %}</label>
-                                    {{ field }}
-                                {% endif %}
-                            </p>
-                        {% endfor %}
+                    {% for field in form %}
+                    <p>
+                        {% if field.name == 'speciality'%}
+                        <label for="id_speciality">{% trans 'Потрібні Вам спеціалісти:' %}</label>
+                        {{ field }}
+                        {% endif %}
+                        {% if field.name == 'country'%}
+                        <label for="id_country">{% trans 'Країна' %}</label>
+                        {{ field }}
+                        {% endif %}
+                        {% if field.name == 'city'%}
+                        <label for="id_city">{% trans 'Місто' %}</label>
+                        {{ field }}
+                        {% endif %}
+                    </p>
+                    {% endfor %}
 
-                <p class="p-t-10">
-                    <button type="submit" class="btn btn-primary btn-rounded">{% trans 'Зберегти' %}</button>
-                </p>
-                    </form>
+                    <p class="p-t-10">
+                        <button type="submit" class="btn btn-primary btn-rounded">{% trans 'Зберегти' %}</button>
+                    </p>
+                </form>
                 <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
-  <script>
-    $("#id_country").change(function () {
-      var url = $(".createForm").attr("data-cities-url");  // get the url of the `load_cities` view
-      var countryId = $(this).val();  // get the selected country ID from the HTML input
+                <script>
+                    $("#id_country").change(function () {
+                        var url = $(".createForm").attr(
+                        "data-cities-url"); // get the url of the `load_cities` view
+                        var countryId = $(this).val(); // get the selected country ID from the HTML input
 
-      $.ajax({                       // initialize an AJAX request
-        url: url,                    // set the url of the request (= localhost:8000/hr/ajax/load-cities/)
-        data: {
-          'country': countryId       // add the country id to the GET parameters
-        },
-        success: function (data) {   // `data` is the return of the `load_cities` view function
-          $("#id_city").html(data);  // replace the contents of the city input with the data that came from the server
-        }
-      });
+                        $.ajax({ // initialize an AJAX request
+                            url: url, // set the url of the request (= localhost:8000/hr/ajax/load-cities/)
+                            data: {
+                                'country': countryId // add the country id to the GET parameters
+                            },
+                            success: function (
+                            data) { // `data` is the return of the `load_cities` view function
+                                $("#id_city").html(
+                                data); // replace the contents of the city input with the data that came from the server
+                            }
+                        });
 
-    });
-  </script>
+                    });
+                </script>
             </div>
 
-            </div>
-
-{#<form class="searchForm form-horizontal form-material"  action="{% url 'deals-home' %}" data-cities-url="{% url 'ajax_load_cities' %}" novalidate>#}
-{#                                                                {% for field in form %}#}
-{#                                                                    <p>#}
-{#                                                                        {% if field.name == 'speciality' %}#}
-{#                                                                            <label for="id_speciality">{% trans 'Спеціальності:' %}</label>#}
-{#                                                                            {% elif field.name == 'country'  %}#}
-{#                                                                                <label for="id_country">{% trans 'Країна:' %}</label>#}
-{#                                                                            {% elif field.name == 'city'  %}#}
-{#                                                                                <label for="id_city">{% trans 'Місто:' %}</label>#}
-{#                                                                        {% endif %}#}
-{#                                                                        <br>#}
-{#                                                                    {{ field }}#}
-{#                                                                    </p>#}
-{#                                                                {% endfor %}#}
-{#                                                            <button type="submit" class=" btn btn-primary">Шукати</button>#}
-{#                                                            </form>#}
-{#<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>#}
-{#  <script>#}
-{#    $("#id_country").change(function () {#}
-{#      var url = $(".searchForm").attr("data-cities-url");  // get the url of the `load_cities` view#}
-{#      var countryId = $(this).val();  // get the selected country ID from the HTML input#}
-{##}
-{#      $.ajax({                       // initialize an AJAX request#}
-{#        url: url,                    // set the url of the request (= localhost:8000/hr/ajax/load-cities/)#}
-{#        data: {#}
-{#          'country': countryId       // add the country id to the GET parameters#}
-{#        },#}
-{#        success: function (data) {   // `data` is the return of the `load_cities` view function#}
-{#          $("#id_city").html(data);  // replace the contents of the city input with the data that came from the server#}
-{#        }#}
-{#      });#}
-{##}
-{#    });#}
-{#  </script>#}
         </div>
+
+        {#<form class="searchForm form-horizontal form-material"  action="{% url 'deals-home' %}" data-cities-url="{% url 'ajax_load_cities' %}" novalidate>#}
+        {#                                                                {% for field in form %}#}
+        {#                                                                    <p>#}
+        {#                                                                        {% if field.name == 'speciality' %}#}
+        {#                                                                            <label for="id_speciality">{% trans 'Спеціальності:' %}</label>#}
+        {#                                                                            {% elif field.name == 'country'  %}#}
+        {#                                                                                <label for="id_country">{% trans 'Країна:' %}</label>#}
+        {#                                                                            {% elif field.name == 'city'  %}#}
+        {#                                                                                <label for="id_city">{% trans 'Місто:' %}</label>#}
+        {#                                                                        {% endif %}#}
+        {#                                                                        <br>#}
+        {#                                                                    {{ field }}#}
+        {#                                                                    </p>#}
+        {#                                                                {% endfor %}#}
+        {#                                                            <button type="submit" class=" btn btn-primary">Шукати</button>#}
+        {#                                                            </form>#}
+        {#<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>#}
+        {#  <script>#}
+        {#    $("#id_country").change(function () {#}
+        {#      var url = $(".searchForm").attr("data-cities-url");  // get the url of the `load_cities` view#}
+        {#      var countryId = $(this).val();  // get the selected country ID from the HTML input#}
+        {##}
+        {#      $.ajax({                       // initialize an AJAX request#}
+        {#        url: url,                    // set the url of the request (= localhost:8000/hr/ajax/load-cities/)#}
+        {#        data: {#}
+        {#          'country': countryId       // add the country id to the GET parameters#}
+        {#        },#}
+        {#        success: function (data) {   // `data` is the return of the `load_cities` view function#}
+        {#          $("#id_city").html(data);  // replace the contents of the city input with the data that came from the server#}
+        {#        }#}
+        {#      });#}
+        {##}
+        {#    });#}
+        {#  </script>#}
+    </div>
     <div class="col-md-3 m-t-10">
         Тут буде ваша реклама
     </div>
-    </div>
+</div>
 
 
 {% endblock content %}

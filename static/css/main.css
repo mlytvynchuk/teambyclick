@@ -12,7 +12,8 @@
     --white: #fff;
     --gray: #868e96;
     --gray-dark: #343a40;
-    --primary: #00B9AE!important;
+    --primary: #39a7de !important;
+    --primary-hover: #0480bd !important;
     /*--primary: #337ab7!important;*/
 
     --secondary: #5A6169;
@@ -33,261 +34,314 @@
 }
 
 @font-face {
-  font-family: 'Montserrat';
-  font-style: normal;
-  font-weight: 300;
-  src: url("../fonts/montserrat/Montserrat-Light.ttf");
-  /* IE9 Compat Modes */ }
-@font-face {
-  font-family: 'Montserrat';
-  font-style: normal;
-  font-weight: 400;
-  src: url("../fonts/montserrat/Montserrat-Regular.ttf");
-  /* IE9 Compat Modes */ }
-@font-face {
-  font-family: 'Montserrat';
-  font-style: italic;
-  font-weight: 400;
-  src: url("../fonts/montserrat/Montserrat-Italic.ttf");
-  /* IE9 Compat Modes */ }
-@font-face {
-  font-family: 'Montserrat';
-  font-style: normal;
-  font-weight: 500;
-  src: url("../fonts/montserrat/Montserrat-Medium.ttf");
-  /* IE9 Compat Modes */ }
-@font-face {
-  font-family: 'Montserrat';
-  font-style: normal;
-  font-weight: 600;
-  src: url("../fonts/montserrat/Montserrat-SemiBold.ttf");
-  /* IE9 Compat Modes */ }
-@font-face {
-  font-family: 'Montserrat';
-  font-style: normal;
-  font-weight: 700;
-  src: url("../fonts/montserrat/Montserrat-Bold.ttf");
-  /* IE9 Compat Modes */ }
-@font-face {
-  font-family: 'Montserrat';
-  font-style: italic;
-  font-weight: 700;
-  src: url("../fonts/montserrat/Montserrat-BoldItalic.ttf");
-  /* IE9 Compat Modes */ }
-@font-face {
-  font-family: 'Montserrat';
-  font-style: italic;
-  font-weight: 900;
-  src: url("../fonts/montserrat/montserrat-v12-latin-900.ttf"), url("../fonts/montserrat/montserrat-v12-latin-900.eot") format("embedded-opentype"), url("../fonts/montserrat/montserrat-v12-latin-900.svg") format("woff2"), url("../fonts/montserrat/montserrat-v12-latin-900.woff") format("woff"), url("../fonts/montserrat/montserrat-v12-latin-900.woff2") format("truetype");
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 300;
+    src: url("../fonts/montserrat/Montserrat-Light.ttf");
+    /* IE9 Compat Modes */
 }
+
+@font-face {
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 400;
+    src: url("../fonts/montserrat/Montserrat-Regular.ttf");
+    /* IE9 Compat Modes */
+}
+
+@font-face {
+    font-family: 'Montserrat';
+    font-style: italic;
+    font-weight: 400;
+    src: url("../fonts/montserrat/Montserrat-Italic.ttf");
+    /* IE9 Compat Modes */
+}
+
+@font-face {
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 500;
+    src: url("../fonts/montserrat/Montserrat-Medium.ttf");
+    /* IE9 Compat Modes */
+}
+
+@font-face {
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 600;
+    src: url("../fonts/montserrat/Montserrat-SemiBold.ttf");
+    /* IE9 Compat Modes */
+}
+
+@font-face {
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 700;
+    src: url("../fonts/montserrat/Montserrat-Bold.ttf");
+    /* IE9 Compat Modes */
+}
+
+@font-face {
+    font-family: 'Montserrat';
+    font-style: italic;
+    font-weight: 700;
+    src: url("../fonts/montserrat/Montserrat-BoldItalic.ttf");
+    /* IE9 Compat Modes */
+}
+
+@font-face {
+    font-family: 'Montserrat';
+    font-style: italic;
+    font-weight: 900;
+    src: url("../fonts/montserrat/montserrat-v12-latin-900.ttf"), url("../fonts/montserrat/montserrat-v12-latin-900.eot") format("embedded-opentype"), url("../fonts/montserrat/montserrat-v12-latin-900.svg") format("woff2"), url("../fonts/montserrat/montserrat-v12-latin-900.woff") format("woff"), url("../fonts/montserrat/montserrat-v12-latin-900.woff2") format("truetype");
+}
+
 @font-face {
     font-family: 'SourceSansPro';
     font-style: normal;
     font-weight: 400;
     src: url("../fonts/source_sans/SourceSansPro-Regular.ttf");
 }
+
 @font-face {
     font-family: 'SourceSansPro';
     font-style: normal;
     font-weight: 600;
     src: url("../fonts/source_sans/SourceSansPro-Bold.ttf");
 }
+
 @font-face {
     font-family: 'SourceSansPro';
     font-style: normal;
     font-weight: 700;
     src: url("../fonts/source_sans/SourceSansPro-Bold.ttf");
 }
+
 @font-face {
     font-family: 'PTSANS';
     font-style: normal;
     font-weight: 400;
     src: url("../fonts/PT_Sans/PT_Sans-Web-Regular.ttf");
 }
+
 @font-face {
     font-family: 'PTSANS';
     font-style: normal;
     font-weight: 600;
     src: url("../fonts/PT_Sans/PT_Sans-Web-Bold.ttf");
 }
+
 @font-face {
     font-family: 'PTSANS';
     font-style: normal;
     font-weight: 700;
     src: url("../fonts/source_sans/SourceSansPro-Bold.ttf");
 }
-h1{
+
+h1 {
     font-size: 25px !important;
 }
-h2{
+
+h2 {
     font-weight: bold;
     font-size: 21px;
 }
 
-body{
+body {
     /* font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif!important; */
     /* font-family: -apple-system,BlinkMacSystemFont,Arial,sans-serif !important; */
     font-family: 'PTSANS';
-	font-weight: 400;
+    font-weight: 400;
     padding: 0;
     margin: 0;
     font-size: 15px;
 }
-#clk-brand{
+
+#clk-brand {
     color: var(--primary);
 }
-.navbar-brand{
+
+.navbar-brand {
     font-size: 22px !important;
 }
-.btn-outline-primary{
-    color: var(--primary)!important;    
+
+.btn-outline-primary {
+    color: var(--primary) !important;
     border-color: var(--primary) !important;
     /*font-family: "-apple-system",BlinkMacSystemFont,Arial,sans-serif !important;*/
     /*font-size: 13px !important;*/
-    
+
 }
-input{
+
+input {
     -webkit-appearance: none;
--moz-appearance: none;
-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
     background: white;
 }
-.btn-outline-primary:hover{
-    color: white!important; 
-    background: var(--primary) !important;   
+
+.btn-outline-primary:hover {
+    color: white !important;
+    background: var(--primary) !important;
     border-color: var(--primary) !important;
     /* font-family: "-apple-system",BlinkMacSystemFont,Arial,sans-serif; */
 }
-.btn-primary{
-    background: var(--primary) !important;   
+
+.btn-primary {
+    background: var(--primary) !important;
     border-color: var(--primary) !important;
     /*font-family: "-apple-system",BlinkMacSystemFont,Arial,sans-serif !important;*/
     /*font-size: 13px !important;*/
 }
-header{
+
+header {
     /* border-bottom: 1px solid #d5dddf; */
     padding: 10px;
     font-weight: 400;
 }
+
 header .navbar-toggler {
     border: 0px !important;
-    
-}
-header .navbar{
-background: #fff!important;
-font-size: 16px;
 
 }
-header .navbar li{
+
+header .navbar {
+    background: #fff !important;
+    font-size: 16px;
+
+}
+
+header .navbar li {
     padding-right: 1em !important;
-    
-    }
-    header .navbar .nav-link:hover{
+
+}
+
+header .navbar .nav-link:hover {
     color: #2274A5 !important;
-        
-    }
-header .navbar .navbar-brand{
+
+}
+
+header .navbar .navbar-brand {
     margin-right: 50px;
 }
 
-#main-content{
-    margin-top:20px !important;
+#main-content {
+    margin-top: 20px !important;
 }
-.block-sidebar{
+
+.block-sidebar {
     background: #fff;
     color: #505c66;
     padding: 20px;
 
 }
-.block-sidebar .block-title{
+
+.block-sidebar .block-title {
     text-transform: uppercase;
     border-bottom: 1px solid #d5dddf;
 }
-.block-sidebar h3{
+
+.block-sidebar h3 {
     font-size: 16px;
 }
-.block-sidebar li{
+
+.block-sidebar li {
     list-style-type: none;
     padding-bottom: 5px;
     padding-top: 8px;
     border-bottom: 0.2px solid #d5dddfea;
 }
-.block-sidebar a{
+
+.block-sidebar a {
     text-decoration: none;
     color: #505c66;
 }
-.block-sidebar a:hover{
+
+.block-sidebar a:hover {
     /* text-decoration: none; */
     color: var(--primary);
 }
-#page-wrapper{
+
+#page-wrapper {
     background: #fff;
 }
+
 /* card-css */
-.card{
+.card {
     border: 0 !important;
     padding-top: 20px;
     /* background: #f7f7f7; */
     /* font-family: "-apple-system",BlinkMacSystemFont,Arial,sans-serif; */
 }
-.card-title{
-    color:var(--primary);
+
+.card-title {
+    color: var(--primary);
     font-size: 25px;
     font-family: 'Nunito Sans', sans-serif;
     font-weight: 500;
-    }
- .categories{
+}
+
+.categories {
     display: flex;
     left: 0px;
     list-style-type: none;
     padding-bottom: 8px;
-    
-    color:grey;
+
+    color: grey;
 }
+
 .categories li {
-    margin-right:8px;
-    
+    margin-right: 8px;
+
 }
+
 /* search */
 .d3 {
     position: relative;
     background: #f1f2f7;
-/*margin-right: -30px;*/
+    /*margin-right: -30px;*/
 }
+
 .d3 form {
-  background: #f7f7f7;
+    background: #f7f7f7;
 }
-.d3 input, .d3 button {
-  border: none;
-  outline: none;
-  background: transparent;
-}
-.d3 input {
-  width: 100%;
-  height: 42px;
-  padding-left: 15px;
-}
+
+.d3 input,
 .d3 button {
-  height: 42px;
-  width: 42px;
-  position: absolute;
-  top: 0;
-  right: 0;
-  cursor: pointer;
+    border: none;
+    outline: none;
+    background: transparent;
 }
+
+.d3 input {
+    width: 100%;
+    height: 42px;
+    padding-left: 15px;
+}
+
+.d3 button {
+    height: 42px;
+    width: 42px;
+    position: absolute;
+    top: 0;
+    right: 0;
+    cursor: pointer;
+}
+
 .d3 button:before {
-  content: "\f002";
-  font-family: FontAwesome;
-  font-size: 16px;
-  color: var(--primary);
+    content: "\f002";
+    font-family: FontAwesome;
+    font-size: 16px;
+    color: var(--primary);
 }
+
 .d3 form {
     position: relative;
     width: 100%;
-    
-  }
-  
-.inline-bricks{
+
+}
+
+.inline-bricks {
 
     display: flex;
     flex-wrap: wrap;
@@ -296,117 +350,145 @@ header .navbar .navbar-brand{
 
 }
 
-.inline-bricks .brick{
+.inline-bricks .brick {
     margin: 3px;
     background: #f7f7f7;
     color: #2b2b2b;
     border-radius: 2px;
     padding: 5px;
 }
-.inline-bricks .brick-inv{
+
+.inline-bricks .brick-inv {
     /*margin: 1px;*/
     border-radius: 0px !important;
     /*padding: 0.5px;*/
 }
-.inline-bricks .brick-inv .btn{
+
+.inline-bricks .brick-inv .btn {
     /*margin: 1px;*/
     border-radius: 0px !important;
-    padding:15px 20px;
+    padding: 15px 20px;
 }
-  @media (max-width: 1000px) { 
-      header #reg li {
-          float: left;
-          /* display: inline-block !important; */
-      }
-      header #reg {
+
+@media (max-width: 1000px) {
+    header #reg li {
+        float: left;
+        /* display: inline-block !important; */
+    }
+
+    header #reg {
         /* float: left; */
         display: block !important;
     }
-    
-   }
-   @media (max-width: 767px) {
-    aside{
+
+}
+
+@media (max-width: 767px) {
+    aside {
         display: none !important;
     }
-   }
+}
 
-.user-img img{
+.user-img img {
     border-radius: 50%;
     width: 100px;
     height: 100px;
 }
-.user-card{
+
+.user-card {
     display: flex;
     margin-top: 10px;
 }
-.user-info{
+
+.user-info {
     padding-left: 20px;
 }
-.user-title a{
+
+.user-title a {
     color: black !important;
 
 }
-.h-divider{
+
+.h-divider {
     width: 80px;
     border-bottom: 5px solid var(--primary);
 }
-input,select {
-  -webkit-appearance: none;  // remove shadow in iOS
-  @include border-radius(0);  // remove border-radius in iOS
+
+input,
+select {
+    -webkit-appearance: none; // remove shadow in iOS
+    @include border-radius(0); // remove border-radius in iOS
 }
 
-.author-name{
+.author-name {
     color: var(--primary);
     font-size: 16px;
 }
-.author-name:hover{
+
+.author-name:hover {
     color: var(--primary);
     text-decoration: underline;
 }
+
 @media(min-width: 992px) {
-    #custom-clk{margin-left: -30px;}
-    .detail-description{
-    padding-right: 120px;
-}
+    #custom-clk {
+        margin-left: -30px;
+    }
+
+    .detail-description {
+        padding-right: 120px;
+    }
 
 }
+
 /*@media (max-width: 981px) {*/
-     #custom-clk{width: 100%}
+#custom-clk {
+    width: 100%
+}
+
 /*}*/
-.deal{
+.deal {
     padding: 8px;
 }
-.deal:hover{
-    background-color:#f9f9f9;
+
+.deal:hover {
+    background-color: #f9f9f9;
     transition: 0.4s;
 }
-.user-link strong{
-    color:#000000;
+
+.user-link strong {
+    color: #000000;
     text-decoration: none;
 }
-.unreaded{
+
+.unreaded {
     background: #f7f7f9;
 }
-.panel-dialogs{
+
+.panel-dialogs {
     /*height: -webkit-fill-available;*/
     min-height: 600px;
 }
-.f-row{
-    border: 2px solid #f0f0f0!important;
-    margin: 5px!important;
-    padding: 5px!important;
-    padding-bottom: 20px!important;
+
+.f-row {
+    border: 2px solid #f0f0f0 !important;
+    margin: 5px !important;
+    padding: 5px !important;
+    padding-bottom: 20px !important;
     /*box-shadow: #00a5bb!important;*/
-    box-shadow: 0 0 6px rgba(0,0,0,0.08) !important;
+    box-shadow: 0 0 6px rgba(0, 0, 0, 0.08) !important;
 }
-.white-box{
+
+.white-box {
     /*box-shadow: 2px 2px 2px rgba(0,0,0,0.08) !important;*/
 
 }
-.scrl{
+
+.scrl {
     max-height: 500px;
     overflow-y: scroll;
 }
+
 .scrl::-webkit-scrollbar {
     -webkit-appearance: none;
 }
@@ -421,7 +503,8 @@ input,select {
 
 .scrl::-webkit-scrollbar-thumb {
     border-radius: 8px;
-    border: 2px solid white; /* should match background, can't be transparent */
+    border: 2px solid white;
+    /* should match background, can't be transparent */
     background-color: rgba(0, 0, 0, .5);
 }
 
@@ -429,83 +512,134 @@ input,select {
     background-color: #fff;
     border-radius: 8px;
 }
-@media screen and (max-width: 500px){
-    .user-card{
+
+@media screen and (max-width: 500px) {
+    .user-card {
         display: block;
     }
-    .user-img{
+
+    .user-img {
         /*display: none;*/
         padding-left: 20px;
 
     }
-    .user-img img{
-        width:80px;
+
+    .user-img img {
+        width: 80px;
         height: 80px;
     }
-    .user-info{
+
+    .user-info {
         /*margin: auto;*/
     }
 }
 
 /*some btn styles*/
-.btn-label{
-    background:rgba(0,0,0,.05);
-    display:inline-block;
-    margin:-6px 12px -6px -14px;
-    padding:7px 15px
+.btn-label {
+    background: rgba(0, 0, 0, .05);
+    display: inline-block;
+    margin: -6px 12px -6px -14px;
+    padding: 7px 15px
 }
-.btn-facebook{
-    color:#fff!important;
-    background-color:#3b5998!important
+
+.btn-facebook {
+    color: #fff !important;
+    background-color: #3b5998 !important
 }
-.btn-twitter{
-    color:#fff!important;
-    background-color:#55acee!important
+
+.btn-twitter {
+    color: #fff !important;
+    background-color: #55acee !important
 }
-.btn-linkedin{
-    color:#fff!important;
-    background-color:#007bb6!important
+
+.btn-linkedin {
+    color: #fff !important;
+    background-color: #007bb6 !important
 }
-.btn-dribbble{
-    color:#fff!important;
-    background-color:#ea4c89!important
+
+.btn-dribbble {
+    color: #fff !important;
+    background-color: #ea4c89 !important
 }
-.btn-googleplus{
-    color:#fff!important;
-    background-color:#dd4b39!important
+
+.btn-googleplus {
+    color: #fff !important;
+    background-color: #dd4b39 !important
 }
-.btn-instagram{
-    color:#fff!important;
-    background-color:#3f729b!important
+
+.btn-instagram {
+    color: #fff !important;
+    background-color: #3f729b !important
 }
-.btn-pinterest{
-    color:#fff!important;
-    background-color:#cb2027!important
+
+.btn-pinterest {
+    color: #fff !important;
+    background-color: #cb2027 !important
 }
-.btn-dropbox{
-    color:#fff!important;
-    background-color:#007ee5!important
+
+.btn-dropbox {
+    color: #fff !important;
+    background-color: #007ee5 !important
 }
-.btn-flickr{
-    color:#fff!important;
-    background-color:#ff0084!important
+
+.btn-flickr {
+    color: #fff !important;
+    background-color: #ff0084 !important
 }
-.btn-tumblr{
-    color:#fff!important;
-    background-color:#32506d!important
+
+.btn-tumblr {
+    color: #fff !important;
+    background-color: #32506d !important
 }
-.btn-skype{
-    color:#fff!important;
-    background-color:#00aff0!important
+
+.btn-skype {
+    color: #fff !important;
+    background-color: #00aff0 !important
 }
-.btn-youtube{
-    color:#fff!important;
-    background-color:#b00!important
+
+.btn-youtube {
+    color: #fff !important;
+    background-color: #b00 !important
 }
-.btn-github{
-    color:#fff!important;
-    background-color:#171515!important
+
+.btn-github {
+    color: #fff !important;
+    background-color: #171515 !important
 }
-.btn{
-   /*border-radius: 0px !important ;*/
+
+.btn {
+    /*border-radius: 0px !important ;*/
+}
+
+.d-flex {
+    display: flex !important;
+    flex-direction: row;
+}
+
+.justify-content-center {
+    justify-content: center !important;
+}
+
+.align-items-center {
+    align-items: center !important;
+}
+
+.flex-column {
+    flex-direction: column !important;
+}
+
+.mr-2 {
+    margin-right: 2px;
+}
+
+.mr-3 {
+    margin-right: 3px;
+}
+
+.mr-4 {
+    margin-right: 4px;
+}
+
+.mr-5 {
+    margin-right: 5px;
 }

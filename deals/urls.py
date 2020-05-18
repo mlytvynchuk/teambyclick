@@ -15,21 +15,18 @@ Including another URLconf
 """
 from django.conf.urls import url
 from django.contrib import admin
-from django.urls import path,include
+from django.urls import path, include
 from . import views as user_views
 from .views import *
 
 urlpatterns = [
-    path('',landing,name="landing"),
-    path('ideas/',user_views.DealView.as_view(),name= "deals-home"),
-    path('idea/<int:id>', deal_details, name='deal-detail'),
-    path('idea/new/', DealCreateView.as_view(), name='deal-create'),
-    path('idea/<int:pk>/update/', DealUpdateView.as_view(), name='deal-update'),
-    path('idea/<int:pk>/delete/', DealDeleteView.as_view(), name='deal-delete'),
-    # path('cabinet/', user_views.cabinet, name="cabinet"),
-    # path('idea/<int:pk>/update/', DealUpdateView.as_view(), name='deal-update'),
-    # path('idea/<int:pk>/delete/', DealDeleteView.as_view(), name='deal-delete'),
-    path('test/',test,name='test'),
-    path('myideas/',myideas,name="myideas"),
-
+    path("", landing, name="landing"),
+    path("projects/", user_views.DealView.as_view(), name="deals-home"),
+    # path("ideas/", user_views.DealView.as_view(), name="ideas-home"),
+    path("projects/<int:id>", deal_details, name="deal-detail"),
+    path("projects/new/", DealCreateView.as_view(), name="deal-create"),
+    path("projects/<int:pk>/update/", DealUpdateView.as_view(), name="deal-update"),
+    path("projects/<int:pk>/delete/", DealDeleteView.as_view(), name="deal-delete"),
+    path("myprojects/", myideas, name="myideas"),
+    path("projects/<int:id>/like/", like_deal, name="deal-like"),
 ]

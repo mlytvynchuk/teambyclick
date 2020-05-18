@@ -1,0 +1,16 @@
+{% extends 'extends/base.html' %}
+{% load i18n %}
+{% load humanize %}
+{#{% load bootstrap3 %}#}
+
+{% block content %}
+<div class="row" id="main-content">
+    <div class="col-md-8">
+        <div class="white-box">
+
+            <h2>{{ post.title }}</h2>
+            <p>{{post.content|safe}}</p>
+        </div>
+    </div>
+</div>
+{% endblock content %}

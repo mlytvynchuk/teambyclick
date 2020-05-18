@@ -2,64 +2,65 @@
 {% load static %}
 {% load i18n %}
 {% block content %}
-    <div class="row m-t-10">
+<div class="row m-t-10">
     <div class="col-md-8 col-sm-8 col-8">
-    <div class="card p-b-20" >
-       <div class="row">
-           <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
-               <h2 class="card-title" >{% trans 'Мої проекти' %}</h2>
-               <div class="h-divider"></div>
-           </div>
-           <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
-               <a href="{% url 'deal-create' %}" class="pull-right btn btn-primary  m-t-10 p-10 p-l-15  ">{% trans 'Створити новий проект' %}</a>
-           </div>
-       </div>
-    </div>
-    {% if author.count == 0 %}
-            <div class="panel panel-body">{% trans "Нема ні одного розпочатого проекту" %}</div>
+        <div class="card p-b-20">
+            <div class="row">
+                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                    <h2 class="card-title">{% trans 'Мої проекти' %}</h2>
+                    <div class="h-divider"></div>
+                </div>
+                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                    <a href="{% url 'deal-create' %}"
+                        class="pull-right btn btn-primary  m-t-10 p-10 p-l-15  ">{% trans 'Створити новий проект' %}</a>
+                </div>
+            </div>
+        </div>
+        {% if author.count == 0 %}
+        <div class="panel panel-body">{% trans "Нема ні одного розпочатого проекту" %}</div>
         {% endif %}
-            {% for deal in author %}
+        {% for deal in author %}
         <div class="card white-box">
-                                            <div class="card-body">
-                                              <h2>{{ deal.title }}</h2>
-{#                                              <div class="categories">#}
-{##}
-{#                                                      <li class="category-item">#}
-{#                                                            <small>#}
-{#                                                                Дизайн автомобілів,#}
-{#                                                            </small>#}
-{#                                                      </li>#}
-{#                                                      <li class="category-item">#}
-{#                                                            <small>#}
-{#                                                                    Продаж техніки#}
-{#                                                            </small>#}
-{##}
-{#                                                        </li>#}
-{##}
-{##}
-{##}
-{#                                              </div>#}
-                                              <p class="card-text">{{ deal.description|truncatewords:25 }}</p>
-                                              <dt class="profile-section__title">{% trans 'Потрібні спеціалісти:' %}</dt>
-                                              <dd>
-                                                  <ul class="inline-bricks">
-                                                      {% for spec in deal.speciality.all %}
-                                                      <li class="brick">
-                                                            {{ spec }}
-                                                        </li>
-                                                      {% endfor %}
-                                                  </ul>
-                                              </dd>
-                                              <a href="{% url 'deal-detail' deal.id %}" class="btn btn-primary">{% trans 'Дізнатись більше'%}</a>
-                                            </div>
-                                          </div>
-    {% endfor %}
+            <div class="card-body">
+                <h2>{{ deal.title }}</h2>
+                {#                                              <div class="categories">#}
+                {##}
+                {#                                                      <li class="category-item">#}
+                {#                                                            <small>#}
+                {#                                                                Дизайн автомобілів,#}
+                {#                                                            </small>#}
+                {#                                                      </li>#}
+                {#                                                      <li class="category-item">#}
+                {#                                                            <small>#}
+                {#                                                                    Продаж техніки#}
+                {#                                                            </small>#}
+                {##}
+                {#                                                        </li>#}
+                {##}
+                {##}
+                {##}
+                {#                                              </div>#}
+                <p class="card-text">{{ deal.description|truncatewords:25 }}</p>
+                <dt class="profile-section__title">{% trans 'Потрібні спеціалісти:' %}</dt>
+                <dd>
+                    <ul class="inline-bricks">
+                        {% for spec in deal.speciality.all %}
+                        <li class="brick">
+                            {{ spec }}
+                        </li>
+                        {% endfor %}
+                    </ul>
+                </dd>
+                <a href="{% url 'deal-detail' deal.id %}" class="btn btn-primary">{% trans 'Дізнатись більше'%}</a>
+            </div>
+        </div>
+        {% endfor %}
 
     </div>
     <div class="col-lg-4 col-md-4 col-4">
         Реклама
     </div>
-    </div>
+</div>
 
 
 {% endblock content %}

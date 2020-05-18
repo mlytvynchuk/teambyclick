@@ -1,22 +1,23 @@
 {% extends 'extends/base.html' %}
 {% load i18n %}
 {% block content %}
-    <div class="row">
+<div class="row">
     <div class="col-md-8">
-            <div class="white-box" style="padding: 30px">
+        <div class="white-box" style="padding: 30px">
             <form method="post">{% csrf_token %}
-            <legend class="border-bottom mb-4">{% trans 'Видалити ідею' %}</legend>
-              <div class="form-group">
-                  <h3>Ви впевнені, що хочете видалити:  {{ object.title }}?</h3>
-               <div class="form-group mt-2">
-                   <button class="btn btn-primary" type="submit">{% trans 'Tak' %}</button>
-                   <a class="btn btn-outline-primary" href="{% url 'deal-detail' object.id  %}">{% trans 'Ні' %}</a>
+                <legend class="border-bottom mb-4">{% trans 'Видалити ідею' %}</legend>
+                <div class="form-group">
+                    <h3>Ви впевнені, що хочете видалити: {{ object.title }}?</h3>
+                    <div class="form-group mt-2">
+                        <button class="btn btn-primary" type="submit">{% trans 'Tak' %}</button>
+                        <a class="btn btn-outline-primary"
+                            href="{% url 'deal-detail' object.id  %}">{% trans 'Ні' %}</a>
 
-            </div>
-              </div>
-        </form>
+                    </div>
+                </div>
+            </form>
 
+        </div>
     </div>
-    </div>
-    </div>
+</div>
 {% endblock content %}
