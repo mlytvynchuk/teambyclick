@@ -10,3 +10,4 @@ db.sqlite3
 *.pyc
 static_root/
 *.env
+.DS_Store
