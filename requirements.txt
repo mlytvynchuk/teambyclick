@@ -14,7 +14,7 @@ daphne==2.2.4
 decorator==4.3.0
 defusedxml==0.5.0
 dj-database-url==0.5.0
-Django==2.1.4
+Django==2.2.10
 django-allauth==0.22.0
 django-bootstrap3==11.0.0
 django-ckeditor==5.9.0
