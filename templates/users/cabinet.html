@@ -2,197 +2,203 @@
 {% load static %}
 {% load i18n %}
 {% block content %}
-            <!-- Default Light Table -->
+<!-- Default Light Table -->
 
-            <div class="row" id="main-content" style="overflow: hidden">
-              <div class="col-lg-4">
-                <div class="card card-small mb-4 pt-3 white-box">
-                  <div class="card-header border-bottom text-center">
-                    <div class="mb-3 mx-auto">
-                        <div class="avatar img-circle" style="background-image: url({{ user.profile.image.url}});width: 100px;height: 100px; margin: auto; background-position: center;background-size: cover ">
-                        </div>
-                        </div>
-                    <h4 class="mb-0">{{ user.first_name  }} {{ user.last_name }}</h4>
-{#                      <p class="text-secondary">{{ user.email }}</p>#}
-                    {% if user.profile.speciality %}
-                        <span class="text-muted d-block mb-2">{{ user.profile.speciality}}</span>
-                    {% endif %}
-{#                    <button type="button" class="mb-2 btn btn-sm btn-pill btn-outline-primary mr-2">#}
-{#                      <i class="material-icons mr-1">person_add</i>Follow</button>#}
-                  </div>
-                  <ul class="list-group list-group-flush">
+<div class="row" id="main-content" style="overflow: hidden">
+  <div class="col-lg-4">
+    <div class="card card-small mb-4 pt-3 white-box">
+      <div class="card-header border-bottom text-center">
+        <div class="mb-3 mx-auto">
+          <div class="avatar img-circle"
+            style="background-image: url({{ user.profile.image.url}});width: 100px;height: 100px; margin: auto; background-position: center;background-size: cover ">
+          </div>
+        </div>
+        <h4 class="mb-0">{{ user.first_name  }} {{ user.last_name }}</h4>
+        {#                      <p class="text-secondary">{{ user.email }}</p>#}
+        {% if user.profile.speciality %}
+        <span class="text-muted d-block mb-2">{{ user.profile.speciality}}</span>
+        {% endif %}
+        {#                    <button type="button" class="mb-2 btn btn-sm btn-pill btn-outline-primary mr-2">#}
+        {#                      <i class="material-icons mr-1">person_add</i>Follow</button>#}
+      </div>
+      <ul class="list-group list-group-flush">
 
-                    {% if user.profile.bio %}
-                        <li class="list-group-item p-4 text-center">
-                      <strong class="text-muted d-block mb-2">{% trans 'Про мене' %}:</strong><br>
-                        <span>{{ user.profile.bio }}</span>
-                        </li>
-                    {% endif %}
+        {% if user.profile.bio %}
+        <li class="list-group-item p-4 text-center">
+          <strong class="text-muted d-block mb-2">{% trans 'Про мене' %}:</strong><br>
+          <span>{{ user.profile.bio }}</span>
+        </li>
+        {% endif %}
 
-                        {% if user.profile.facebook %}
-                         <li class="list-group-item p-4 text-center">
-                             <a href="{{ user.profile.facebook }}" class="btn btn-facebook"><i class="fab fa-facebook-square"></i> Facebook</a>
-                         </li>
+        {% if user.profile.facebook %}
+        <li class="list-group-item p-4 text-center">
+          <a href="{{ user.profile.facebook }}" class="btn btn-facebook"><i class="fab fa-facebook-square"></i>
+            Facebook</a>
+        </li>
+        {% endif %}
+        {% if user.profile.linkedin %}
+        <li class="list-group-item p-4 text-center">
+          <a href="{{ user.profile.linkedin }}" class="btn btn-linkedin"><i class="fab fa-linkedin"></i> LinkedIn</a>
+        </li>
+        {% endif %}
+
+
+
+
+
+      </ul>
+
+    </div>
+  </div>
+  <div class="col-lg-8">
+    <div class="white-box">
+      <div class="card card-small mb-4">
+        <div class="card-header border-bottom">
+          <h6 class="m-0 card-title">{% trans 'Деталі аккаунта' %}</h6>
+        </div>
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item p-3">
+            <div class="row">
+              <div class="col">
+
+                <form method="post" enctype="multipart/form-data" class="cabinetForm form-horizontal form-material"
+                  data-cities-url="{% url 'ajax_load_cities_users' %}">
+                  {% csrf_token %}
+                  <div class="">
+                    {% for field in u_form %}
+
+                    <p class="">
+                      {% trans field.label_tag %} <br>
+                      {% if field.name == 'email'%}
+
+                      <input name="{{ field.name }}" class="form-control" type="email" value="{{field.value}}">
+                      {% else %}
+                      <input name="{{ field.name }}" class="form-control" type="text" value="{{ field.value }}">
                       {% endif %}
-                  {% if user.profile.linkedin %}
-                         <li class="list-group-item p-4 text-center">
-                             <a href="{{ user.profile.linkedin }}" class="btn btn-linkedin"><i class="fab fa-linkedin"></i> LinkedIn</a>
-                         </li>
+
+                      {% if field.help_text %}
+                      <small class="text_help" style="color: grey;">{{ field.help_text }}</small>
+                      {% endif %}
+
+                    </p>
+
+                    {% endfor %}
+                    {% for field in p_form%}
+
+                    <p class="">
+                      {% if field.name == 'language' %}
+                      <label for="id_{{ field.name }}">{{ field.label }}</label>
+                      {{ field }}
+                      {% endif %}
+                      {% if field.name == 'status' %}
+                      <label for="id_speciality">{% trans 'Cтатус:' %}</label>
+                      <br>
+                      {{ field }}
+
+                      {% endif %}
+                      {% if field.name == 'facebook' %}
+                      <label for="id_speciality">{% trans 'Посилання на Ваш профіль у Facebook:' %}</label>
+                      <br>
+                      {{ field }}
+
+                      {% endif %}
+                      {% if field.name == 'linkedin' %}
+                      <label for="id_speciality">{% trans 'Посилання на Ваш профіль у LinkedIn:' %}</label>
+                      <br>
+                      {{ field }}
+
+                      {% endif %}
+                      {% if field.name == 'speciality' %}
+                      <label for="id_speciality">{% trans 'Спеціальність:' %}</label>
+                      <br>
+                      {{ field }}
+                      {% endif %}
+                      {% if field.name == 'country'  %}
+                      <label for="id_country">{% trans 'Країна:' %}</label>
+                      {{ field }}
+
+                      {% endif %}
+                      {% if field.name == 'city'  %}
+                      <label for="id_city">{% trans 'Місто:' %}</label>
+                      {#                                    {% if user.profile.city %}#}
+                      {#                                        {{ user.profile.city }}#}
+                      {#                                        {% endif %}#}
+                      {{ field }}
+
+                      {% endif %}
+                      {% if field.name == 'bio' %}
+                      <label for="id_speciality">{% trans 'Опиши себе:' %}</label>
+                      <br>
+                      <textarea name="bio" cols="40" rows="2" id="id_skills"
+                        class="form-control">{{ field.value }}</textarea>
+
+                      {% endif %}
+                      {% if field.name == 'image' %}
+                      <label for="id_speciality">{% trans 'Аватар профіля:' %}</label>
+                      <br>
+                      {#                                    {{ field }}#}
+
+                      <input type="file" name="image" accept="image/*" id="id_image">
+                      {% endif %}
+                      {% if field.name == 'skills' %}
+                      <label for="id_speciality">{% trans 'Навички' %}</label>
+                      <br>
+                      {#                                    {{ field }}#}
+
+                      {#                                      <select class="form-control" name="choices-multiple-remove-button" id="choices-multiple-remove-button" placeholder="This is a placeholder" multiple>#}
+                      {#                                        <option value="Choice 1" selected>Choice 1</option>#}
+                      {#                                        <option value="Choice 2">Choice 2</option>#}
+                      {#                                        <option value="Choice 3">Choice 3</option>#}
+                      {#                                        <option value="Choice 4">Choice 4</option>#}
+                      {#                                      </select>#}
+                      {{ field }}
                       {% endif %}
 
 
+                    </p>
+
+                    {% for error in field.errors %}
+                    <p class="text-primary">{{ error }}</p>
+                    {% endfor %}
+
+                    {% endfor %}
 
 
 
-                  </ul>
 
-                </div>
-              </div>
-              <div class="col-lg-8">
-              <div class="white-box">
-                  <div class="card card-small mb-4">
-                  <div class="card-header border-bottom">
-                    <h6 class="m-0 card-title">{% trans 'Деталі аккаунта' %}</h6>
+                    <button type="submit" class="btn btn-primary">{% trans 'Зберегти' %}</button>
                   </div>
-                  <ul class="list-group list-group-flush">
-                    <li class="list-group-item p-3">
-                      <div class="row">
-                        <div class="col">
+                </form>
+                <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+                <script>
+                  $("#id_country").change(function () {
+                    var url = $(".cabinetForm").attr("data-cities-url"); // get the url of the `load_cities` view
+                    var countryId = $(this).val(); // get the selected country ID from the HTML input
 
-                          <form method="post" enctype="multipart/form-data" class="cabinetForm form-horizontal form-material" data-cities-url="{% url 'ajax_load_cities_users' %}">
-                            {% csrf_token %}
-                            <div class="">
-                            {% for field in u_form %}
+                    $.ajax({ // initialize an AJAX request
+                      url: url, // set the url of the request (= localhost:8000/hr/ajax/load-cities/)
+                      data: {
+                        'country': countryId // add the country id to the GET parameters
+                      },
+                      success: function (data) { // `data` is the return of the `load_cities` view function
+                        $("#id_city").html(
+                          data
+                        ); // replace the contents of the city input with the data that came from the server
+                      }
+                    });
 
-                                <p class="">
-                                   {% trans field.label_tag %} <br>
-                                    {% if field.name == 'email'%}
+                  });
+                </script>
 
-                                        <input name="{{ field.name }}" class="form-control" type="email" value="{{field.value}}">
-                                    {% else %}
-                                        <input name="{{ field.name }}" class="form-control" type="text" value="{{ field.value }}">
-                                    {% endif %}
-
-                                    {% if field.help_text %}
-                                        <small class= "text_help"style="color: grey;">{{ field.help_text }}</small>
-                                    {% endif %}
-
-                                </p>
-
-                            {% endfor %}
-                            {% for field in p_form%}
-
-                                <p class="">
-                                {% if field.name == 'language' %}
-                                    <label for="id_{{ field.name }}">{{ field.label }}</label>
-                                        {{ field }}
-                                        {% endif %}
-                                    {% if field.name == 'status' %}
-                                    <label for="id_speciality">{% trans 'Cтатус:' %}</label>
-                                        <br>
-                                    {{ field }}
-
-                                {% endif %}
-                                {% if field.name == 'facebook' %}
-                                    <label for="id_speciality">{% trans 'Посилання на Ваш профіль у Facebook:' %}</label>
-                                        <br>
-                                    {{ field }}
-
-                                {% endif %}
-                                {% if field.name == 'linkedin' %}
-                                    <label for="id_speciality">{% trans 'Посилання на Ваш профіль у LinkedIn:' %}</label>
-                                        <br>
-                                    {{ field }}
-
-                                {% endif %}
-                                    {% if field.name == 'speciality' %}
-                                    <label for="id_speciality">{% trans 'Спеціальність:' %}</label>
-                                        <br>
-                                    {{ field }}
-                                {% endif %}
-                                {% if field.name == 'country'  %}
-                                    <label for="id_country">{% trans 'Країна:' %}</label>
-                                    {{ field }}
-
-                                {% endif %}
-                                {% if field.name == 'city'  %}
-                                    <label for="id_city">{% trans 'Місто:' %}</label>
-{#                                    {% if user.profile.city %}#}
-{#                                        {{ user.profile.city }}#}
-{#                                        {% endif %}#}
-                                    {{ field }}
-
-                                {% endif %}
-                                {% if field.name == 'bio' %}
-                                    <label for="id_speciality">{% trans 'Опиши себе:' %}</label>
-                                    <br>
-                                    <textarea name="bio" cols="40" rows="2" id="id_skills" class="form-control">{{ field.value }}</textarea>
-
-                                {% endif %}
-                                {% if field.name == 'image' %}
-                                    <label for="id_speciality">{% trans 'Аватар профіля:' %}</label>
-                                    <br>
-{#                                    {{ field }}#}
-
-                                    <input type="file" name="image" accept="image/*" id="id_image">
-                                {% endif %}
-                                {% if field.name == 'skills' %}
-                                    <label for="id_speciality">{% trans 'Навички' %}</label>
-                                    <br>
-{#                                    {{ field }}#}
-
-{#                                      <select class="form-control" name="choices-multiple-remove-button" id="choices-multiple-remove-button" placeholder="This is a placeholder" multiple>#}
-{#                                        <option value="Choice 1" selected>Choice 1</option>#}
-{#                                        <option value="Choice 2">Choice 2</option>#}
-{#                                        <option value="Choice 3">Choice 3</option>#}
-{#                                        <option value="Choice 4">Choice 4</option>#}
-{#                                      </select>#}
-                                    {{ field }}
-                                {% endif %}
-
-
-                                </p>
-
-                                {% for error in field.errors %}
-                                    <p class="text-primary">{{ error }}</p>
-                                {% endfor %}
-
-                            {% endfor %}
-
-
-
-
-                            <button type="submit" class="btn btn-primary">{% trans 'Зберегти' %}</button>
-                            </div>
-                          </form>
- <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
-  <script>
-    $("#id_country").change(function () {
-      var url = $(".cabinetForm").attr("data-cities-url");  // get the url of the `load_cities` view
-      var countryId = $(this).val();  // get the selected country ID from the HTML input
-
-      $.ajax({                       // initialize an AJAX request
-        url: url,                    // set the url of the request (= localhost:8000/hr/ajax/load-cities/)
-        data: {
-          'country': countryId       // add the country id to the GET parameters
-        },
-        success: function (data) {   // `data` is the return of the `load_cities` view function
-          $("#id_city").html(data);  // replace the contents of the city input with the data that came from the server
-        }
-      });
-
-    });
-  </script>
-
-                        </div>
-                      </div>
-                    </li>
-                  </ul>
-                </div>
-                    </div>
               </div>
-
             </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+</div>
 
 
 {% endblock content %}

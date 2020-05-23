@@ -129,12 +129,12 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/2.1/topics/i18n/
 
-LANGUAGE_CODE = "ru"
+LANGUAGE_CODE = "uk"
 # LANGUAGE_CODE = 'en'
 LANGUAGES = (
     ("uk", "Українська"),
     ("ru", "Русский"),
-    # ('en', 'English'),
+    ("en", "English"),
 )
 
 
@@ -144,7 +144,6 @@ USE_L10N = True
 
 USE_TZ = True
 TIME_ZONE = "Europe/Kiev"
-
 
 LOCALE_PATHS = [os.path.join(BASE_DIR, "locale")]
 
