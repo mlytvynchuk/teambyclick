@@ -58,19 +58,6 @@ def fill_profile(request):
         facebook = form.cleaned_data.get("facebook")
         linkedin = form.cleaned_data.get("linkedin")
         form.save()
-        # Profile.objects.filter(user=usr).update(
-        #     country=country,
-        #     city=city,
-        #     language=language,
-        #     speciality=speciality,
-        #     skills=skills,
-        #     status=status,
-        #     bio=bio,
-        #     linkedin=linkedin,
-        #     facebook=facebook
-        #
-        #
-        # )
         return redirect("deals-home")
     return render(request, "users/fill_profile.html", context={"form": form})
 
@@ -106,9 +93,10 @@ def people(request):
     skills = request.GET.getlist("skills", "")
     s_form = SearchPeopleForm
     message = ""
-    users = User.objects.filter(
-        profile__speciality=not None, profile__country=not None, profile__city=not None
-    )
+    users = User.objects.all()
+    # users = User.objects.filter(
+    #     profile__speciality=not None, profile__country=not None, profile__city=not None
+    # )
     if search:
         for term in search.split():
             users = users.filter(

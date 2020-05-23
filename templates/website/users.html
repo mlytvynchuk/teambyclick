@@ -8,7 +8,7 @@
     <div class="card white-box">
       <div class="card-body">
         <div class="row " style="overflow: hidden">
-          <div class="col-lg-9 col-md-8">
+          <div class="col-lg-12 col-md-12">
             <div class="d3" style="width: 100%;">
               <form method="GET">
                 <input type="text" name="search" placeholder="{% trans 'Пошук людей' %}">
@@ -16,10 +16,10 @@
               </form>
             </div>
           </div>
-          <div class="col-lg-3 col-md-4" style="">
+          <!-- <div class="col-lg-3 col-md-4" style="">
             <a class="btn btn-primary" id="custom-clk" style="padding: 11px"><span class="fa fa-sliders">
               </span>{% trans 'Налаштування' %}</a>
-          </div>
+          </div> -->
         </div>
       </div>
     </div>
@@ -71,7 +71,7 @@
           },
           success: function (data) { // `data` is the return of the `load_cities` view function
             $("#id_city").html(
-            data); // replace the contents of the city input with the data that came from the server
+              data); // replace the contents of the city input with the data that came from the server
           }
         });
 
@@ -82,6 +82,7 @@
       <h3>{% trans 'Ууупс! Ми не змогли нічого відшукати😖<br>Спробуй ще раз' %}🤔</h3>
     </div>
     {% endif %}
+    {% if people%}
     <div class="white-box">
       {% for user in people %}
       <div class="user-card deal">
@@ -95,8 +96,9 @@
             </h3>
           </div>
           <div class="user-bio">
+            {% if user.profile.speciality%}
             <p class="text-muted">{{ user.profile.speciality }}</p>
-
+            {% endif %}
             <dd>
               <ul class="inline-bricks">
                 {% if user.profile.skills.all != null %}
@@ -117,7 +119,7 @@
       <hr>
       {% endfor %}
     </div>
-
+    {% endif %}
     {% if people.has_other_pages %}
     <ul class="pagination">
       {% if people.has_previous %}
@@ -142,10 +144,10 @@
 
   </div>
 
-  <div class="col-md-3">
+  <!-- <div class="col-md-3">
     Тут буде ваша реклама
 
-  </div>
+  </div> -->
 </div>
 
 {% endblock content %}
