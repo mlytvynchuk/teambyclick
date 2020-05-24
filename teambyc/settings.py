@@ -131,11 +131,11 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = "uk"
 # LANGUAGE_CODE = 'en'
-LANGUAGES = (
-    ("uk", "Українська"),
+LANGUAGES = [
     ("ru", "Русский"),
+    ("uk", "Українська"),
     ("en", "English"),
-)
+]
 
 
 USE_I18N = True
