@@ -7,7 +7,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Log in | TeamByClick</title>
+    <title>Log in | Online valley</title>
 
     <!-- Font Icon -->
     <link rel="stylesheet" href="fonts/material-icon/css/material-design-iconic-font.min.css">
@@ -39,7 +39,7 @@
                         {% endfor %}
 
                         {% endif %}
-                        <h2 class="form-title pb-5">{% trans 'Увійти в аккаунт' %}</h2>
+                        <h2 class="form-title pb-5">{% trans 'Войти в аккаунт' %}</h2>
 
                         <form method="POST" id="signup-form" class="signup-form">
                             {% csrf_token %}
@@ -66,7 +66,7 @@
                         </form>
                         <br>
                         <p class="text-muted text-center">{% trans 'АБО' %}</p>
-                        <strong class="">{% trans 'Увійдіть за допомогою соціальних мереж' %}</strong>
+                        <strong class="">{% trans 'Войти с помощью социальных сетей' %}</strong>
                         <hr>
                         <ul class="inline-bricks">
                             <li class="brick-inv"><a class="btn btn-googleplus"
@@ -75,8 +75,8 @@
                         </ul>
 
                         <p class="loginhere">
-                            {% trans 'Не маєш аккаунта?' %} <a href="{% url 'register' %}"
-                                class="loginhere-link">{% trans 'Реєструйся тут' %}</a>
+                            {% trans 'Нет аккаунта?' %} <a href="{% url 'register' %}"
+                                class="loginhere-link">{% trans 'Зарегистрироваться' %}</a>
                         </p>
                     </div>
                 </div>

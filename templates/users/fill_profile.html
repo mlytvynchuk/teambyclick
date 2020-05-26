@@ -7,7 +7,7 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>{% trans 'Заповни профіль' %}</title>
+    <title>{% trans 'Заполните профиль' %}</title>
     <link rel="icon" type="image/png" sizes="16x16" href="{% static 'images/favicon.png' %}">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
@@ -29,7 +29,7 @@
 <body>
 {#    {% block content %}#}
 <div class="white-box c-panel ">
-    <h1 class="text-primary"><strong>{% trans 'Створення профілю' %}</strong></h1>
+    <h1 class="text-primary"><strong>{% trans 'Создание профиля' %}</strong></h1>
 
         <form id="profileForm" method="post" class="form-horizontal form-material" data-cities-url="{% url 'ajax_load_cities_users' %}">
             {% csrf_token %}
@@ -38,14 +38,14 @@
                    <div class="col-md-6">
                        <div class="card">
                            <h2>
-                               {% trans 'Місцезнаходження' %}
+                               {% trans 'Местоположение' %}
                                <div class="h-divider"></div>
                            </h2>
-                           <label for="id_country">{% trans 'Країна:' %}</label>
+                           <label for="id_country">{% trans 'Страна:' %}</label>
                            {{ form.country }}
-                           <label for="id_city">{% trans 'Місто:' %}</label>
+                           <label for="id_city">{% trans 'Город:' %}</label>
                            {{ form.city }}
-                           <label for="id_language">{% trans 'Мова платформи' %}</label>
+                           <label for="id_language">{% trans 'Язык платформы' %}</label>
                            {{ form.language }}
                        </div>
 
@@ -54,14 +54,14 @@
                    <div class="col-md-6">
                         <div class="card">
                             <h2>
-                                {% trans 'Спеціальність та навички' %}
+                                {% trans 'Специальность и навыки' %}
                                 <div class="h-divider"></div>
                             </h2>
-                            <label for="id_speciality">{% trans 'Спеціальність:' %}</label>
+                            <label for="id_speciality">{% trans 'Специальность:' %}</label>
                        {{ form.speciality }}
                             <label for="id_status">{% trans 'Статус' %}</label>
                         {{ form.status }}
-                            <label for="id_skills">{% trans 'Навички' %}</label>
+                            <label for="id_skills">{% trans 'Навыки' %}</label>
                         {{ form.skills }}
 
                         </div>
@@ -73,20 +73,20 @@
                 <div class="col-md-12">
                     <div class="card">
                            <h2>
-                               {% trans 'Опис та соціальні мережі' %}
+                               {% trans 'Описание и социальные сети' %}
                                <div class="h-divider"></div>
                            </h2>
 
-                        <label for="id_bio">{% trans 'Опиши себе:' %}</label>
+                        <label for="id_bio">{% trans 'Опишите себя:' %}</label>
                         <textarea name="bio" cols="40" rows="2" id="id_bio" class="form-control">{{ field.value }}</textarea>
 
-                        <label for="id_bio">{% trans 'Світлина профіля ' %}</label>
+                        <label for="id_bio">{% trans 'Фотография профиля' %}</label>
                         <input type="file" name="image" accept="image/*" id="id_image">
                         <hr>
-                        <label for="id_facebook">{% trans 'Посилання на Ваш профіль у Facebook:' %}</label>
+                        <label for="id_facebook">{% trans 'Ссылка на профиль Facebook:' %}</label>
                             {{ form.facebook }}
 
-                        <label for="id_linkedin">{% trans 'Посилання на Ваш профіль у LinkedIn:' %}</label>
+                        <label for="id_linkedin">{% trans 'Ссылка на профиль LinkedIn:' %}</label>
                             {{ form.linkedin }}
                        </div>
                 </div>
@@ -95,7 +95,7 @@
             <div class="row">
                 <div class="col-md-12">
                 <div class="card m-l-5">
-                    <button class="btn btn-primary" style="width: 100%;padding: 10px">{% trans 'Зберегти' %}</button>
+                    <button class="btn btn-primary" style="width: 100%;padding: 10px">{% trans 'Сохранить' %}</button>
                 </div>
             </div>
             </div>

@@ -31,19 +31,19 @@
             {% for field in s_form %}
             <p>
               {% if field.name == 'speciality' %}
-              <label for="id_speciality">{% trans 'Спеціальності:' %}</label>
+              <label for="id_speciality">{% trans 'Специальности:' %}</label>
               {% elif field.name == 'country'  %}
-              <label for="id_country">{% trans 'Країна:' %}</label>
+              <label for="id_country">{% trans 'Страна:' %}</label>
               {% elif field.name == 'skills'  %}
-              <label for="id_country">{% trans 'Навички:' %}</label>
+              <label for="id_country">{% trans 'Навыки:' %}</label>
               {% elif field.name == 'city'  %}
-              <label for="id_city">{% trans 'Місто:' %}</label>
+              <label for="id_city">{% trans 'Город:' %}</label>
               {% endif %}
               <br>
               {{ field }}
             </p>
             {% endfor %}
-            <button type="submit" class=" btn btn-primary">Шукати</button>
+            <button type="submit" class=" btn btn-primary">Искать</button>
           </form>
         </div>
       </div>
@@ -79,7 +79,7 @@
     </script>
     {% if message == "wrong" %}
     <div class="card white-box">
-      <h3>{% trans 'Ууупс! Ми не змогли нічого відшукати😖<br>Спробуй ще раз' %}🤔</h3>
+      <h3>{% trans 'Мы не смогли ничего найти.<br>Попробуйте еще раз' %}🤔</h3>
     </div>
     {% endif %}
     {% if people%}
@@ -123,9 +123,9 @@
     {% if people.has_other_pages %}
     <ul class="pagination">
       {% if people.has_previous %}
-      <li class=""><a href="?page={{ people.previous_page_number }}">&laquo; Попередня</a></li>
+      <li class=""><a href="?page={{ people.previous_page_number }}">&laquo; Предыдущая</a></li>
       {% else %}
-      <li class="disabled"><span>&laquo; Попередня</span></li>
+      <li class="disabled"><span>&laquo; Предыдущая</span></li>
       {% endif %}
       {% for i in people.paginator.page_range %}
       {% if people.number == i %}
@@ -135,9 +135,9 @@
       {% endif %}
       {% endfor %}
       {% if people.has_next %}
-      <li><a href="?page={{ people.next_page_number }}">Наступна &raquo;</a></li>
+      <li><a href="?page={{ people.next_page_number }}">Следующая &raquo;</a></li>
       {% else %}
-      <li class="disabled"><span>Наступна &raquo;</span></li>
+      <li class="disabled"><span>Следующая &raquo;</span></li>
       {% endif %}
     </ul>
     {% endif %}

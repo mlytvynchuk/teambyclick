@@ -7,9 +7,9 @@
     <div class="row m-t-20">
           <div class="col-md-9">
             <div class="panel-dialogs white-box">
-                <h1 class="card-title">{% trans 'Повідомлення' %}</h1>
+                <h1 class="card-title">{% trans 'Сообщения' %}</h1>
         {% if chats.count == 0 %}
-            <div class="panel panel-body">{% trans "Нема ні одного початого діалога" %}</div>
+            <div class="panel panel-body">{% trans "Нет ни одного диалога" %}</div>
         {% endif %}
         {% for chat in chats %}
             {% if chat.message_set.count != 0 %}

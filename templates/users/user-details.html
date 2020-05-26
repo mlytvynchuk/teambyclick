@@ -23,7 +23,7 @@
                     <p class="text-primary"><i class="fas fa-map-marker-alt"></i> {{ usr.profile.city }},
                         {{ usr.profile.country }}</p>
                     {% endif %}
-                    <b>{% trans 'Про мене' %}: </b>
+                    <b>{% trans 'Обо мне' %}: </b>
                     {% if user.profile.bio%}
                     {{ usr.profile.bio }}
                     {% else %}
@@ -42,7 +42,7 @@
                     </dd>
                     <div class="contact">
                         {% if usr.profile.facebook or usr.profile.linkedin %}
-                        {#            <h4 style="padding: 5px;">{% trans "Контакти: "%}</h4>#}
+                        {#            <h4 style="padding: 5px;">{% trans "Контакты: "%}</h4>#}
                         {% endif %}
                         <ul class="inline-bricks">
                             {% if usr.profile.facebook %}
@@ -59,13 +59,13 @@
                 </div>
                 {% if request.user != usr %}
                 <a class="btn btn-primary" href="{% url 'create_dialog' usr.id %}"><i class="far fa-envelope"></i>
-                    {% trans 'Написати повідомлення' %}</a>
+                    {% trans 'Написать сообщение' %}</a>
                 {% endif %}
             </div>
 
         </div>
         {% if deals %}
-        <h3 class="card-title">{% trans 'Проекти користувача' %}</h3>
+        <h3 class="card-title">{% trans 'Проекты пользователя' %}</h3>
         <div class="h-divider"></div>
         <br>
         {% for deal in deals %}
@@ -73,7 +73,7 @@
             <div class="card-body">
                 <h2 class="">{{ deal.title }}</h2>
                 <p class="card-text">{{ deal.description|truncatewords:25 }}</p>
-                <dt class="profile-section__title">{% trans 'Потрібні спеціалісти:' %}</dt>
+                <dt class="profile-section__title">{% trans 'Необходимы специалисты:' %}</dt>
                 <dd>
                     <ul class="inline-bricks">
                         {% for spec in deal.speciality.all %}
@@ -83,7 +83,7 @@
                         {% endfor %}
                     </ul>
                 </dd>
-                <a href="{% url 'deal-detail' deal.id %}" class="btn btn-primary">{% trans 'Дізнатись більше' %}</a>
+                <a href="{% url 'deal-detail' deal.id %}" class="btn btn-primary">{% trans 'узнать больше' %}</a>
             </div>
         </div>
         {% endfor %}

@@ -7,17 +7,17 @@
         <div class="card p-b-20">
             <div class="row">
                 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
-                    <h2 class="card-title">{% trans 'Мої проекти' %}</h2>
+                    <h2 class="card-title">{% trans 'Мои проекты' %}</h2>
                     <div class="h-divider"></div>
                 </div>
                 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
                     <a href="{% url 'deal-create' %}"
-                        class="pull-right btn btn-primary  m-t-10 p-10 p-l-15  ">{% trans 'Створити новий проект' %}</a>
+                        class="pull-right btn btn-primary  m-t-10 p-10 p-l-15  ">{% trans 'Создать новый проект' %}</a>
                 </div>
             </div>
         </div>
         {% if author.count == 0 %}
-        <div class="panel panel-body">{% trans "Нема ні одного розпочатого проекту" %}</div>
+        <div class="panel panel-body">{% trans "Нет ни одного начатого проекта" %}</div>
         {% endif %}
         {% for deal in author %}
         <div class="card white-box">
@@ -41,7 +41,7 @@
                 {##}
                 {#                                              </div>#}
                 <p class="card-text">{{ deal.description|truncatewords:25 }}</p>
-                <dt class="profile-section__title">{% trans 'Потрібні спеціалісти:' %}</dt>
+                <dt class="profile-section__title">{% trans 'Необходимы специалисты:' %}</dt>
                 <dd>
                     <ul class="inline-bricks">
                         {% for spec in deal.speciality.all %}
@@ -51,7 +51,7 @@
                         {% endfor %}
                     </ul>
                 </dd>
-                <a href="{% url 'deal-detail' deal.id %}" class="btn btn-primary">{% trans 'Дізнатись більше'%}</a>
+                <a href="{% url 'deal-detail' deal.id %}" class="btn btn-primary">{% trans 'Узнать больше'%}</a>
             </div>
         </div>
         {% endfor %}

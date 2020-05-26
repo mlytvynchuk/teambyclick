@@ -9,16 +9,16 @@
 
 
             <div class="card">
-                <h5 class="card-title p-b-10">{% trans 'Створити проект' %}</h5>
+                <h5 class="card-title p-b-10">{% trans 'Создать проект' %}</h5>
                 <form action="" method="POST" data-cities-url="{% url 'ajax_load_cities' %}" class="createForm">
                     {% csrf_token %}
                     <p>
-                        <label for="id_title">{% trans 'Назва проекта' %}</label>
+                        <label for="id_title">{% trans 'Название проекта' %}</label>
                         <input id="id_title" type="text" name="title" class="form-control"
                             placeholder="{% trans ' Введіть короткий заголовок' %}" required>
                     </p>
                     <p>
-                        <label for="id_description">{% trans 'Опис проекта' %}</label>
+                        <label for="id_description">{% trans 'Описание проекта' %}</label>
                         <textarea rows="10" id="id_description" type="text" name="description" class="form-control"
                             placeholder="{% trans ' Детально опишіть свій проект' %}"></textarea>
                     </p>
@@ -27,22 +27,22 @@
                     {% for field in form %}
                     <p>
                         {% if field.name == 'speciality'%}
-                        <label for="id_speciality">{% trans 'Потрібні Вам спеціалісти:' %}</label>
+                        <label for="id_speciality">{% trans 'Необходимые специалисты:' %}</label>
                         {{ field }}
                         {% endif %}
                         {% if field.name == 'country'%}
-                        <label for="id_country">{% trans 'Країна' %}</label>
+                        <label for="id_country">{% trans 'Страна' %}</label>
                         {{ field }}
                         {% endif %}
                         {% if field.name == 'city'%}
-                        <label for="id_city">{% trans 'Місто' %}</label>
+                        <label for="id_city">{% trans 'Город' %}</label>
                         {{ field }}
                         {% endif %}
                     </p>
                     {% endfor %}
 
                     <p class="p-t-10">
-                        <button type="submit" class="btn btn-primary btn-rounded">{% trans 'Зберегти' %}</button>
+                        <button type="submit" class="btn btn-primary btn-rounded">{% trans 'Сохранить' %}</button>
                     </p>
                 </form>
                 <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
