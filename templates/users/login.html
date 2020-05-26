@@ -47,11 +47,11 @@
                             {% for field in form %}
                             <div class="form-group">
                                 {% if field.name == 'username' %}
-                                <input type="text" placeholder="{% trans 'Введіть Ваш логін' %}" name="username"
+                                <input type="text" placeholder="{% trans 'Введите ваш логин' %}" name="username"
                                     class="form-input">
                                 {% endif %}
                                 {% if field.name == 'password' %}
-                                <input type="password" placeholder="{% trans 'Введіть Ваш пароль' %}" name="password"
+                                <input type="password" placeholder="{% trans 'Введите ваш пароль' %}" name="password"
                                     class="form-input">
                                 {% endif %}
 
@@ -65,7 +65,7 @@
                             </div>
                         </form>
                         <br>
-                        <p class="text-muted text-center">{% trans 'АБО' %}</p>
+                        <p class="text-muted text-center">{% trans 'Или' %}</p>
                         <strong class="">{% trans 'Войти с помощью социальных сетей' %}</strong>
                         <hr>
                         <ul class="inline-bricks">

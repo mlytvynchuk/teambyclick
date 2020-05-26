@@ -78,16 +78,16 @@
 
                             {% elif field.name == 'first_name' %}
                             <input type="text" class="form-input" name="{{ field.name }}"
-                                placeholder="{% trans "Ваше ім'я" %}">
+                                placeholder="{% trans "Ваше имя" %}">
                             {% elif field.name == 'last_name' %}
                             <input type="text" class="form-input" name="{{ field.name }}"
-                                placeholder="{% trans "Ваше прізвище" %}">
+                                placeholder="{% trans "Ваша фамилия" %}">
                             {% elif field.name == 'password1'%}
                             <input type="password" class="form-input" name="{{ field.name }}"
-                                placeholder="{% trans 'Введіть пароль' %}">
+                                placeholder="{% trans 'Введите пароль' %}">
                             {% elif field.name == 'password2'%}
                             <input type="password" class="form-input" name="{{ field.name }}"
-                                placeholder="{% trans 'Введіть пароль ще раз' %}">
+                                placeholder="{% trans 'Введите пароль еще раз' %}">
                             {% else %}
                             {{ field }}
                             {% for error in field.errors %}
@@ -106,7 +106,7 @@
                         </div>
                     </form>
                     <br>
-                    <p class="text-muted text-center">{% trans 'АБО' %}</p>
+                    <p class="text-muted text-center">{% trans 'Или' %}</p>
                     <strong class="text-center">{% trans 'Войдите с помощью социальных сетей' %}</strong>
                     <hr>
                     <ul class="inline-bricks">
