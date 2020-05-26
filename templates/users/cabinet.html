@@ -134,12 +134,17 @@
                         class="form-control">{{ field.value }}</textarea>
 
                       {% endif %}
+                      
+                      <!--
                       {% if field.name == 'image' %}
                       <label for="id_speciality">{% trans 'Аватар профиля:' %}</label>
+                      
                       <br>
                       {#                                    {{ field }}#}
 
                       <input type="file" name="image" accept="image/*" id="id_image">
+                      -->
+
                       {% endif %}
                       {% if field.name == 'skills' %}
                       <label for="id_speciality">{% trans 'Навыки' %}</label>
