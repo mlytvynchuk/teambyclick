@@ -55,14 +55,14 @@
                 width="36" class="img-circle"><b class="hidden-xs">{{ user.username }}</b> </a>
           </li>
           <li>
-            <a href="{% url 'logout'%}">{% trans 'Вийти' %}</a>
+            <a href="{% url 'logout'%}">{% trans 'Выйти' %}</a>
           </li>
           {% else%}
           <li>
-            <a href="{% url 'login'%}">{% trans 'Увійти' %}</a>
+            <a href="{% url 'login'%}">{% trans 'Войти' %}</a>
           </li>
           <li>
-            <a href="{% url 'register'%}" style="color: white;background: var(--primary)">{% trans 'Реєстрація' %}</a>
+            <a href="{% url 'register'%}" style="color: white;background: var(--primary)">{% trans 'Регистрация' %}</a>
           </li>
           {% endif %}
         </ul>
@@ -90,14 +90,14 @@
           </li>
           <li>
             <a href="{% url 'dialogs' %}" class="waves-effect"><i class="ti-email fa-fw"></i>
-              {% trans 'Повідомлення' %}</a>
+              {% trans 'Сообщения' %}</a>
           </li>
           <li>
-            <a href="{% url 'profile' %}" class="waves-effect"><i class="ti-user fa-fw"></i> {% trans 'Профіль' %}</a>
+            <a href="{% url 'profile' %}" class="waves-effect"><i class="ti-user fa-fw"></i> {% trans 'Профиль' %}</a>
           </li>
           <li>
             <a href="{% url 'myideas' %}" class="waves-effect"><i class="ti-face-smile fa-fw"></i>
-              {% trans 'Мої проекти' %}</a>
+              {% trans 'Мои проекты' %}</a>
           </li>
           <li>
             <a href="{% url 'deal-create'%}" class="waves-effect">
