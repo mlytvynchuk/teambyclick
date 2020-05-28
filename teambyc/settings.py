@@ -63,6 +63,8 @@ MIDDLEWARE = [
     "language_detect.middleware.BrowserLanguageDetectionMiddleware",
     # social media
     "social_django.middleware.SocialAuthExceptionMiddleware",
+    # Heroku
+    "whitenoise.middleware.WhiteNoiseMiddleware",
 ]
 
 AUTHENTICATION_BACKENDS = (
