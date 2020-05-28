@@ -12,7 +12,7 @@
       {#                                                        <div class="col-lg-9 col-md-8" >#}
       {#                                                            <div class="d3" style="width: 100%;">#}
       {#                                                                <form method="GET">#}
-      {#                                                                    <input type="text" name="search" placeholder="{% trans 'Пошук проектів' %}">#}
+      {#                                                                    <input type="text" name="search" placeholder="{% trans 'Поиск проектов' %}">#}
       {#                                                                    <button type="submit"></button>#}
       {#                                                                </form>#}
       {#                                                          </div>#}
@@ -29,7 +29,7 @@
             <div class="col-lg-12 col-md-12">
               <div class="d3" style="width: 100%;">
                 <form method="GET">
-                  <input type="text" name="search" placeholder="{% trans 'Пошук проектів' %}">
+                  <input type="text" name="search" placeholder="{% trans 'Поиск проектов' %}">
                   <button type="submit"></button>
                 </form>
               </div>
@@ -49,17 +49,17 @@
               {% for field in s_form %}
               <p>
                 {% if field.name == 'speciality' %}
-                <label for="id_speciality">{% trans 'Спеціальності:' %}</label>
+                <label for="id_speciality">{% trans 'Специальности:' %}</label>
                 {% elif field.name == 'country'  %}
-                <label for="id_country">{% trans 'Країна:' %}</label>
+                <label for="id_country">{% trans 'Страна:' %}</label>
                 {% elif field.name == 'city'  %}
-                <label for="id_city">{% trans 'Місто:' %}</label>
+                <label for="id_city">{% trans 'Город:' %}</label>
                 {% endif %}
                 <br>
                 {{ field }}
               </p>
               {% endfor %}
-              <button type="submit" class=" btn btn-primary">Шукати</button>
+              <button type="submit" class=" btn btn-primary">Искать</button>
             </form>
           </div>
         </div>
@@ -95,13 +95,13 @@
       </script>
       {% if message == "wrong" %}
       <div class="card white-box">
-        <h3>{% trans 'Ууупс! Ми не змогли нічого відшукати😖<br>Спробуй ще раз' %}🤔</h3>
+        <h3>{% trans 'Мы ничего не нашли.<br>Попробуйте еще раз' %}🤔</h3>
       </div>
       {% endif %}
       {% if message == "special" %}
       <div class="card white-box">
-        <h3>{% trans 'Спеціально підібрані для Вас ідеї' %}🤔</h3>
-        <p>{% trans 'Натисніть "Налаштування", щоб гнучкіше налаштувати ідеї' %}</p>
+        <h3>{% trans 'Идеи по вашему запросу' %}</h3>
+        <p>{% trans 'Нажмите "Настройки", чтобы отобрать идеи' %}</p>
       </div>
       {% endif %}
       {% if deals %}
@@ -131,7 +131,7 @@
             {##}
             {#                                              </div>#}
             <p class="card-text">{{ deal.description|truncatewords:25 }}</p>
-            <dt class="profile-section__title">{% trans 'Потрібні спеціалісти:' %}</dt>
+            <dt class="profile-section__title">{% trans 'Необходимы специалисты:' %}</dt>
             <dd>
               <ul class="inline-bricks">
                 {% for spec in deal.speciality.all %}
@@ -141,7 +141,7 @@
                 {% endfor %}
               </ul>
             </dd>
-            {#                                              <a href="{% url 'deal-detail' deal.id %}" class="btn btn-primary">Дізнатись більше</a>#}
+            {#                                              <a href="{% url 'deal-detail' deal.id %}" class="btn btn-primary">Узнать больше</a>#}
           </div>
         </a>
         <hr>
@@ -151,9 +151,9 @@
         {% if deals.has_other_pages %}
         <ul class="pagination">
           {% if deals.has_previous %}
-          <li class=""><a href="?page={{ deals.previous_page_number }}">&laquo; {% trans 'Попередня' %}</a></li>
+          <li class=""><a href="?page={{ deals.previous_page_number }}">&laquo; {% trans 'Предыдущая' %}</a></li>
           {% else %}
-          <li class="disabled"><span>&laquo; {% trans 'Попередня' %}</span></li>
+          <li class="disabled"><span>&laquo; {% trans 'Предыдущая' %}</span></li>
           {% endif %}
           {% for i in deals.paginator.page_range %}
           {% if deals.number == i %}
@@ -163,9 +163,9 @@
           {% endif %}
           {% endfor %}
           {% if deals.has_next %}
-          <li><a href="?page={{ deals.next_page_number }}">{% trans 'Наступна' %} &raquo;</a></li>
+          <li><a href="?page={{ deals.next_page_number }}">{% trans 'Следующая' %} &raquo;</a></li>
           {% else %}
-          <li class="disabled"><span>{% trans 'Наступна' %} &raquo;</span></li>
+          <li class="disabled"><span>{% trans 'Следующая' %} &raquo;</span></li>
           {% endif %}
         </ul>
         {% endif %}

@@ -10,12 +10,12 @@
 
             <h2>{{ deal.title }}</h2>
             <ul class="inline-bricks ">
-                <li class=" m-r-20 font-bold">{% trans "Країна: " %}{{ deal.country }}</li>
-                <li class="m-l-20 font-bold">{% trans "Місто: " %}{{ deal.city }}</li>
+                <li class=" m-r-20 font-bold">{% trans "Страна: " %}{{ deal.country }}</li>
+                <li class="m-l-20 font-bold">{% trans "Город: " %}{{ deal.city }}</li>
             </ul>
-            <dt class="font-bold">{% trans 'Опис:' %}</dt>
+            <dt class="font-bold">{% trans 'Описание:' %}</dt>
             <p class="detail-description">{{ deal.description }}</p>
-            <dt class="profile-section__title">{% trans 'Потрібні спеціалісти:' %}</dt>
+            <dt class="profile-section__title">{% trans 'Необходимы специалисты:' %}</dt>
             <dd>
                 <ul class="inline-bricks">
                     {% for spec in deal.speciality.all %}
@@ -38,7 +38,7 @@
             </div>
 
             {% if deal.author.profile.facebook or deal.author.profile.linkedin %}
-            <h4 style="float: left;padding: 5px;">{% trans "Зв'язок з автором: "%}</h4>
+            <h4 style="float: left;padding: 5px;">{% trans "Связаться с автором: "%}</h4>
             {% endif %}
 
             <ul class="inline-bricks">
@@ -60,13 +60,13 @@
                 <div id="deal-likes">{{likes}}</div>
             </div>
             {% if deal.author == user %}
-            <a class="btn btn-primary" href="{% url 'deal-update' deal.id%}">{% trans 'Оновити' %}</a>
-            <a class="btn btn-outline-primary" href="{% url 'deal-delete' deal.id  %}">{% trans 'Видалити' %}</a>
+            <a class="btn btn-primary" href="{% url 'deal-update' deal.id%}">{% trans 'Обновить' %}</a>
+            <a class="btn btn-outline-primary" href="{% url 'deal-delete' deal.id  %}">{% trans 'Удалить' %}</a>
             {% endif %}
             <br>
         </div>
         <div class="white-box">
-            <h2>Коментарі:</h2>
+            <h2>Комментарии:</h2>
             {% if request.user.is_authenticated %}
             <form method="post" class="form-horizontal form-material">
                 {% csrf_token %}
@@ -80,11 +80,11 @@
                 <p>{{ field }}</p>
                 {% endif %}
                 {% endfor %}
-                <button class="btn btn-primary" type="submit">{% trans 'Коментувати' %}</button>
+                <button class="btn btn-primary" type="submit">{% trans 'Комментировать' %}</button>
             </form>
             {% else %}
             <p class="alert alert-warning"><a href="{% url 'login' %}"
-                    class=" text-primary">{% trans 'Авторизуйтесь' %}</a>{% trans ', щоб залишати коментарі' %}</p>
+                    class=" text-primary">{% trans 'Авторизуйтесь' %}</a>{% trans ', чтобы оставить комментарий' %}</p>
             {% endif %}
             <br>
             <br>
@@ -105,7 +105,7 @@
 
                 {% if request.user.is_authenticated %}
                 <a href="#" class="reply-btn text-primary text-uppercase"><small
-                        style="font-size:11px;padding-left: 40px;">{% trans "Відповісти" %}</small></a>
+                        style="font-size:11px;padding-left: 40px;">{% trans "Ответить" %}</small></a>
                 {% endif %}
 
 
@@ -151,7 +151,7 @@
             {% endfor %}
         </div>
     </div>
-    <div class="col-md-4">Тут буде ваша реклама</div>
+    <div class="col-md-4"></div>
 </div>
 
 <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.3.1.min.js"></script>

@@ -9,11 +9,11 @@
         <div class="col-lg-4 ">
                     <div class="panel all-messages">
                 <div class="bg-primary p-t-20 p-l-10">
-                    <h2 class="text-white">{% trans 'Повідомлення' %}</h2>
+                    <h2 class="text-white">{% trans 'Сообщения' %}</h2>
                     <hr>
                 </div>
         {% if chats.count == 0 %}
-            <div class="panel panel-body">{% trans "Нема ні одного початого діалога" %}</div>
+            <div class="panel panel-body">{% trans "Нет ни одного начатого диалога" %}</div>
         {% endif %}
                     <div class="scrl">
                                 {% for chat in chats %}

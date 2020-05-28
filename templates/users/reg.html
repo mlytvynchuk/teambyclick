@@ -8,7 +8,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Register | TeamByClick</title>
+    <title>Register | Online valley</title>
 
     <!-- Font Icon -->
     <link rel="stylesheet" href="{% static 'fonts/material-icon/css/material-design-iconic-font.min.css' %}">
@@ -43,12 +43,12 @@
                     {% for error in form.errors %}
                     {% if error == 'email' %}
                     <div class="alert alert-danger">
-                        {% trans 'Аккаунт з таким Email вже існує' %}
+                        {% trans 'Учетная запись с таким именем уже существует' %}
                     </div>
                     {% endif %}
                     {% if error == 'password2' %}
                     <div class="alert alert-danger">
-                        {% trans 'Паролі не співпадають' %}
+                        {% trans 'Пароль слишком короткий или не совпадает' %}
                     </div>
                     {% endif %}
 
@@ -70,24 +70,24 @@
                             <input type="email" class="form-input" name="{{ field.name }}" placeholder="Email"
                                 id="email-input">
                             {% elif field.name == 'username' %}
-                            <input type="text" placeholder="{% trans 'Введіть Ваш логін' %}" name="username"
+                            <input type="text" placeholder="{% trans 'Введите ваш логин' %}" name="username"
                                 class="form-input" id="username-input">
                             <div class="username_check_alert alert-info" style="display: none">
-                                {% trans 'Користвуач з таким username вже існує' %}</div>
+                                {% trans 'Пользователь с таким именем уже существует' %}</div>
 
 
                             {% elif field.name == 'first_name' %}
                             <input type="text" class="form-input" name="{{ field.name }}"
-                                placeholder="{% trans "Ваше ім'я" %}">
+                                placeholder="{% trans "Ваше имя" %}">
                             {% elif field.name == 'last_name' %}
                             <input type="text" class="form-input" name="{{ field.name }}"
-                                placeholder="{% trans "Ваше прізвище" %}">
+                                placeholder="{% trans "Ваша фамилия" %}">
                             {% elif field.name == 'password1'%}
                             <input type="password" class="form-input" name="{{ field.name }}"
-                                placeholder="{% trans 'Введіть пароль' %}">
+                                placeholder="{% trans 'Введите пароль' %}">
                             {% elif field.name == 'password2'%}
                             <input type="password" class="form-input" name="{{ field.name }}"
-                                placeholder="{% trans 'Введіть пароль ще раз' %}">
+                                placeholder="{% trans 'Введите пароль еще раз' %}">
                             {% else %}
                             {{ field }}
                             {% for error in field.errors %}
@@ -102,12 +102,12 @@
 
                         <div class="form-group">
                             <input type="submit" name="submit" id="submit" class="form-submit"
-                                value="{% trans 'Зареєструватись' %}" />
+                                value="{% trans 'Зарегистрироваться' %}" />
                         </div>
                     </form>
                     <br>
-                    <p class="text-muted text-center">{% trans 'АБО' %}</p>
-                    <strong class="text-center">{% trans 'Увійдіть за допомогою соціальних мереж' %}</strong>
+                    <p class="text-muted text-center">{% trans 'Или' %}</p>
+                    <strong class="text-center">{% trans 'Войдите с помощью социальных сетей' %}</strong>
                     <hr>
                     <ul class="inline-bricks">
                         <li class="brick-inv"><a class="btn btn-googleplus"
@@ -115,8 +115,8 @@
 
                     </ul>
                     <p class="loginhere">
-                        {% trans 'Вже зареєстрований?' %} <a href="{% url 'login' %}"
-                            class="loginhere-link">{% trans 'Логінься тут' %}</a>
+                        {% trans 'Уже зарегистрировались?' %} <a href="{% url 'login' %}"
+                            class="loginhere-link">{% trans 'Войти в учетную запись' %}</a>
                     </p>
                 </div>
             </div>

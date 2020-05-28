@@ -11,15 +11,15 @@
 
 
                 <div class="card">
-                    <h5 class="card-title p-b-10">{% trans 'Обновити ідею' %}</h5>
+                    <h5 class="card-title p-b-10">{% trans 'Обновить' %}</h5>
                     <form action="" method="POST" data-cities-url="{% url 'ajax_load_cities' %}" class="createForm">
                     {% csrf_token %}
                         <p>
-                    <label for="id_title">{% trans 'Заголовок ідеї' %}</label>
-                    <input id="id_title" type="text" name="title" class="form-control" placeholder="{% trans ' Введіть короткий заголовок' %}" required value="{{ form.title.value }}">
+                    <label for="id_title">{% trans 'Заголовок' %}</label>
+                    <input id="id_title" type="text" name="title" class="form-control" placeholder="{% trans ' Введите короткий заголовок' %}" required value="{{ form.title.value }}">
                 </p>
                 <p>
-                    <label for="id_description">Опис ідеї</label>
+                    <label for="id_description">Описание</label>
                     <textarea rows="10" id="id_description" type="text" name="description" class="form-control" placeholder="{% trans ' Детально опишіть свою ідею' %}">{{ form.description.value }}</textarea>
                 </p>
 
@@ -27,22 +27,22 @@
                         {% for field in form %}
                             <p>
                                 {% if field.name == 'speciality'%}
-                                     <label for="id_speciality">{% trans 'Потрібні Вам спеціалісти:' %}</label>
+                                     <label for="id_speciality">{% trans 'Необходимы специалисты:' %}</label>
                                     {{ field }}
                                 {% endif %}
                             {% if field.name == 'country'%}
-                                     <label for="id_speciality">{% trans 'Країна' %}</label>
+                                     <label for="id_speciality">{% trans 'Страна' %}</label>
                                     {{ field }}
                                 {% endif %}
                             {% if field.name == 'city'%}
-                                     <label for="id_speciality">{% trans 'Місто' %}</label>
+                                     <label for="id_speciality">{% trans 'Город' %}</label>
                                     {{ field }}
                                 {% endif %}
                             </p>
                         {% endfor %}
 
                 <p class="p-t-10">
-                    <button type="submit" class="btn btn-primary btn-rounded">{% trans 'Зберегти' %}</button>
+                    <button type="submit" class="btn btn-primary btn-rounded">{% trans 'Сохранить' %}</button>
                 </p>
                     </form>
                 <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>

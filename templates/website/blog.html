@@ -23,10 +23,10 @@
                 {% if posts.has_other_pages %}
                 <ul class="pagination">
                     {% if posts.has_previous %}
-                    <li class=""><a href="?page={{ posts.previous_page_number }}">&laquo; {% trans 'Попередня' %}</a>
+                    <li class=""><a href="?page={{ posts.previous_page_number }}">&laquo; {% trans 'Предыдущая' %}</a>
                     </li>
                     {% else %}
-                    <li class="disabled"><span>&laquo; {% trans 'Попередня' %}</span></li>
+                    <li class="disabled"><span>&laquo; {% trans 'Предыдущая' %}</span></li>
                     {% endif %}
                     {% for i in posts.paginator.page_range %}
                     {% if posts.number == i %}
@@ -36,9 +36,9 @@
                     {% endif %}
                     {% endfor %}
                     {% if posts.has_next %}
-                    <li><a href="?page={{ posts.next_page_number }}">{% trans 'Наступна' %} &raquo;</a></li>
+                    <li><a href="?page={{ posts.next_page_number }}">{% trans 'Следующая' %} &raquo;</a></li>
                     {% else %}
-                    <li class="disabled"><span>{% trans 'Наступна' %} &raquo;</span></li>
+                    <li class="disabled"><span>{% trans 'Следующая' %} &raquo;</span></li>
                     {% endif %}
                 </ul>
                 {% endif %}

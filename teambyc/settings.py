@@ -131,6 +131,7 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/2.1/topics/i18n/
 
+
 LANGUAGE_CODE = "uk"
 # LANGUAGE_CODE = 'en'
 LANGUAGES = [
@@ -172,3 +173,7 @@ EMAIL_HOST_PASSWORD = os.environ.get("EMAIL_PASS")
 # social media auth info
 SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = config("GOOGLE_AUTH_KEY")
 SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = config("GOOGLE_AUTH_SECRET")
+
+# https redirect
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+SECURE_SSL_REDIRECT = True
