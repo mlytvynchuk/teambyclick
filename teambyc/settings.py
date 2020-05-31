@@ -106,7 +106,7 @@ if config("PROD", cast=bool, default=False) == True:
     DATABASES["default"] = dj_database_url.config(default=config("DATABASE_URL"))
     MIDDLEWARE.append("whitenoise.middleware.WhiteNoiseMiddleware")
     STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
-    SECURE_SSL_REDIRECT = True
+    # SECURE_SSL_REDIRECT = True
 else:
     DATABASES = {
         "default": {

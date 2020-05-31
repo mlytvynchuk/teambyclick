@@ -54,7 +54,7 @@
     <div class="white-box">
       <div class="card card-small mb-4">
         <div class="card-header border-bottom">
-          <h6 class="m-0 card-title">{% trans 'Детали акаунта' %}</h6>
+          <h6 class="m-0 card-title">{% trans 'Детали аккаунта' %}</h6>
         </div>
         <ul class="list-group list-group-flush">
           <li class="list-group-item p-3">
@@ -97,19 +97,19 @@
 
                       {% endif %}
                       {% if field.name == 'facebook' %}
-                      <label for="id_speciality">{% trans 'Ссылка на профиль Facebook:' %}</label>
+                      <label for="id_speciality">{% trans 'Ссылка на Ваш Facebook профиль:' %}</label>
                       <br>
                       {{ field }}
 
                       {% endif %}
                       {% if field.name == 'linkedin' %}
-                      <label for="id_speciality">{% trans 'Ссылка на профиль LinkedIn:' %}</label>
+                      <label for="id_speciality">{% trans 'Ссылка на Ваш LinkedIn профиль:' %}</label>
                       <br>
                       {{ field }}
 
                       {% endif %}
                       {% if field.name == 'speciality' %}
-                      <label for="id_speciality">{% trans 'Специальность:' %}</label>
+                      <label for="id_speciality">{% trans 'Специализация:' %}</label>
                       <br>
                       {{ field }}
                       {% endif %}
@@ -128,23 +128,18 @@
                       </select> -->
                       {% endif %}
                       {% if field.name == 'bio' %}
-                      <label for="id_speciality">{% trans 'Опишите себя:' %}</label>
+                      <label for="id_speciality">{% trans 'О себе:' %}</label>
                       <br>
                       <textarea name="bio" cols="40" rows="2" id="id_skills"
                         class="form-control">{{ field.value }}</textarea>
 
                       {% endif %}
-                      
-                      <!--
                       {% if field.name == 'image' %}
                       <label for="id_speciality">{% trans 'Аватар профиля:' %}</label>
-                      
                       <br>
                       {#                                    {{ field }}#}
 
                       <input type="file" name="image" accept="image/*" id="id_image">
-                      -->
-
                       {% endif %}
                       {% if field.name == 'skills' %}
                       <label for="id_speciality">{% trans 'Навыки' %}</label>
