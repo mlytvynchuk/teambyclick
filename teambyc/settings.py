@@ -64,7 +64,6 @@ MIDDLEWARE = [
     # social media
     "social_django.middleware.SocialAuthExceptionMiddleware",
     # Heroku
-    "whitenoise.middleware.WhiteNoiseMiddleware",
 ]
 
 AUTHENTICATION_BACKENDS = (
@@ -104,8 +103,6 @@ WSGI_APPLICATION = "teambyc.wsgi.application"
 if config("PROD", cast=bool, default=False) == True:
     DATABASES = {}
     DATABASES["default"] = dj_database_url.config(default=config("DATABASE_URL"))
-    MIDDLEWARE.append("whitenoise.middleware.WhiteNoiseMiddleware")
-    STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
     # SECURE_SSL_REDIRECT = True
 else:
     DATABASES = {
