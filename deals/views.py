@@ -39,7 +39,7 @@ def getLanguage(request):
 
 
 # new version
-class DealView(ListView):
+class DealView(LoginRequiredMixin, ListView):
 
     model = Deal
     template_name = "website/deals.html"

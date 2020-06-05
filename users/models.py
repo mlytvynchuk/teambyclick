@@ -14,20 +14,6 @@ class Status(models.Model):
         return self.slug
 
 
-# class Country(models.Model):
-#     name = models.CharField(max_length=30)
-#
-#     def __str__(self):
-#         return self.name
-#
-# class City(models.Model):
-#     country = models.ForeignKey(Country, on_delete=models.CASCADE)
-#     name = models.CharField(max_length=30)
-#
-#     def __str__(self):
-#         return self.name
-
-
 class Speciality(models.Model):
     name = models.CharField(max_length=100, blank=True, null=True)
     slug = models.SlugField(max_length=100, blank=True, null=True)
