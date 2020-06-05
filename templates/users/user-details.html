@@ -24,10 +24,10 @@
                         {{ usr.profile.country }}</p>
                     {% endif %}
                     <b>{% trans 'Обо мне' %}: </b>
-                    {% if user.profile.bio%}
+                    {% if usr.profile.bio != "None" and usr.profile.bio  %}
                     {{ usr.profile.bio }}
                     {% else %}
-                    Пусто
+                    {% trans 'Пусто' %}
                     {% endif %}
                     <dd class="p-t-10">
                         <ul class="inline-bricks">

@@ -34,7 +34,9 @@
                 <h5><a class="author-name"
                         href="{% url 'user-details' deal.author.username %}"><strong>{{ deal.author.first_name }}
                             {{ deal.author.last_name }}</strong></a></h5>
+                {% if deal.author.profile.speciality %}
                 <li class="inline-bricks brick">{{ deal.author.profile.speciality }}</li>
+                {%endif%}
             </div>
 
             {% if deal.author.profile.facebook or deal.author.profile.linkedin %}

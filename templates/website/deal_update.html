@@ -1,73 +1,121 @@
-
 {% extends 'extends/base.html' %}
 
 {% load i18n %}
 {% load static %}
 {% block content %}
-    <div class="row form-horizontal form-material">
-        <div class="col-md-9">
+<div class="row form-horizontal form-material">
+    <div class="col-md-9">
 
-            <div class="white-box m-t-10">
+        <div class="white-box m-t-10">
 
 
-                <div class="card">
-                    <h5 class="card-title p-b-10">{% trans 'Обновить' %}</h5>
-                    <form action="" method="POST" data-cities-url="{% url 'ajax_load_cities' %}" class="createForm">
+            <div class="card">
+                <h5 class="card-title p-b-10">{% trans 'Обновить' %}</h5>
+                <form action="" method="POST" data-cities-url="{% url 'ajax_load_cities' %}" class="createForm">
                     {% csrf_token %}
-                        <p>
-                    <label for="id_title">{% trans 'Заголовок' %}</label>
-                    <input id="id_title" type="text" name="title" class="form-control" placeholder="{% trans ' Введите короткий заголовок' %}" required value="{{ form.title.value }}">
-                </p>
-                <p>
-                    <label for="id_description">Описание</label>
-                    <textarea rows="10" id="id_description" type="text" name="description" class="form-control" placeholder="{% trans ' Детально опишіть свою ідею' %}">{{ form.description.value }}</textarea>
-                </p>
+                    <p>
+                        <label for="id_title">{% trans 'Заголовок' %}</label>
+                        <input id="id_title" type="text" name="title" class="form-control"
+                            placeholder="{% trans ' Введите короткий заголовок' %}" required
+                            value="{{ form.title.value }}">
+                    </p>
+                    <p>
+                        <label for="id_description">Описание</label>
+                        <textarea rows="10" id="id_description" type="text" name="description" class="form-control"
+                            placeholder="{% trans ' Детально опишіть свою ідею' %}">{{ form.description.value }}</textarea>
+                    </p>
 
 
-                        {% for field in form %}
-                            <p>
-                                {% if field.name == 'speciality'%}
-                                     <label for="id_speciality">{% trans 'Необходимы специалисты:' %}</label>
-                                    {{ field }}
-                                {% endif %}
-                            {% if field.name == 'country'%}
-                                     <label for="id_speciality">{% trans 'Страна' %}</label>
-                                    {{ field }}
-                                {% endif %}
-                            {% if field.name == 'city'%}
-                                     <label for="id_speciality">{% trans 'Город' %}</label>
-                                    {{ field }}
-                                {% endif %}
-                            </p>
-                        {% endfor %}
+                    {% for field in form %}
+                    <p>
+                        {% if field.name == 'speciality'%}
+                        <label for="id_speciality">{% trans 'Необходимы специалисты:' %}</label>
+                        {{ field }}
+                        {% endif %}
+                        {% if field.name == 'country'%}
+                        <label for="id_speciality">{% trans 'Страна' %}</label>
+                        {{ field }}
+                        {% endif %}
+                        {% if field.name == 'city'%}
+                        <label for="id_city">{% trans 'Город' %}</label>
 
-                <p class="p-t-10">
-                    <button type="submit" class="btn btn-primary btn-rounded">{% trans 'Сохранить' %}</button>
-                </p>
-                    </form>
+                        <select name="city" id="id_city" class="form-control" required>
+                            <option value="" disabled>---------</option>
+                        </select>
+
+                        {% endif %}
+                    </p>
+                    {% endfor %}
+
+                    <p class="p-t-10">
+                        <button type="submit" class="btn btn-primary btn-rounded">{% trans 'Сохранить' %}</button>
+                    </p>
+                </form>
                 <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
-  <script>
-    $("#id_country").change(function () {
-      var url = $(".createForm").attr("data-cities-url");  // get the url of the `load_cities` view
-      var countryId = $(this).val();  // get the selected country ID from the HTML input
+                <script>
+                    $("#id_country").change(function () {
+                        var url = $(".createForm").attr(
+                            "data-cities-url"); // get the url of the `load_cities` view
+                        var countryId = $(this).val(); // get the selected country ID from the HTML input
 
-      $.ajax({                       // initialize an AJAX request
-        url: url,                    // set the url of the request (= localhost:8000/hr/ajax/load-cities/)
-        data: {
-          'country': countryId       // add the country id to the GET parameters
-        },
-        success: function (data) {   // `data` is the return of the `load_cities` view function
-          $("#id_city").html(data);  // replace the contents of the city input with the data that came from the server
-        }
-      });
+                        $.ajax({ // initialize an AJAX request
+                            url: url, // set the url of the request (= localhost:8000/hr/ajax/load-cities/)
+                            data: {
+                                'country': countryId // add the country id to the GET parameters
+                            },
+                            success: function (
+                                data) { // `data` is the return of the `load_cities` view function
+                                $("#id_city").html(
+                                    data
+                                ); // replace the contents of the city input with the data that came from the server
+                                let option = $("#id_city").find(
+                                    'option[value="{{form.city.value}}"]');
+                                if (option.length > 0) {
+                                    option.attr(
+                                        'selected', true);
+                                    $("#id_city").find('option[value=""]').attr(
+                                        'selected', false);
+                                }
 
-    });
-  </script>
+                            }
+                        });
+
+                    });
+                    $(document).ready(function () {
+                        var url = $(".createForm").attr(
+                            "data-cities-url"); // get the url of the `load_cities` view
+                        var countryId = $("#id_country")
+                            .val(); // get the selected country ID from the HTML input
+                        $.ajax({ // initialize an AJAX request
+                            url: url, // set the url of the request (= localhost:8000/hr/ajax/load-cities/)
+                            data: {
+                                'country': countryId // add the country id to the GET parameters
+                            },
+                            success: function (
+                                data) { // `data` is the return of the `load_cities` view function
+                                $("#id_city").html(
+                                    data
+                                ); // replace the contents of the city input with the data that came from the server
+                                let option = $("#id_city").find(
+                                    'option[value="{{form.city.value}}"]');
+                                console.log('start option', option)
+                                if (option.length > 0) {
+                                    $("#id_city").find('option[value=""]').attr(
+                                        'selected', false);
+                                    option.attr(
+                                        'selected', true);
+
+                                }
+                            }
+                        });
+
+                    });
+                </script>
             </div>
 
-            </div>
         </div>
     </div>
+</div>
 
 
 {% endblock content %}
