@@ -52,7 +52,7 @@
           {% if user.is_authenticated %}
           <li>
             <a class="profile-pic" href="{% url 'profile' %}"> <img src="{{ user.profile.image.url }}" alt="user-img"
-                width="36" class="img-circle"><b class="hidden-xs">{{ user.username }}</b> </a>
+                width="36" height="36" class="img-circle"><b class="hidden-xs">{{ user.username }}</b> </a>
           </li>
           <li>
             <a href="{% url 'logout'%}">{% trans 'Выйти' %}</a>
