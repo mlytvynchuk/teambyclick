@@ -264,17 +264,17 @@ def myideas(request):
 
 
 def landing(request):
-    getLanguage(request)
-    if request.method == "POST":
-        name = request.POST.get("name")
-        email = request.POST.get("email")
-        message = request.POST.get("message")
-        new_contact = Contact.objects.create(name=name, email=email, message=message)
-        if new_contact:
-            messages.info(request, _("Ваше повідомлення відправлено!"))
-    if request.user.is_authenticated:
-        return redirect("deals-home")
-    return render(request, "website/landing.html")
+    # getLanguage(request)
+    # if request.method == "POST":
+    #     name = request.POST.get("name")
+    #     email = request.POST.get("email")
+    #     message = request.POST.get("message")
+    #     new_contact = Contact.objects.create(name=name, email=email, message=message)
+    #     if new_contact:
+    #         messages.info(request, _("Ваше повідомлення відправлено!"))
+    # if request.user.is_authenticated:
+    return redirect("deals-home")
+    # return render(request, "website/landing.html")
 
 
 def create_contact(request):

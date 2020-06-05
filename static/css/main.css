@@ -643,3 +643,14 @@ select {
 .mr-5 {
     margin-right: 5px;
 }
+
+.messages-unread-box {
+    background-color: #fff;
+    color: var(--primary);
+    border-radius: 4px;
+    padding: 2px;
+    padding-left: 5px;
+    padding-right: 5px;
+    margin-left: 3px;
+    font-size: 13px;
+}

@@ -5918,3 +5918,7 @@ table.focus-on tbody tr.focused th {
         width: auto
     }
 }
+
+.justify-content-between {
+    justify-content: space-between;
+}

@@ -2,7 +2,7 @@ from django.contrib.auth import authenticate, login
 from django.contrib.auth.models import User
 from django.core.paginator import Paginator
 from django.db.models import Q, Count
-from django.http import HttpResponse
+from django.http import HttpResponse, JsonResponse
 from django.shortcuts import render, redirect
 from django.contrib import messages
 from django.urls import reverse
@@ -10,7 +10,7 @@ from django.views import View
 
 from deals.models import Deal
 from deals.views import getLanguage
-from users.models import City, Chat, Profile
+from users.models import City, Chat, Profile, Message
 from .forms import (
     UserRegisterForm,
     UserUpdateForm,
@@ -243,3 +243,14 @@ class CreateDialogView(View):
         else:
             chat = chats.first()
         return redirect(reverse("messages", kwargs={"chat_id": chat.id}))
+
+
+@login_required
+def get_count_of_unread_messages(request):
+    chats = Chat.objects.filter(members__in=[request.user.id])
+    message_count = (
+        Message.objects.filter(chat__in=chats, is_readed=False)
+        .exclude(author=request.user)
+        .count()
+    )
+    return JsonResponse({"count": message_count}, content_type="application/json")
