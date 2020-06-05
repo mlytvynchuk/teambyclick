@@ -39,7 +39,7 @@ def getLanguage(request):
 
 
 # new version
-class DealView(LoginRequiredMixin, ListView):
+class DealView(ListView):
 
     model = Deal
     template_name = "website/deals.html"
@@ -88,6 +88,7 @@ class DealView(LoginRequiredMixin, ListView):
         )
 
 
+@login_required
 def deal_details(request, id):
     getLanguage(request)
     deal = get_object_or_404(Deal, id=id)
