@@ -14,7 +14,7 @@
                 <li class="m-l-20 font-bold">{% trans "Город: " %}{{ deal.city }}</li>
             </ul>
             <dt class="font-bold">{% trans 'Описание:' %}</dt>
-            <p class="detail-description">{{ deal.description }}</p>
+            <p class="detail-description">{{ deal.description|linebreaks }}</p>
             <dt class="profile-section__title">{% trans 'Необходимы специалисты:' %}</dt>
             <dd>
                 <ul class="inline-bricks">
