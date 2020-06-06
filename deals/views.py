@@ -44,7 +44,7 @@ def deals_home(request):
         deals = Deal.objects.filter(title__icontains=search)
     else:
         deals = Deal.objects.all()
-    deals = deals.distinct().order_by("-date_posted", "-deallike")
+    deals = deals.order_by("-date_posted")
 
     paginator = Paginator(deals, 2)
     page = request.GET.get("page")
