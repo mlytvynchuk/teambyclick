@@ -44,14 +44,13 @@ def deals_home(request):
         deals = Deal.objects.filter(title__icontains=search)
     else:
         deals = Deal.objects.all()
-    deals = deals.order_by("-date_posted", "-deallike").distinct()
+    deals = deals.distinct().order_by("-date_posted", "-deallike")
 
     paginator = Paginator(deals, 2)
     page = request.GET.get("page")
     deals = paginator.get_page(page)
     s_form = SearchForm
     return render(request, "website/deals.html", {"deals": deals, "s_form": s_form},)
-
 
 
 @login_required
