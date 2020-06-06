@@ -21,6 +21,9 @@ class Deal(models.Model):
         usr_models.Speciality, related_name="deals", blank=True
     )
 
+    class Meta:
+        ordering = ["-date_posted"]
+
     def __str__(self):
         return self.title
 
