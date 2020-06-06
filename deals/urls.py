@@ -21,7 +21,7 @@ from .views import *
 
 urlpatterns = [
     path("", landing, name="landing"),
-    path("projects/", user_views.DealView.as_view(), name="deals-home"),
+    path("projects/", user_views.deals_home, name="deals-home"),
     # path("ideas/", user_views.DealView.as_view(), name="ideas-home"),
     path("projects/<int:id>", deal_details, name="deal-detail"),
     path("projects/new/", DealCreateView.as_view(), name="deal-create"),

@@ -93,17 +93,11 @@
 
         });
       </script>
-      {% if message == "wrong" %}
+      {% ifequal deals.paginator.count 0 %}
       <div class="card white-box">
         <h3>{% trans 'Мы ничего не нашли.<br>Попробуйте еще раз' %}🤔</h3>
       </div>
-      {% endif %}
-      {% if message == "special" %}
-      <div class="card white-box">
-        <h3>{% trans 'Идеи по вашему запросу' %}</h3>
-        <p>{% trans 'Нажмите "Настройки", чтобы отобрать идеи' %}</p>
-      </div>
-      {% endif %}
+      {% endifequal %}
       {% if deals %}
       <div class="white-box b-shadow ">
 

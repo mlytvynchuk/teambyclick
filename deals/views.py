@@ -38,54 +38,20 @@ def getLanguage(request):
         request.session[translation.LANGUAGE_SESSION_KEY] = user_language
 
 
-# new version
-class DealView(ListView):
+def deals_home(request):
+    search = request.GET.get("search", "")
+    if search:
+        deals = Deal.objects.filter(title__icontains=search)
+    else:
+        deals = Deal.objects.all()
+    deals = deals.order_by("-date_posted", "-deallike").distinct()
 
-    model = Deal
-    template_name = "website/deals.html"
-    # context_object_name = "deals"
-    ordering = ["-date_posted"]
+    paginator = Paginator(deals, 2)
+    page = request.GET.get("page")
+    deals = paginator.get_page(page)
+    s_form = SearchForm
+    return render(request, "website/deals.html", {"deals": deals, "s_form": s_form},)
 
-    def get(self, request, *args, **kwargs):
-        getLanguage(request)
-        search = request.GET.get("search", "")
-        country = request.GET.get("country", "")
-        city = request.GET.get("city", "")
-        order = request.GET.get("orderBy", "")
-        spec = request.GET.getlist("speciality", "")
-        s_form = SearchForm
-        message = ""
-        deals = self.get_queryset()
-        if search:
-            deals = deals.filter(title__icontains=search)
-        else:
-            if country and city and spec:
-                deals = deals.filter(
-                    Q(speciality__in=spec), Q(country=country), Q(city=city)
-                ).order_by("-deallike")
-            elif country and city:
-                deals = deals.filter(Q(country=country), Q(city=city)).order_by(
-                    "-deallike"
-                )
-            elif country:
-                deals = deals.filter(country=country).order_by("-deallike")
-            elif spec:
-                deals = deals.filter(speciality__in=spec)
-            else:
-                deals = deals.all().order_by("-date").order_by("-deallike")
-
-            deals = deals.distinct()
-        if deals.count() < 1:
-            message = "wrong"
-        paginator = Paginator(deals, 3)
-        page = request.GET.get("page")
-        deals = paginator.get_page(page)
-
-        return render(
-            request,
-            self.template_name,
-            {"deals": deals, "s_form": s_form, "message": message},
-        )
 
 
 @login_required
