@@ -125,6 +125,7 @@
             {##}
             {#                                              </div>#}
             <p class="card-text">{{ deal.description|truncatewords:25 }}</p>
+            {% if deal.speciality.all.count > 0%}
             <dt class="profile-section__title">{% trans 'Необходимы специалисты:' %}</dt>
             <dd>
               <ul class="inline-bricks">
@@ -135,6 +136,7 @@
                 {% endfor %}
               </ul>
             </dd>
+            {% endif %}
             {#                                              <a href="{% url 'deal-detail' deal.id %}" class="btn btn-primary">Узнать больше</a>#}
           </div>
         </a>

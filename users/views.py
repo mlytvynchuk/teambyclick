@@ -59,6 +59,9 @@ def fill_profile(request):
         linkedin = form.cleaned_data.get("linkedin")
         form.save()
         return redirect("deals-home")
+    else:
+        print(form.errors)
+        messages.error(request, form.errors)
     return render(request, "users/fill_profile.html", context={"form": form})
 
 
@@ -178,8 +181,6 @@ def load_cities(request):
 
 
 # Messages and dialogs
-
-
 class DialogsView(View):
     def get(self, request):
         getLanguage(request)

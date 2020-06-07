@@ -87,8 +87,9 @@
 
                     <p class="">
                       {% if field.name == 'language' %}
-                      <label for="id_{{ field.name }}">{{ field.label }}</label>
-                      {{ field }}
+                      <!-- <label for="id_{{ field.name }}">{{ field.label }}</label>
+                      {{ field }} -->
+                      <input type="hidden" name="language" value="2" />
                       {% endif %}
                       {% if field.name == 'status' %}
                       <label for="id_speciality">{% trans 'Cтатус:' %}</label>
@@ -97,13 +98,13 @@
 
                       {% endif %}
                       {% if field.name == 'facebook' %}
-                      <label for="id_speciality">{% trans 'Ссылка на Ваш Facebook профиль:' %}</label>
+                      <label for="id_facebook">{% trans 'Ссылка на Ваш Facebook профиль:' %}</label>
                       <br>
                       {{ field }}
 
                       {% endif %}
                       {% if field.name == 'linkedin' %}
-                      <label for="id_speciality">{% trans 'Ссылка на Ваш LinkedIn профиль:' %}</label>
+                      <label for="id_linkedin">{% trans 'Ссылка на Ваш LinkedIn профиль:' %}</label>
                       <br>
                       {{ field }}
 
@@ -118,24 +119,26 @@
                       {{ field }}
 
                       {% endif %}
+                      {% if field.name == 'website'  %}
+                      <label for="id_website">{% trans 'Ссылка на сайт:' %}</label>
+                      {{ field }}
+
+                      {% endif %}
                       {% if field.name == 'city'  %}
                       <label for="id_city">{% trans 'Город:' %}</label>
                       <select name="city" class="form-control" id="id_city">
                         <option value="" selected="">---------</option>
                       </select>
-                      <!-- <select name="id_city" id="">
-                        <option value="" selected disabled>-----</option>
-                      </select> -->
                       {% endif %}
                       {% if field.name == 'bio' %}
-                      <label for="id_speciality">{% trans 'О себе:' %}</label>
+                      <label for="id_bio">{% trans 'О себе:' %}</label>
                       <br>
                       <textarea name="bio" cols="40" rows="2" id="id_skills"
                         class="form-control">{{ field.value }}</textarea>
 
                       {% endif %}
                       {% if field.name == 'image' %}
-                      <label for="id_speciality">{% trans 'Аватар профиля:' %}</label>
+                      <label for="id_image">{% trans 'Аватар профиля:' %}</label>
                       <br>
                       {#                                    {{ field }}#}
 

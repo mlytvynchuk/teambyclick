@@ -2,145 +2,147 @@
 {% load static %}
 <!doctype html>
 <html lang="ru">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>{% trans 'Заполните профиль' %}</title>
-    <link rel="icon" type="image/png" sizes="16x16" href="{% static 'images/favicon.png' %}">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
-    <link rel="stylesheet" href="{% static 'css/choices.min.css' %}">
-{#    <link rel="stylesheet" href="{% static 'js/choices.min.js' %}">#}
-    <script type="text/javascript" src="{% static 'js/choices.min.js' %}"></script>
-    <title>TeamByClick</title>
-    <!-- Bootstrap Core CSS -->
-    <link href="{% static 'bower_components/bootstrap/dist/css/bootstrap.min.css' %}" rel="stylesheet">
-    <!-- Menu CSS -->
-    <link href="{% static 'bower_components/metisMenu/dist/metisMenu.min.css' %}" rel="stylesheet">
-    <!-- Menu CSS -->
-    <link href="{% static 'bower_components/morrisjs/morris.css' %}" rel="stylesheet">
-    <!-- Custom CSS -->
-    <link href="{% static 'css/c-profile.css' %}" rel="stylesheet">
-    <link href="{% static 'css/style.css' %}" rel="stylesheet">
-    <link href="{% static 'css/main.css' %}" rel="stylesheet">
+  <meta charset="UTF-8">
+  <meta name="viewport"
+    content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>{% trans 'Заполните профиль' %}</title>
+  <link rel="icon" type="image/png" sizes="16x16" href="{% static 'images/favicon.png' %}">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css"
+    integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+  <link rel="stylesheet" href="{% static 'css/choices.min.css' %}">
+  {#    <link rel="stylesheet" href="{% static 'js/choices.min.js' %}">#}
+  <script type="text/javascript" src="{% static 'js/choices.min.js' %}"></script>
+  <title>TeamByClick</title>
+  <!-- Bootstrap Core CSS -->
+  <link href="{% static 'bower_components/bootstrap/dist/css/bootstrap.min.css' %}" rel="stylesheet">
+  <!-- Menu CSS -->
+  <link href="{% static 'bower_components/metisMenu/dist/metisMenu.min.css' %}" rel="stylesheet">
+  <!-- Menu CSS -->
+  <link href="{% static 'bower_components/morrisjs/morris.css' %}" rel="stylesheet">
+  <!-- Custom CSS -->
+  <link href="{% static 'css/c-profile.css' %}" rel="stylesheet">
+  <link href="{% static 'css/style.css' %}" rel="stylesheet">
+  <link href="{% static 'css/main.css' %}" rel="stylesheet">
 </head>
+
 <body>
-{#    {% block content %}#}
-<div class="white-box c-panel ">
+  {#    {% block content %}#}
+  <div class="white-box c-panel ">
     <h1 class="text-primary"><strong>{% trans 'Создание профиля' %}</strong></h1>
 
-        <form id="profileForm" method="post" class="form-horizontal form-material" data-cities-url="{% url 'ajax_load_cities_users' %}">
-            {% csrf_token %}
-            <div class="row f-row">
+    <form id="profileForm" method="post" class="form-horizontal form-material"
+      data-cities-url="{% url 'ajax_load_cities_users' %}">
+      {% csrf_token %}
+      <div class="row f-row">
 
-                   <div class="col-md-6">
-                       <div class="card">
-                           <h2>
-                               {% trans 'Местоположение' %}
-                               <div class="h-divider"></div>
-                           </h2>
-                           <label for="id_country">{% trans 'Страна:' %}</label>
-                           {{ form.country }}
-                           <label for="id_city">{% trans 'Город:' %}</label>
-                           {{ form.city }}
-                           <label for="id_language">{% trans 'Язык платформы' %}</label>
-                           {{ form.language }}
-                       </div>
+        <div class="col-md-6">
+          <div class="card">
+            <h2>
+              {% trans 'Местоположение' %}
+              <div class="h-divider"></div>
+            </h2>
+            <label for="id_country">{% trans 'Страна:' %}</label>
+            {{ form.country }}
+            <label for="id_city">{% trans 'Город:' %}</label>
+            <select name="city" id="id_city" class="form-control">
+              <option value="">--------</option>
+            </select>
+            <input type="hidden" name="language" value="2" />
+          </div>
 
 
-                   </div>
-                   <div class="col-md-6">
-                        <div class="card">
-                            <h2>
-                                {% trans 'Специальность и навыки' %}
-                                <div class="h-divider"></div>
-                            </h2>
-                            <label for="id_speciality">{% trans 'Специальность:' %}</label>
-                       {{ form.speciality }}
-                            <label for="id_status">{% trans 'Статус' %}</label>
-                        {{ form.status }}
-                            <label for="id_skills">{% trans 'Навыки' %}</label>
-                        {{ form.skills }}
+        </div>
+        <div class="col-md-6">
+          <div class="card">
+            <h2>
+              {% trans 'Специальность и навыки' %}
+              <div class="h-divider"></div>
+            </h2>
+            <label for="id_speciality">{% trans 'Специальность:' %}</label>
+            {{ form.speciality }}
+            <label for="id_status">{% trans 'Статус' %}</label>
+            {{ form.status }}
+            <label for="id_skills">{% trans 'Навыки' %}</label>
+            {{ form.skills }}
+          </div>
+        </div>
 
-                        </div>
-                   </div>
+      </div>
+      <br>
+      <div class="row f-row">
+        <div class="col-md-12">
+          <div class="card">
+            <h2>
+              {% trans 'Описание и социальные сети' %}
+              <div class="h-divider"></div>
+            </h2>
 
-            </div>
-            <br>
-            <div class="row f-row">
-                <div class="col-md-12">
-                    <div class="card">
-                           <h2>
-                               {% trans 'Описание и социальные сети' %}
-                               <div class="h-divider"></div>
-                           </h2>
+            <label for="id_bio">{% trans 'Опишите себя:' %}</label>
+            <textarea name="bio" cols="40" rows="2" id="id_bio" class="form-control">{{ field.value }}</textarea>
+            <label for="id_website">{% trans 'Ссылка на вебсайт:' %}</label>
+            {{ form.website }}
+            <label for="id_facebook">{% trans 'Ссылка на профиль Facebook:' %}</label>
+            {{ form.facebook }}
 
-                        <label for="id_bio">{% trans 'Опишите себя:' %}</label>
-                        <textarea name="bio" cols="40" rows="2" id="id_bio" class="form-control">{{ field.value }}</textarea>
+            <label for="id_linkedin">{% trans 'Ссылка на профиль LinkedIn:' %}</label>
+            {{ form.linkedin }}
+          </div>
+        </div>
 
-                        <!--<label for="id_bio">{% trans 'Фотография профиля' %}</label>
-                        <input type="file" name="image" accept="image/*" id="id_image">
-                        -->
-                        <hr>
-                        <label for="id_facebook">{% trans 'Ссылка на профиль Facebook:' %}</label>
-                            {{ form.facebook }}
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <div class="card m-l-5">
+            <button class="btn btn-primary" style="width: 100%;padding: 10px">{% trans 'Сохранить' %}</button>
+          </div>
+        </div>
+      </div>
 
-                        <label for="id_linkedin">{% trans 'Ссылка на профиль LinkedIn:' %}</label>
-                            {{ form.linkedin }}
-                       </div>
-                </div>
+    </form>
 
-            </div>
-            <div class="row">
-                <div class="col-md-12">
-                <div class="card m-l-5">
-                    <button class="btn btn-primary" style="width: 100%;padding: 10px">{% trans 'Сохранить' %}</button>
-                </div>
-            </div>
-            </div>
+  </div>
 
-        </form>
-
-</div>
-
-<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
-<script src="{% static 'bower_components/jquery/dist/jquery.min.js' %}"></script>
-{#    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>#}
-    <!-- Bootstrap Core JavaScript -->
-    <script src="{% static 'bower_components/bootstrap/dist/js/bootstrap.min.js' %}"></script>
-    <!-- Menu Plugin JavaScript -->
-    <script src="{% static 'bower_components/metisMenu/dist/metisMenu.min.js' %}"></script>
-    <!--Nice scroll JavaScript -->
-    <script src="{% static 'js/jquery.nicescroll.js' %}"></script>
-    <!--Morris JavaScript -->
-    <script src="{% static 'bower_components/raphael/raphael-min.js' %}"></script>
-    <script src="{% static 'bower_components/morrisjs/morris.js' %}"></script>
-    <!--Wave Effects -->
-    <script src="{% static 'js/waves.js' %}"></script>
-    <!-- Custom Theme JavaScript -->
-    <script src="{% static 'js/myadmin.js' %}"></script>
-    <script src="{% static 'js/dashboard1.js' %}"></script>
+  <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+  <script src="{% static 'bower_components/jquery/dist/jquery.min.js' %}"></script>
+  {#    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>#}
+  <!-- Bootstrap Core JavaScript -->
+  <script src="{% static 'bower_components/bootstrap/dist/js/bootstrap.min.js' %}"></script>
+  <!-- Menu Plugin JavaScript -->
+  <script src="{% static 'bower_components/metisMenu/dist/metisMenu.min.js' %}"></script>
+  <!--Nice scroll JavaScript -->
+  <script src="{% static 'js/jquery.nicescroll.js' %}"></script>
+  <!--Morris JavaScript -->
+  <script src="{% static 'bower_components/raphael/raphael-min.js' %}"></script>
+  <script src="{% static 'bower_components/morrisjs/morris.js' %}"></script>
+  <!--Wave Effects -->
+  <script src="{% static 'js/waves.js' %}"></script>
+  <!-- Custom Theme JavaScript -->
+  <script src="{% static 'js/myadmin.js' %}"></script>
+  <script src="{% static 'js/dashboard1.js' %}"></script>
   <script>
     $("#id_country").change(function () {
-      var url = $("#profileForm").attr("data-cities-url");  // get the url of the `load_cities` view
-      var countryId = $(this).val();  // get the selected country ID from the HTML input
+      var url = $("#profileForm").attr("data-cities-url"); // get the url of the `load_cities` view
+      var countryId = $(this).val(); // get the selected country ID from the HTML input
 
-      $.ajax({                       // initialize an AJAX request
-        url: url,                    // set the url of the request (= localhost:8000/hr/ajax/load-cities/)
+      $.ajax({ // initialize an AJAX request
+        url: url, // set the url of the request (= localhost:8000/hr/ajax/load-cities/)
         data: {
-          'country': countryId       // add the country id to the GET parameters
+          'country': countryId // add the country id to the GET parameters
         },
-        success: function (data) {   // `data` is the return of the `load_cities` view function
-          $("#id_city").html(data);  // replace the contents of the city input with the data that came from the server
+        success: function (data) { // `data` is the return of the `load_cities` view function
+          $("#id_city").html(
+            data); // replace the contents of the city input with the data that came from the server
         }
       });
 
     });
   </script>
-<script>
-    document.addEventListener('DOMContentLoaded', function() {
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
       var textRemove = new Choices(document.getElementById('choices-text-remove-button'), {
         delimiter: ',',
         editItems: true,
@@ -159,10 +161,10 @@
         duplicateItemsAllowed: false,
         editItems: true,
         maxItemCount: 5,
-        addItemText: function(value) {
+        addItemText: function (value) {
           return 'Appuyez sur Entrée pour ajouter <b>"' + String(value) + '"</b>';
         },
-        maxItemText: function(maxItemCount) {
+        maxItemText: function (maxItemCount) {
           return String(maxItemCount) + 'valeurs peuvent être ajoutées';
         },
         uniqueItemText: 'Cette valeur est déjà présente',
@@ -193,14 +195,14 @@
         placeholder: true,
         placeholderValue: 'Pick an Strokes record',
         maxItemCount: 5,
-      }).ajax(function(callback) {
+      }).ajax(function (callback) {
         fetch('https://api.discogs.com/artists/55980/releases?token=QBRmstCkwXEvCjTclCpumbtNwvVkEzGAdELXyRyW')
-          .then(function(response) {
-            response.json().then(function(data) {
+          .then(function (response) {
+            response.json().then(function (data) {
               callback(data.releases, 'title', 'title');
             });
           })
-          .catch(function(error) {
+          .catch(function (error) {
             console.error(error);
           });
       });
@@ -212,36 +214,55 @@
       /* Use label on event */
       var choicesSelect = new Choices('#choices-multiple-labels', {
         removeItemButton: true,
-        choices: [
-          { value: 'One', label: 'Label One' },
-          { value: 'Two', label: 'Label Two', disabled: true },
-          { value: 'Three', label: 'Label Three' },
+        choices: [{
+            value: 'One',
+            label: 'Label One'
+          },
+          {
+            value: 'Two',
+            label: 'Label Two',
+            disabled: true
+          },
+          {
+            value: 'Three',
+            label: 'Label Three'
+          },
         ],
-      }).setChoices([
-        { value: 'Four', label: 'Label Four', disabled: true },
-        { value: 'Five', label: 'Label Five' },
-        { value: 'Six', label: 'Label Six', selected: true },
+      }).setChoices([{
+          value: 'Four',
+          label: 'Label Four',
+          disabled: true
+        },
+        {
+          value: 'Five',
+          label: 'Label Five'
+        },
+        {
+          value: 'Six',
+          label: 'Label Six',
+          selected: true
+        },
       ], 'value', 'label', false);
 
-      choicesSelect.passedElement.element.addEventListener('addItem', function(event) {
+      choicesSelect.passedElement.element.addEventListener('addItem', function (event) {
         document.getElementById('message').innerHTML = 'You just added "' + event.detail.label + '"';
       });
 
-      choicesSelect.passedElement.element.addEventListener('removeItem', function(event) {
+      choicesSelect.passedElement.element.addEventListener('removeItem', function (event) {
         document.getElementById('message').innerHTML = 'You just removed "' + event.detail.label + '"';
       });
 
       var singleFetch = new Choices('#choices-single-remote-fetch', {
         searchPlaceholderValue: 'Search for an Arctic Monkeys record',
-      }).ajax(function(callback) {
+      }).ajax(function (callback) {
         fetch('https://api.discogs.com/artists/391170/releases?token=QBRmstCkwXEvCjTclCpumbtNwvVkEzGAdELXyRyW')
-          .then(function(response) {
-            response.json().then(function(data) {
+          .then(function (response) {
+            response.json().then(function (data) {
               callback(data.releases, 'title', 'title');
               singleFetch.setChoiceByValue('Fake Tales Of San Francisco');
             });
           })
-          .catch(function(error) {
+          .catch(function (error) {
             console.error(error);
           });
       });
@@ -249,10 +270,12 @@
       var singleXhrRemove = new Choices('#choices-single-remove-xhr', {
         removeItemButton: true,
         searchPlaceholderValue: 'Search for a Smiths\' record'
-      }).ajax(function(callback) {
+      }).ajax(function (callback) {
         var request = new XMLHttpRequest();
-        request.open('get', 'https://api.discogs.com/artists/83080/releases?token=QBRmstCkwXEvCjTclCpumbtNwvVkEzGAdELXyRyW', true);
-        request.onreadystatechange = function() {
+        request.open('get',
+          'https://api.discogs.com/artists/83080/releases?token=QBRmstCkwXEvCjTclCpumbtNwvVkEzGAdELXyRyW',
+          true);
+        request.onreadystatechange = function () {
           var status;
           var data;
           if (request.readyState === 4) {
@@ -277,47 +300,95 @@
       var singleNoSearch = new Choices('#choices-single-no-search', {
         searchEnabled: false,
         removeItemButton: true,
-        choices: [
-          { value: 'One', label: 'Label One' },
-          { value: 'Two', label: 'Label Two', disabled: true },
-          { value: 'Three', label: 'Label Three' },
+        choices: [{
+            value: 'One',
+            label: 'Label One'
+          },
+          {
+            value: 'Two',
+            label: 'Label Two',
+            disabled: true
+          },
+          {
+            value: 'Three',
+            label: 'Label Three'
+          },
         ],
-      }).setChoices([
-        { value: 'Four', label: 'Label Four', disabled: true },
-        { value: 'Five', label: 'Label Five' },
-        { value: 'Six', label: 'Label Six', selected: true },
+      }).setChoices([{
+          value: 'Four',
+          label: 'Label Four',
+          disabled: true
+        },
+        {
+          value: 'Five',
+          label: 'Label Five'
+        },
+        {
+          value: 'Six',
+          label: 'Label Six',
+          selected: true
+        },
       ], 'value', 'label', false);
 
       var singlePresetOpts = new Choices('#choices-single-preset-options', {
         placeholder: true,
       }).setChoices([{
-        label: 'Group one',
-        id: 1,
-        disabled: false,
-        choices: [
-          { value: 'Child One', label: 'Child One', selected: true },
-          { value: 'Child Two', label: 'Child Two', disabled: true },
-          { value: 'Child Three', label: 'Child Three' },
-        ]
-      },
-      {
-        label: 'Group two',
-        id: 2,
-        disabled: false,
-        choices: [
-          { value: 'Child Four', label: 'Child Four', disabled: true },
-          { value: 'Child Five', label: 'Child Five' },
-          { value: 'Child Six', label: 'Child Six' },
-        ]
-      }], 'value', 'label');
+          label: 'Group one',
+          id: 1,
+          disabled: false,
+          choices: [{
+              value: 'Child One',
+              label: 'Child One',
+              selected: true
+            },
+            {
+              value: 'Child Two',
+              label: 'Child Two',
+              disabled: true
+            },
+            {
+              value: 'Child Three',
+              label: 'Child Three'
+            },
+          ]
+        },
+        {
+          label: 'Group two',
+          id: 2,
+          disabled: false,
+          choices: [{
+              value: 'Child Four',
+              label: 'Child Four',
+              disabled: true
+            },
+            {
+              value: 'Child Five',
+              label: 'Child Five'
+            },
+            {
+              value: 'Child Six',
+              label: 'Child Six'
+            },
+          ]
+        }
+      ], 'value', 'label');
 
       var singleSelectedOpt = new Choices('#choices-single-selected-option', {
         searchFields: ['label', 'value', 'customProperties.description'],
-        choices: [
-          { value: 'One', label: 'Label One', selected: true },
-          { value: 'Two', label: 'Label Two', disabled: true },
+        choices: [{
+            value: 'One',
+            label: 'Label One',
+            selected: true
+          },
           {
-            value: 'Three', label: 'Label Three', customProperties: {
+            value: 'Two',
+            label: 'Label Two',
+            disabled: true
+          },
+          {
+            value: 'Three',
+            label: 'Label Three',
+            customProperties: {
               description: 'This option is fantastic'
             }
           },
@@ -331,7 +402,7 @@
       var cities = new Choices(document.getElementById('cities'));
       var tubeStations = new Choices(document.getElementById('tube-stations')).disable();
 
-      cities.passedElement.element.addEventListener('change', function(e) {
+      cities.passedElement.element.addEventListener('change', function (e) {
         if (e.detail.value === 'London') {
           tubeStations.enable();
         } else {
@@ -340,34 +411,36 @@
       });
 
       var customTemplates = new Choices(document.getElementById('choices-single-custom-templates'), {
-        callbackOnCreateTemplates: function(strToEl) {
+        callbackOnCreateTemplates: function (strToEl) {
           var classNames = this.config.classNames;
           var itemSelectText = this.config.itemSelectText;
           return {
-            item: function(classNames, data) {
+            item: function (classNames, data) {
               return strToEl('\
                 <div\
-                  class="'+ String(classNames.item) + ' ' + String(data.highlighted ? classNames.highlightedState : classNames.itemSelectable) + '"\
+                  class="' + String(classNames.item) + ' ' + String(data.highlighted ? classNames.highlightedState :
+                classNames.itemSelectable) + '"\
                   data-item\
-                  data-id="'+ String(data.id) + '"\
-                  data-value="'+ String(data.value) + '"\
-                  '+ String(data.active ? 'aria-selected="true"' : '') + '\
-                  '+ String(data.disabled ? 'aria-disabled="true"' : '') + '\
+                  data-id="' + String(data.id) + '"\
+                  data-value="' + String(data.value) + '"\
+                  ' + String(data.active ? 'aria-selected="true"' : '') + '\
+                  ' + String(data.disabled ? 'aria-disabled="true"' : '') + '\
                   >\
                   <span style="margin-right:10px;">🎉</span> ' + String(data.label) + '\
                 </div>\
               ');
             },
-            choice: function(classNames, data) {
+            choice: function (classNames, data) {
               return strToEl('\
                 <div\
-                  class="'+ String(classNames.item) + ' ' + String(classNames.itemChoice) + ' ' + String(data.disabled ? classNames.itemDisabled : classNames.itemSelectable) + '"\
-                  data-select-text="'+ String(itemSelectText) + '"\
+                  class="' + String(classNames.item) + ' ' + String(classNames.itemChoice) + ' ' + String(data
+                .disabled ? classNames.itemDisabled : classNames.itemSelectable) + '"\
+                  data-select-text="' + String(itemSelectText) + '"\
                   data-choice \
-                  '+ String(data.disabled ? 'data-choice-disabled aria-disabled="true"' : 'data-choice-selectable') + '\
-                  data-id="'+ String(data.id) + '"\
-                  data-value="'+ String(data.value) + '"\
-                  '+ String(data.groupId > 0 ? 'role="treeitem"' : 'role="option"') + '\
+                  ' + String(data.disabled ? 'data-choice-disabled aria-disabled="true"' : 'data-choice-selectable') + '\
+                  data-id="' + String(data.id) + '"\
+                  data-value="' + String(data.value) + '"\
+                  ' + String(data.groupId > 0 ? 'role="treeitem"' : 'role="option"') + '\
                   >\
                   <span style="margin-right:10px;">👉🏽</span> ' + String(data.label) + '\
                 </div>\
@@ -384,9 +457,7 @@
       });
     });
   </script>
-{#{% endblock content %}#}
+  {#{% endblock content %}#}
 </body>
+
 </html>
-
-
-

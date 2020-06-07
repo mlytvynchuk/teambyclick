@@ -20,6 +20,8 @@ class Deal(models.Model):
     speciality = models.ManyToManyField(
         usr_models.Speciality, related_name="deals", blank=True
     )
+    website_link = models.URLField(max_length=128, blank=True)
+    presentation_link = models.URLField(max_length=128, blank=True)
 
     class Meta:
         ordering = ["-date_posted"]

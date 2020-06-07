@@ -15,6 +15,19 @@
             </ul>
             <dt class="font-bold">{% trans 'Описание:' %}</dt>
             <p class="detail-description">{{ deal.description|linebreaks }}</p>
+            {% if deal.website_link %}
+            <dt class="font-bold">{% trans 'Ссылка на сайт'%}</dt>
+            <dd>
+                <a href="{{deal.website_link}}" target="_blank">{{deal.website_link}}</a>
+            </dd>
+            {% endif %}
+            {% if deal.presentation_link %}
+            <dt class="font-bold">{% trans 'Ссылка на презентацию'%}</dt>
+            <dd>
+                <a href="{{deal.presentation_link}}" target="_blank">{{deal.presentation_link}}</a>
+            </dd>
+            {% endif %}
+            {% if deal.speciality.all.count > 0 %}
             <dt class="profile-section__title">{% trans 'Необходимы специалисты:' %}</dt>
             <dd>
                 <ul class="inline-bricks">
@@ -25,6 +38,7 @@
                     {% endfor %}
                 </ul>
             </dd>
+            {% endif %}
             <div class="author-block p-b-20 p-t-10">
                 <a href="{% url 'user-details' deal.author.username %}" style="float: left" class="p-r-10">
                     <div class=" img-circle"

@@ -40,6 +40,14 @@
                             <option value="" selected disabled>---------</option>
                         </select>
                         {% endif %}
+                        {% if field.name == 'website_link'%}
+                        <label for="id_website_link">{% trans 'Ссылка на сайт' %}</label>
+                        {{ field }}
+                        {% endif %}
+                        {% if field.name == 'presentation_link'%}
+                        <label for="id_website_link">{% trans 'Ссылка на презентацию' %}</label>
+                        {{ field }}
+                        {% endif %}
                     </p>
                     {% endfor %}
 

@@ -118,6 +118,18 @@ class DealCreateView(LoginRequiredMixin, CreateView):
         form.fields["city"].widget.attrs.update(
             {"class": "form-control", "required": "true"}
         )
+        form.fields["website_link"].widget.attrs.update(
+            {
+                "class": "form-control",
+                "placeholder": "Ссылка на сайт (необязательно). Например https://google.com",
+            }
+        )
+        form.fields["presentation_link"].widget.attrs.update(
+            {
+                "class": "form-control",
+                "placeholder": "Ссылка на презентацию (необязательно). Например https://google.com",
+            }
+        )
 
         return form
 
@@ -149,6 +161,18 @@ class DealUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
         )
         form.fields["country"].widget.attrs.update({"class": "form-control"})
         form.fields["city"].widget.attrs.update({"class": "form-control"})
+        form.fields["website_link"].widget.attrs.update(
+            {
+                "class": "form-control",
+                "placeholder": "Ссылка на сайт (необязательно). Например https://google.com",
+            }
+        )
+        form.fields["presentation_link"].widget.attrs.update(
+            {
+                "class": "form-control",
+                "placeholder": "Ссылка на презентацию (необязательно). Например https://google.com",
+            }
+        )
 
         return form
 
