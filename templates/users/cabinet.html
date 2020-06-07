@@ -119,11 +119,6 @@
                       {{ field }}
 
                       {% endif %}
-                      {% if field.name == 'website'  %}
-                      <label for="id_website">{% trans 'Ссылка на сайт:' %}</label>
-                      {{ field }}
-
-                      {% endif %}
                       {% if field.name == 'city'  %}
                       <label for="id_city">{% trans 'Город:' %}</label>
                       <select name="city" class="form-control" id="id_city">
