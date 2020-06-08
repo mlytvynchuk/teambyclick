@@ -44,7 +44,7 @@ def deals_home(request):
         deals = Deal.objects.filter(title__icontains=search)
     else:
         deals = Deal.objects.all()
-    paginator = Paginator(deals, 2)
+    paginator = Paginator(deals, 5)
     page = request.GET.get("page")
     deals = paginator.get_page(page)
     s_form = SearchForm
