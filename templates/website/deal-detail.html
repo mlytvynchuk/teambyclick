@@ -123,8 +123,6 @@
                 <a href="#" class="reply-btn text-primary text-uppercase"><small
                         style="font-size:11px;padding-left: 40px;">{% trans "Ответить" %}</small></a>
                 {% endif %}
-
-
                 <div class="reply-block" style="display: none">
                     <form method="post" class="form-horizontal form-material ">
                         {% csrf_token %}
@@ -175,8 +173,7 @@
     $(".reply-btn").click(function (event) {
         event.preventDefault();
         $(this).next(".reply-block").fadeToggle(); {
-            #
-            $(this).parent().next(".hid").fadeToggle();#
+            $(this).parent().next(".hid").fadeToggle();
         }
     })
 </script>
