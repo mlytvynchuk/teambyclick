@@ -158,7 +158,7 @@ def people(request):
     if users.count() < 1:
         message = "wrong"
 
-    paginator = Paginator(users, 10)
+    paginator = Paginator(users, 5)
     page = request.GET.get("page")
     users = paginator.get_page(page)
 
