@@ -12,6 +12,9 @@ class Status(models.Model):
 
     def __str__(self):
         return self.name
+    
+    class Meta:
+        ordering = ("name",)
 
 
 class Speciality(models.Model):
@@ -20,6 +23,9 @@ class Speciality(models.Model):
 
     def __str__(self):
         return f"{self.name}"
+
+    class Meta:
+        ordering = ("name",)
 
 
 class Language(models.Model):
@@ -65,6 +71,9 @@ class Skills(models.Model):
 
     def __str__(self):
         return self.name
+        
+    class Meta:
+        ordering = ("name",)
 
 
 # Chat and messages here
