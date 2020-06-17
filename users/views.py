@@ -7,7 +7,9 @@ from django.shortcuts import render, redirect
 from django.contrib import messages
 from django.urls import reverse
 from django.views import View
-
+from django.db.models.functions import Concat
+from django.db.models import Q, F
+from django.db.models import Value as V
 from deals.models import Deal
 from deals.views import getLanguage
 from users.models import City, Chat, Profile, Message
@@ -97,63 +99,10 @@ def people(request):
     s_form = SearchPeopleForm
     message = ""
     users = User.objects.all()
-    # users = User.objects.filter(
-    #     profile__speciality=not None, profile__country=not None, profile__city=not None
-    # )
     if search:
-        for term in search.split():
-            users = users.filter(
-                Q(first_name__icontains=term) | Q(last_name__icontains=term)
-            )
-    else:
-        if country and city and spec and skills:
-            users = users.filter(
-                Q(profile__speciality__in=spec),
-                Q(profile__country=country),
-                Q(profile__city=city),
-                Q(profile__skills__in=skills),
-            )
-        elif country and city and spec:
-            users = users.filter(
-                Q(profile__speciality__in=spec),
-                Q(profile__country=country),
-                Q(profile__city=city),
-            )
-        elif country and city and skills:
-            users = users.filter(
-                Q(profile__skills__in=skills),
-                Q(profile__country=country),
-                Q(profile__city=city),
-            )
-
-        elif country and city:
-            users = users.filter(Q(profile__country=country), Q(profile__city=city))
-        elif country and spec:
-            users = users.filter(
-                Q(profile__speciality__in=spec), Q(profile__country=country)
-            )
-        elif country and skills:
-            users = users.filter(
-                Q(profile__skills__in=skills), Q(profile__country=country)
-            )
-        elif country:
-            users = users.filter(profile__country=country)
-        elif spec and skills:
-            users = users.filter(
-                Q(profile__speciality__in=spec), Q(profile__skills__in=skills)
-            )
-        elif spec:
-            users = users.filter(profile__speciality__in=spec)
-        elif skills:
-            users = users.filter(profile__skills__in=skills)
-
-        else:
-            users = users.all()
-        #     if request.user.is_authenticated:
-        #         message = "special"
-        #         users = users.filter(speciality=request.user.profile.speciality)
-
-    users = users.distinct()
+        users = users.annotate(full_name=Concat('first_name', V(' '), 'last_name')).filter(full_name__icontains=search)
+        # users = users.distinct()
+        print('search')
 
     if users.count() < 1:
         message = "wrong"
