@@ -22,12 +22,12 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/2.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = "vo6jhd_o62=apm*6as=rqkjpevs6+r9v(e_r=bks%aiqv19apd"
+SECRET_KEY = config("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = config("DEBUG", default=True, cast=bool)
 
-ALLOWED_HOSTS = ["*"]
+
 
 
 # Application definition
@@ -101,10 +101,12 @@ WSGI_APPLICATION = "teambyc.wsgi.application"
 # Database
 # https://docs.djangoproject.com/en/2.1/ref/settings/#databases
 if config("PROD", cast=bool, default=False) == True:
+    ALLOWED_HOSTS = ["*"]
     DATABASES = {}
     DATABASES["default"] = dj_database_url.config(default=config("DATABASE_URL"))
     # SECURE_SSL_REDIRECT = True
 else:
+    ALLOWED_HOSTS = config("DOMAINS").split(',')
     DATABASES = {
         "default": {
             "ENGINE": "django.db.backends.sqlite3",
