@@ -86,9 +86,8 @@
     <div class="white-box">
       {% for user in people %}
       <div class="user-card deal">
-        <div class="user-img">
-          <a href="{% url 'user-details' slug=user.username %}"><img src="{{ user.profile.image.url }}"
-              alt="user-picture" class="img-circle"></a>
+        <div class="user-img" style="background: url({{user.profile.image.url}});">
+
         </div>
         <div class="user-info">
           <div class="user-title">

@@ -389,10 +389,13 @@ header .navbar .navbar-brand {
     }
 }
 
-.user-img img {
+.user-img {
     border-radius: 50%;
-    width: 100px;
-    height: 100px;
+    width: 100px !important;
+    height: 100px !important;
+    background-position: center !important;
+    background-size: cover !important;
+    background-repeat: no-repeat !important;
 }
 
 .user-card {
