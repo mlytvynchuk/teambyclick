@@ -1,13 +1,10 @@
 {% extends 'extends/base.html' %}
 {% load i18n %}
 {% load humanize %}
-{#{% load bootstrap3 %}#}
-
 {% block content %}
 <div class="row" id="main-content">
     <div class="col-md-8">
         <div class="white-box">
-
             <h2>{{ deal.title }}</h2>
             <ul class="inline-bricks ">
                 <li class=" m-r-20 font-bold">{% trans "Страна: " %}{{ deal.country }}</li>
@@ -52,7 +49,6 @@
                 <li class="inline-bricks brick">{{ deal.author.profile.speciality }}</li>
                 {%endif%}
             </div>
-
             {% if deal.author.profile.facebook or deal.author.profile.linkedin %}
             <h4 style="float: left;padding: 5px;">{% trans "Связаться с автором: "%}</h4>
             {% endif %}
@@ -66,7 +62,6 @@
                 <li class="brick"><a class="btn btn-linkedin" href="{{ deal.author.profile.linkedin }}"><i
                             class="fab fa-linkedin"></i> LinkedIn</a></li>
                 {% endif %}
-
             </ul>
             <div class="d-flex align-items-center p-b-20">
                 <button
@@ -105,10 +100,7 @@
             <br>
             <br>
             {% for comment in comments %}
-
-
             <div>
-
                 <div class="img-circle m-r-5"
                     style="background-image: url({{comment.user.profile.image.url }});width: 35px;height: 35px; background-position: center;background-size: cover;float: left ">
                 </div>
@@ -135,18 +127,13 @@
                         </p>
                         {% else %}
                         <p>{{ field }}</p>
-
                         {% endif %}
                         <input type="hidden" name="parent_id" value="{{ comment.id }}">
                         {% endfor %}
                         <input class="btn btn-outline-primary" type="submit" value="{% trans 'Відповісти' %}">
                     </form>
                 </div>
-
-
             </div>
-
-
             <br>
             {% for comment_child in comment.children %}
             <div class="m-l-40">

@@ -1,14 +1,10 @@
 {% extends 'extends/base.html' %}
-
 {% load i18n %}
 {% load static %}
 {% block content %}
 <div class="row form-horizontal form-material">
     <div class="col-md-9">
-
         <div class="white-box m-t-10">
-
-
             <div class="card">
                 <h5 class="card-title p-b-10">{% trans 'Обновить' %}</h5>
                 <form action="" method="POST" data-cities-url="{% url 'ajax_load_cities' %}" class="createForm">
@@ -24,8 +20,6 @@
                         <textarea rows="10" id="id_description" type="text" name="description" class="form-control"
                             placeholder="{% trans ' Детально опишіть свою ідею' %}">{{ form.description.value }}</textarea>
                     </p>
-
-
                     {% for field in form %}
                     <p>
                         {% if field.name == 'speciality'%}
@@ -42,7 +36,6 @@
                         <select name="city" id="id_city" class="form-control" required>
                             <option value="" disabled>---------</option>
                         </select>
-
                         {% endif %}
                         {% if field.name == 'website_link'%}
                         <label for="id_website_link">{% trans 'Ссылка на сайт' %}</label>
@@ -54,7 +47,6 @@
                         {% endif %}
                     </p>
                     {% endfor %}
-
                     <p class="p-t-10">
                         <button type="submit" class="btn btn-primary btn-rounded">{% trans 'Сохранить' %}</button>
                     </p>
@@ -124,6 +116,4 @@
         </div>
     </div>
 </div>
-
-
 {% endblock content %}

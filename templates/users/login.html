@@ -22,28 +22,21 @@
 </head>
 
 <body>
-
     <div class="main">
         <div class="container">
             <section class="signup">
-                <!-- <img src="images/signup-bg.jpg" alt=""> -->
                 <div class="container-log">
-
                     <div class="signup-content">
                         {% if form.non_field_errors %}
                         {% for error in form.non_field_errors %}
                         <div class="alert alert-danger">
                             {{ error }}
                         </div>
-
                         {% endfor %}
-
                         {% endif %}
                         <h2 class="form-title pb-5">{% trans 'Войти в аккаунт' %}</h2>
-
                         <form method="POST" id="signup-form" class="signup-form">
                             {% csrf_token %}
-                            {#                        <input type="email" class="form-input" name="email" required>#}
                             {% for field in form %}
                             <div class="form-group">
                                 {% if field.name == 'username' %}
@@ -54,11 +47,8 @@
                                 <input type="password" placeholder="{% trans 'Введите ваш пароль' %}" name="password"
                                     class="form-input">
                                 {% endif %}
-
-
                             </div>
                             {% endfor %}
-
                             <div class="form-group">
                                 <input type="submit" name="submit" id="submit" class="form-submit"
                                     value="{% trans 'Войти' %}" />
@@ -73,7 +63,6 @@
                                     href="{% url 'social:begin' 'google-oauth2' %}"><i class="fab fa-google"></i></a>
                             </li>
                         </ul>
-
                         <p class="loginhere">
                             {% trans 'Нет аккаунта?' %} <a href="{% url 'register' %}"
                                 class="loginhere-link">{% trans 'Зарегистрироваться' %}</a>
@@ -84,9 +73,7 @@
         </div>
 
     </div>
-
-    <!-- JS -->
     <script src="vendor/jquery/jquery.min.js"></script>
-</body><!-- This templates was made by Colorlib (https://colorlib.com) -->
+</body>
 
 </html>

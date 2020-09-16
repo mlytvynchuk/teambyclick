@@ -2,7 +2,6 @@
 {% load i18n %}
 {% load my_tags %}
 {% block content %}
-
 <div class="row" id="main-content">
   <div class="col-md-8 col-sm-8 ">
     <div class="card white-box">
@@ -16,10 +15,6 @@
               </form>
             </div>
           </div>
-          <!-- <div class="col-lg-3 col-md-4" style="">
-            <a class="btn btn-primary" id="custom-clk" style="padding: 11px"><span class="fa fa-sliders">
-              </span>{% trans 'Налаштування' %}</a>
-          </div> -->
         </div>
       </div>
     </div>
@@ -57,7 +52,6 @@
         });
       });
     </script>
-
     <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
     <script>
       $("#id_country").change(function () {
@@ -74,7 +68,6 @@
               data); // replace the contents of the city input with the data that came from the server
           }
         });
-
       });
     </script>
     {% if message == "wrong" %}
@@ -87,7 +80,6 @@
       {% for user in people %}
       <div class="user-card deal">
         <div class="user-img" style="background: url({{user.profile.image.url}});">
-
         </div>
         <div class="user-info">
           <div class="user-title">
@@ -140,13 +132,6 @@
       {% endif %}
     </ul>
     {% endif %}
-
   </div>
-
-  <!-- <div class="col-md-3">
-    <Тут буде ваша реклама>
-
-  </div> -->
 </div>
-
 {% endblock content %}

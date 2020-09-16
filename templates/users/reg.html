@@ -27,18 +27,8 @@
     <div class="main">
 
         <section class="signup">
-            <!-- <img src="images/signup-bg.jpg" alt=""> -->
             <div class="container-log align-middle">
                 <div class="signup-content">
-                    {#                {% if form.non_field_errors %}#}
-                    {#                    {% for error in form.non_field_errors %}#}
-                    {#                        <div class="alert alert-danger">#}
-                    {#                            {{ error.non_field_errors }}#}
-                    {#                          </div>#}
-                    {##}
-                    {#                    {% endfor %}#}
-                    {##}
-                    {#                {% endif %}#}
                     {% if form.errors %}
                     {% for error in form.errors %}
                     {% if error == 'email' %}
@@ -51,19 +41,12 @@
                         {% trans 'Пароль слишком короткий или не совпадает' %}
                     </div>
                     {% endif %}
-
                     {% endfor %}
-
                     {% endif %}
-                    {#                {% for error in form.errors %}#}
-                    {#                                <p class="text-primary">{{ error.message }}</p>#}
-                    {#                            {% endfor %}#}
 
                     <form method="POST" id="signup-form" class="signup-form">
                         {% csrf_token %}
                         <h2 class="form-title pb-5">Регистрация</h2>
-                        {#                        <input type="email" class="form-input" name="email" required>#}
-
                         {% for field in form %}
                         <div class="form-group">
                             {% if field.name == 'email' %}
@@ -73,9 +56,8 @@
                             <input type="text" placeholder="{% trans 'Введите ваш логин' %}" name="username"
                                 class="form-input" id="username-input">
                             <div class="username_check_alert alert-info" style="display: none">
-                                {% trans 'Пользователь с таким именем уже существует' %}</div>
-
-
+                                {% trans 'Пользователь с таким именем уже существует' %}
+                            </div>
                             {% elif field.name == 'first_name' %}
                             <input type="text" class="form-input" name="{{ field.name }}"
                                 placeholder="{% trans "Ваше имя" %}">
@@ -94,12 +76,8 @@
                             <p class="text-primary">{{ error }}</p>
                             {% endfor %}
                             {% endif %}
-
-
-
                         </div>
                         {% endfor %}
-
                         <div class="form-group">
                             <input type="submit" name="submit" id="submit" class="form-submit"
                                 value="{% trans 'Зарегистрироваться' %}" />
@@ -121,9 +99,7 @@
                 </div>
             </div>
         </section>
-
     </div>
-
     <!-- JS -->
     <script src="{% static 'vendor/jquery/jquery.min.js' %}"></script>
     <script src="{% static 'js/reg.js' %}"></script>

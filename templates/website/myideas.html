@@ -23,23 +23,6 @@
         <div class="card white-box">
             <div class="card-body">
                 <h2>{{ deal.title }}</h2>
-                {#                                              <div class="categories">#}
-                {##}
-                {#                                                      <li class="category-item">#}
-                {#                                                            <small>#}
-                {#                                                                Дизайн автомобілів,#}
-                {#                                                            </small>#}
-                {#                                                      </li>#}
-                {#                                                      <li class="category-item">#}
-                {#                                                            <small>#}
-                {#                                                                    Продаж техніки#}
-                {#                                                            </small>#}
-                {##}
-                {#                                                        </li>#}
-                {##}
-                {##}
-                {##}
-                {#                                              </div>#}
                 <p class="card-text">{{ deal.description|truncatewords:25 }}</p>
                 <dt class="profile-section__title">{% trans 'Необходимы специалисты:' %}</dt>
                 <dd>
@@ -55,12 +38,6 @@
             </div>
         </div>
         {% endfor %}
-
     </div>
-    <!-- <div class="col-lg-4 col-md-4 col-4">
-        Реклама
-    </div> -->
 </div>
-
-
 {% endblock content %}

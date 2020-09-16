@@ -4,10 +4,7 @@
 {% block content %}
 <div class="row form-horizontal form-material">
     <div class="col-md-9">
-
         <div class="white-box m-t-10">
-
-
             <div class="card">
                 <h5 class="card-title p-b-10">{% trans 'Создать проект' %}</h5>
                 <form action="" method="POST" data-cities-url="{% url 'ajax_load_cities' %}" class="createForm">
@@ -22,8 +19,6 @@
                         <textarea rows="10" id="id_description" type="text" name="description" class="form-control"
                             placeholder="{% trans ' Детально опишіть свій проект' %}"></textarea>
                     </p>
-
-
                     {% for field in form %}
                     <p>
                         {% if field.name == 'speciality'%}
@@ -50,7 +45,6 @@
                         {% endif %}
                     </p>
                     {% endfor %}
-
                     <p class="p-t-10">
                         <button type="submit" class="btn btn-primary btn-rounded">{% trans 'Сохранить' %}</button>
                     </p>
@@ -76,34 +70,9 @@
                         });
 
                     });
-                    // $(document).ready(function () {
-                    //     var url = $(".createForm").attr(
-                    //         "data-cities-url"); // get the url of the `load_cities` view
-                    //     var countryId = $("#id_country")
-                    //         .val(); // get the selected country ID from the HTML input
-                    //     $.ajax({ // initialize an AJAX request
-                    //         url: url, // set the url of the request (= localhost:8000/hr/ajax/load-cities/)
-                    //         data: {
-                    //             'country': countryId // add the country id to the GET parameters
-                    //         },
-                    //         success: function (
-                    //             data) { // `data` is the return of the `load_cities` view function
-                    //             $("#id_city").html(
-                    //                 data
-                    //             ); // replace the contents of the city input with the data that came from the server
-                    //         }
-                    //     });
-                    // })
                 </script>
             </div>
-
         </div>
-
     </div>
-    <!-- <div class="col-md-3 m-t-10">
-        Тут буде ваша реклама
-    </div> -->
 </div>
-
-
 {% endblock content %}

@@ -2,27 +2,9 @@
 {% load i18n static %}
 {% load my_tags %}
 {% block content %}
-
 <div class="row" id="main-content">
   <div class="col-md-8 col-sm-8" id="ideas">
     <main>
-      {#                                    <div class="white-box b-shadow">#}
-      {#                                            <div class="card-body">#}
-      {#                                                    <div class="row " style="overflow: hidden">#}
-      {#                                                        <div class="col-lg-9 col-md-8" >#}
-      {#                                                            <div class="d3" style="width: 100%;">#}
-      {#                                                                <form method="GET">#}
-      {#                                                                    <input type="text" name="search" placeholder="{% trans 'Поиск проектов' %}">#}
-      {#                                                                    <button type="submit"></button>#}
-      {#                                                                </form>#}
-      {#                                                          </div>#}
-      {#                                                        </div>#}
-      {#                                                        <div class="col-lg-3 col-md-4" style="">#}
-      {#                                                            <a class="btn btn-primary" id="custom-clk" style="padding: 11px"><span class="fa fa-sliders"></span> {% trans 'Налаштування' %}</a>#}
-      {#                                                        </div>#}
-      {#                                                    </div>#}
-      {#                                                </div>#}
-      {#                                    </div>#}
       <div class="card white-box">
         <div class="card-body">
           <div class="row " style="overflow: hidden">
@@ -34,10 +16,6 @@
                 </form>
               </div>
             </div>
-            <!-- <div class="col-lg-3 col-md-4" style="">
-              <a class="btn btn-primary" id="custom-clk" style="padding: 11px"><span class="fa fa-sliders">
-                </span>{% trans 'Налаштування' %}</a>
-            </div> -->
           </div>
         </div>
       </div>
@@ -73,7 +51,6 @@
           });
         });
       </script>
-
       <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
       <script>
         $("#id_country").change(function () {
@@ -90,7 +67,6 @@
                 data); // replace the contents of the city input with the data that came from the server
             }
           });
-
         });
       </script>
       {% ifequal deals.paginator.count 0 %}
@@ -100,30 +76,12 @@
       {% endifequal %}
       {% if deals %}
       <div class="white-box b-shadow ">
-
         {% for deal in deals %}
         <a href="{% url 'deal-detail' deal.id %}" class="" style="text-decoration: none; color:black">
           <div class="card-body deal">
             <h2 class="">{{ deal.title }}</h2>
             <p class="font-light text-primary" style=""><i class="fas fa-map-marker-alt"></i> {{ deal.city }},
               {{ deal.country }}</p>
-            {#                                              <div class="categories">#}
-            {##}
-            {#                                                      <li class="category-item">#}
-            {#                                                            <small>#}
-            {#                                                                Дизайн автомобілів,#}
-            {#                                                            </small>#}
-            {#                                                      </li>#}
-            {#                                                      <li class="category-item">#}
-            {#                                                            <small>#}
-            {#                                                                    Продаж техніки#}
-            {#                                                            </small>#}
-            {##}
-            {#                                                        </li>#}
-            {##}
-            {##}
-            {##}
-            {#                                              </div>#}
             <p class="card-text">{{ deal.description|truncatewords:25 }}</p>
             {% if deal.speciality.all.count > 0%}
             <dt class="profile-section__title">{% trans 'Необходимы специалисты:' %}</dt>
@@ -137,7 +95,6 @@
               </ul>
             </dd>
             {% endif %}
-            {#                                              <a href="{% url 'deal-detail' deal.id %}" class="btn btn-primary">Узнать больше</a>#}
           </div>
         </a>
         <hr>
@@ -167,56 +124,7 @@
         {% endif %}
       </div>
       {% endif %}
-      {#                        {% if request.GET.speciality %}#}
-      {#                            {{ request.GET.speciality }}#}
-      {##}
-      {##}
-      {#                            {% endif %}#}
-      {#                            {% if request.GET.speciality %}#}
-      {#                            {{ request.GET.speciality }}#}
-      {##}
-      {#                            {% endif %}#}
-      {#                            <div class="pagination">#}
-      {#                                <span class="step-links">#}
-      {#                                    {% if deals.has_previous %}#}
-      {#                                        <a href="?page=1">&laquo; first</a>#}
-      {#                                        <a href="?page={{ deals.previous_page_number }}">previous</a>#}
-      {#                                    {% endif %}#}
-      {##}
-      {#                                    <span class="current">#}
-      {#                                        Page {{ deals.number }} of {{ deals.paginator.num_pages }}.#}
-      {#                                    </span>#}
-      {##}
-      {#                                    {% if deals.has_next %}#}
-      {#                                        <a href="?{% param_replace page=deals.next_page_number %}">next</a>#}
-      {#                                        <a href="?page={{ deals.paginator.num_pages }}">last &raquo;</a>#}
-      {#                                    {% endif %}#}
-      {#                                </span>#}
-      {#                            </div>#}
-
-
     </main>
   </div>
-  <!-- <div class="col-md-3 col-sm-4">
-    <aside>
-      <div class="block-sidebar m-30 white-box">
-        <div class="">
-          <h4>{% trans 'Найкращі ідеї за місяць' %}</h4>
-        </div>
-        <li>
-          <a href="">
-            TeamByClick
-          </a>
-        </li>
-        <li>
-          <a href="">
-            Arrangyzer
-          </a>
-        </li>
-      </div>
-    </aside>
-  </div> -->
 </div>
-
-
 {% endblock content %}

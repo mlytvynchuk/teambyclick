@@ -7,9 +7,6 @@
         <div class="user-card white-box p-30">
             <div class="user-img" style="background: url({{usr.profile.image.url}});">
             </div>
-            {#                  <div class="lol">#}
-            {#                  <img src="{{ usr.profile.image.url }}" alt="user-picture" class="img-circle">#}
-            {#              </div>#}
             <div class="user-info">
                 <div class="user-title">
                     <h3>{{ usr.first_name }} {{ usr.last_name }}</h3>
@@ -41,7 +38,6 @@
                     </dd>
                     <div class="contact">
                         {% if usr.profile.facebook or usr.profile.linkedin %}
-                        {#            <h4 style="padding: 5px;">{% trans "Контакты: "%}</h4>#}
                         {% endif %}
                         <ul class="inline-bricks">
                             {% if usr.profile.facebook %}
@@ -61,7 +57,6 @@
                     {% trans 'Написать сообщение' %}</a>
                 {% endif %}
             </div>
-
         </div>
         {% if deals %}
         <h3 class="card-title">{% trans 'Проекты пользователя' %}</h3>
@@ -89,9 +84,6 @@
 
         {% endif %}
     </div>
-    <div class="col-md-3">
-
-    </div>
+    <div class="col-md-3"></div>
 </div>
-<!-- End Default Light Table -->
 {% endblock content %}
