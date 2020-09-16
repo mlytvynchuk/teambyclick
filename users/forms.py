@@ -3,8 +3,6 @@ from django.contrib.auth import authenticate
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
 from django.core.exceptions import ValidationError
-
-# from django.utils.translation import ugettext as _
 from django.utils.translation import ugettext_lazy as _
 from .models import Profile, City, Message
 
@@ -130,7 +128,6 @@ class ProfileUpdateForm(forms.ModelForm):
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        # self.fields['city'].queryset = City.objects.none()
 
         if "country" in self.data:
             try:
@@ -140,33 +137,8 @@ class ProfileUpdateForm(forms.ModelForm):
                 ).order_by("name")
             except (ValueError, TypeError):
                 pass  # invalid input from the client; ignore and fallback to empty City queryset
-        # elif self.instance.pk:
-        #     self.fields['city'].queryset = self.instance.country.city_set.order_by('name')
 
 
-# class SearchPeopleForm(forms.ModelForm):
-#     class Meta:
-#         model = Profile
-#         fields = ['speciality','skills','country','city']
-#         widgets = {
-#             'speciality': forms.SelectMultiple(attrs={'class':'form-control','id':'choices-multiple-remove-button'}),
-#             'skills': forms.SelectMultiple(attrs={'class': 'form-control', 'id': 'choices-multiple-remove-button'}),
-#             'country': forms.Select(attrs={'class': 'form-control'}),
-#             'city': forms.Select(attrs={'class': 'form-control'}),
-#
-#         }
-#     def __init__(self, *args, **kwargs):
-#         super().__init__(*args, **kwargs)
-#         self.fields['city'].queryset = City.objects.none()
-#
-#         if 'country' in self.data:
-#             try:
-#                 country_id = int(self.data.get('country'))
-#                 self.fields['city'].queryset = City.objects.filter(country_id=country_id).order_by('name')
-#             except (ValueError, TypeError):
-#                 pass  # invalid input from the client; ignore and fallback to empty City queryset
-#         elif self.instance.pk:
-#             self.fields['city'].queryset = self.instance.country.city_set.order_by('name')
 class SearchPeopleForm(forms.ModelForm):
     class Meta:
         model = Profile

@@ -1,8 +1,6 @@
 from django import forms
-from .models import Deal, City
-
-# from django.utils.translation import ugettext as _
 from django.utils.translation import ugettext_lazy as _
+from .models import Deal, City
 
 
 class SearchForm(forms.ModelForm):

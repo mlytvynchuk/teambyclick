@@ -10,6 +10,7 @@ from django.views import View
 from django.db.models.functions import Concat
 from django.db.models import Q, F
 from django.db.models import Value as V
+from django.contrib.auth.decorators import login_required
 from deals.models import Deal
 from deals.views import getLanguage
 from users.models import City, Chat, Profile, Message
@@ -20,7 +21,6 @@ from .forms import (
     SearchPeopleForm,
     MessageForm,
 )
-from django.contrib.auth.decorators import login_required
 
 
 def register(request):
@@ -93,16 +93,16 @@ def people(request):
     search = request.GET.get("search", "")
     country = request.GET.get("country", "")
     city = request.GET.get("city", "")
-    # order = request.GET.get('orderBy', '')
     spec = request.GET.getlist("speciality", "")
     skills = request.GET.getlist("skills", "")
     s_form = SearchPeopleForm
     message = ""
     users = User.objects.all()
     if search:
-        users = users.annotate(full_name=Concat('first_name', V(' '), 'last_name')).filter(full_name__icontains=search)
-        # users = users.distinct()
-        print('search')
+        users = users.annotate(
+            full_name=Concat("first_name", V(" "), "last_name")
+        ).filter(full_name__icontains=search)
+        print("search")
 
     if users.count() < 1:
         message = "wrong"

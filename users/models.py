@@ -2,8 +2,11 @@ from django.db import models
 from django.contrib.auth.models import User
 from PIL import Image
 from django.utils import timezone
-
 from locations.models import Country, City
+from django.db import models
+from django.contrib.auth.models import User
+from django.utils import timezone
+from django.utils.translation import ugettext_lazy as _
 
 
 class Status(models.Model):
@@ -12,7 +15,7 @@ class Status(models.Model):
 
     def __str__(self):
         return self.name
-    
+
     class Meta:
         ordering = ("name",)
 
@@ -71,18 +74,9 @@ class Skills(models.Model):
 
     def __str__(self):
         return self.name
-        
+
     class Meta:
         ordering = ("name",)
-
-
-# Chat and messages here
-from django.db import models
-from django.contrib.auth.models import User
-from django.utils import timezone
-from django.utils.translation import ugettext_lazy as _
-
-# Dialogs
 
 
 class Chat(models.Model):

@@ -15,26 +15,20 @@ Including another URLconf
 """
 from django.conf.urls.static import static
 from django.contrib import admin
-
-# from django.conf.urls.static import static
-
 from django.urls import path, include
 from django.conf import settings
-
-from users import views as user_views
 from django.contrib.auth import views as auth_views
-
 from django.conf.urls.i18n import i18n_patterns
 from deals import views as d_views
+from users import views as user_views
 
 urlpatterns = (
     [
         path("admin/", admin.site.urls),
-        # urlpatterns += i18n_patterns(
         path("", include("deals.urls")),
         path("", include("users.urls")),
         # social media
-        path("oauth/", include("social_django.urls", namespace="social")),  # <--
+        path("oauth/", include("social_django.urls", namespace="social")),
         # authetication
         path("register/", user_views.register, name="register"),
         path(

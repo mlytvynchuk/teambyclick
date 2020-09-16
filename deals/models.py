@@ -1,10 +1,8 @@
 from django.contrib.auth.models import User
 from django.contrib.contenttypes.models import ContentType
 from django.db import models
-
 from django.urls import reverse
 from django.utils import timezone
-
 from comentz.models import Comment
 from locations.models import Country, City
 from users import models as usr_models

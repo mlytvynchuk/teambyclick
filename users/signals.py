@@ -13,9 +13,3 @@ def createUserProfile(sender, instance, created, **kwargs):
 @receiver(post_save, sender=User)
 def updateUserProfile(sender, instance, **kwargs):
     instance.profile.save()
-
-
-# @receiver(post_save,sender=Message)
-# def pushNotification(sender,instance,created,**kwargs):
-#     if instance!=receiver:
-#         print("hello")
