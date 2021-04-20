@@ -1,7 +1,7 @@
 asgiref==2.3.2
 async-timeout==3.0.1
 attrs==18.2.0
-autobahn==19.1.1
+autobahn==20.12.3
 Automat==0.7.0
 boto==2.49.0
 CacheControl==0.12.6
